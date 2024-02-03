@@ -1,0 +1,15 @@
+create table user(
+    userID text primary key,
+    googleID text,
+    email text unique,
+    password text,
+    name text,
+    pictureURL text,
+    email_confirmed text default 0
+);
+
+create table email_verification(
+    id text primary key,
+    email text,
+    token text
+);
