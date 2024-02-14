@@ -1,0 +1,152 @@
+.main-header {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 2.53438rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.option-background{
+    width: 29.56175rem;
+    height: 33.11619rem;
+    flex-shrink: 0;
+    border-radius: 1.74238rem;
+    background: rgba(0, 0, 0, 0.27);
+}
+.room-background{
+    width: 25.42338rem;
+    height: 15.44431rem;
+    flex-shrink: 0;
+    border-radius: 1.74238rem;
+    background: rgba(0, 0, 0, 0.27);
+}
+
+
+/* MENU BUTTON DESIGN */
+.button-text{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.90075rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.chat-button{
+    display: flex;
+    width: 24.04744rem;
+    padding: 0.06919rem 2.178rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #EB87B6;
+    background: rgba(235, 135, 182, 0.00);
+}
+.chat-button:hover{
+    background-color: #EB87B6;
+}
+.friends-button{
+    display: flex;
+    width: 24.04744rem;
+    padding: 0.06919rem 2.178rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #FB8C8C;
+    background: rgba(122, 195, 255, 0.00);
+}
+.friends-button:hover{
+    background-color: #FB8C8C;
+}
+.audio-button{
+    display: flex;
+    width: 24.04744rem;
+    padding: 0.06919rem 2.178rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #4FC8B7;
+    background: rgba(255, 255, 255, 0.00);
+}
+.audio-button:hover{
+    background-color: #4FC8B7;
+}
+.profile-button{
+    display: flex;
+    width: 24.04744rem;
+    padding: 0.06919rem 2.178rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #7AC3FF;
+    background: rgba(255, 255, 255, 0.00);
+}
+.profile-button:hover{
+    background-color: #7AC3FF;
+}
+
+/* ROOM BUTTON DESIGN */
+.create-room-button{
+    display: inline-flex;
+    padding: 0.11881rem 0.75238rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.782rem;
+    border: 5.069px solid #8A3865;
+    background: #EB87B6;
+}
+.create-room-button:hover{
+    background-color: #8A3865;
+}
+.create-room-button-text{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.90075rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.create-room-text{
+    width: 16.31506rem;
+    height: 2.81156rem;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.98rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.join-room-button{
+    display: inline-flex;
+    padding: 0.1838rem 1.10881rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.396rem;
+    border-radius: 1.782rem;
+    border: 3.168px solid #004883;
+    background: #7AC3FF;
+}
+.join-room-button:hover{
+    background-color: #004883;
+}
+.join-room-button-text{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.90075rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+.join-room-text{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.98rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

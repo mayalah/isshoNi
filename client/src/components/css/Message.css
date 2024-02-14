@@ -1,0 +1,30 @@
+.message-container{
+    display: flex;
+    padding: 1.94038rem 10.09881rem 1.14838rem 10.09875rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 13.02825rem;
+    border-radius: 1.74238rem;
+    border: 1.267px solid #FFF;
+    background: rgba(0, 0, 0, 0.27);
+    /* transform: scale(0.8); */
+}
+.place-holder{ 
+    display: flex;
+    width: 37.9375rem;
+    height: 18.9375rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+.send-bar{ 
+    display: flex;
+    height: 3.5625rem;
+    padding: 0.0625rem 0.625rem 0.125rem 0.625rem;
+    align-items: center;
+    gap: 15.5rem;
+    border-radius: 2.75rem;
+    background: rgba(0, 0, 0, 0.27);
+}

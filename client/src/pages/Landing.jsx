@@ -32,6 +32,30 @@ const Landing = () => {
         >
           Login
         </Link>
+        <Link
+          to="/chat"
+          style={{
+            textDecoration: "none",
+            border: "1px solid gray",
+            padding: "0.5rem 1rem",
+            backgroundColor: "whitesmoke",
+            color: "#333",
+          }}
+        >
+          Chat
+        </Link>
+        <Link
+          to="/mainmenu"
+          style={{
+            textDecoration: "none",
+            border: "1px solid gray",
+            padding: "0.5rem 1rem",
+            backgroundColor: "whitesmoke",
+            color: "#333",
+          }}
+        >
+          HOME
+        </Link> 
         
       </div>
     </>

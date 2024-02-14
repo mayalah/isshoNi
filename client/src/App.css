@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+
+html, body, #root, .App {
+  height: 100%;
+  width: 100%;
+  /* margin: 0;
+  padding: 0; */
+  font-family: "Work Sans", sans-serif;
+  /* font-size: 16px; */
+  color: #fff;
+  background-color: #24273A;
+}
+
+/* CUSTOM COLORS */
+.bg_orange {
+  background-color: #FB8C8C;
+}
+.bg_lightBlue {
+  background-color: #7AC3FF;
+}
+.bg_purple {
+  background-color: #24273A;
+}
+.bg_pink {
+  background-color: #EB87B6;
+}
+.bg_green {
+  background-color: #4FC887;
+}
+
+ /* UTILITIES */
+.fw{
+  width: 100%;
+}
+.fh{
+  height: 100%;
+}
+.fwh{
+  width: 100%;
+  height: 100%;
+}
+.cr{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.crse{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.vcr{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.vcrse{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* FLEXBOX COLUMN AND ROW without nowrap*/
+.fxc{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background: purple; */
+}
+.fxr{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* background: blue; */
+}
+
