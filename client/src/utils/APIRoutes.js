@@ -6,3 +6,4 @@ export const signUpWithGoogleRoute = `${host}/api/user/signUpWithGoogle`;
 export const forgotPassword = `${host}/api/user/forgotPassword`;
 export const changePassword = `${host}/api/user/changePassword`;
 export const logOut = `${host}/api/user/logOut`;
+
