@@ -8,6 +8,7 @@ import SignIn from "../SignIn";
 
 const Landing = () => {
   const [scrollStyle, setScrollStyle] = useState("First-Page");
+  const [loginSignUp, setLoginSignup] = useState("");
   const lookup = { 0: "First-Page", 1: "GreenBackground", 2: "PinkBackground" };
   function handleScroll() {
     let section = Math.floor(window.scrollY / window.innerHeight);

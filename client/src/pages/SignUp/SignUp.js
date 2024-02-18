@@ -9,6 +9,7 @@ const SignUp = ({ setLoginSignup }) => {
       >
         X
       </button>
+      <div>SIGN UP</div>
     </div>
   );
 };
