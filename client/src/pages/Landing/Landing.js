@@ -3,6 +3,8 @@ import Homepage from "./components/Homepage";
 import Description from "./components/Description";
 import Topbar from "../Topbar";
 import { useState, useEffect } from "react";
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
 
 const Landing = () => {
   const [scrollStyle, setScrollStyle] = useState("First-Page");
@@ -21,8 +23,15 @@ const Landing = () => {
   }, [scrollStyle]);
   return (
     <div className={`App ${scrollStyle}`}>
-      <Topbar />
-      <Homepage />
+      {loginSignUp === "SignUp" ? (
+        <SignUp setLoginSignup={setLoginSignup} />
+      ) : loginSignUp === "SignIn" ? (
+        <SignIn setLoginSignup={setLoginSignup} />
+      ) : (
+        <></>
+      )}
+      <Topbar setLoginSignup={setLoginSignup} />
+      <Homepage setLoginSignup={setLoginSignup} />
       <Description scrollStyle={scrollStyle} />
     </div>
   );
