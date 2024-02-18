@@ -32,23 +32,22 @@
   width: 28.1875rem;
   height: 6.25rem;
   border-radius: 2.8125rem;
-  background: #FFF;
-  display:flex;
+  background: #fff;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   font-weight: 500;
   gap: 1rem;
   font-family: "WorkSans-Medium";
-  margin-top:3rem;
-  border: 1px transparent solid
+  margin-top: 3rem;
+  border: 1px transparent solid;
 }
 .button-container:hover {
-
-  border: solid .5vw transparent;
+  border: solid 0.5vw transparent;
   border-radius: 2.8125rem;
-  background-image: linear-gradient(white, white), 
-                    linear-gradient(to right, #ff3e74,#ffde26, #6cecc4);
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, #ff3e74, #ffde26, #6cecc4);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -79,11 +78,10 @@
   font-size: 2.6vw;
 }
 .character-button {
-  background-image: url("./../assets/character-with-box.png");
+  background-image: url("./../.././../assets/character-with-box.png");
   background-size: cover;
 }
 .button-text {
   margin-top: 10vh;
   color: white;
 }
-

@@ -1,6 +1,6 @@
 import "./Homepage.css";
-import character from "./../assets/characters.svg";
-import rocket from "./../assets/rocket.svg";
+import character from "../../../assets/characters.svg";
+import rocket from "../../../assets/rocket.svg";
 
 const Homepage = () => {
   return (

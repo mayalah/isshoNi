@@ -1,10 +1,10 @@
 import "./Description.css";
-import saturn from "./../assets/saturn.svg";
-import pause from "./../assets/pause.svg";
-import global from "./../assets/global.svg";
-import sun from "./../assets/sun.svg";
-import question from "./../assets/question.svg";
-import community from "./../assets/community.svg";
+import saturn from "./../../../assets/saturn.svg";
+import pause from "./../../../assets/pause.svg";
+import global from "./../../../assets/global.svg";
+import sun from "./../../../assets/sun.svg";
+import question from "./../../../assets/question.svg";
+import community from "./../../../assets/community.svg";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 

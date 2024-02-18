@@ -1,44 +1,20 @@
-import "./App.css";
-import Homepage from "./components/Homepage";
-import Description from "./components/Description";
-import Topbar from "./components/Topbar";
+// import Login from "./pages/Login";
+// import SignUp from "./pages/SignUp";
+import Landing from "./pages/Landing";
+// import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { useState, useEffect, useRef } from "react";
-
-function App() {
-  const [scrollStyle, setScrollStyle] = useState("First-Page");
-  useEffect(() => {
-    function handleScroll(event) {
-      if (
-        window.scrollY >= window.screen.height / 2 &&
-        window.scrollY < window.screen.height * 1.5 &&
-        scrollStyle !== "GreenBackground"
-      ) {
-        setScrollStyle("GreenBackground");
-      } else if (
-        window.scrollY < window.screen.height / 2 &&
-        scrollStyle !== "First-Page"
-      ) {
-        setScrollStyle("First-Page");
-      } else if (
-        window.scrollY >= window.screen.height * 1.5 &&
-        scrollStyle !== "PinkBackground"
-      ) {
-        setScrollStyle("PinkBackground");
-      }
-    }
-    document.addEventListener("scroll", handleScroll);
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollStyle]);
+const App = () => {
   return (
-    <div className={`App ${scrollStyle}`}>
-      <Topbar />
-      <Homepage />
-      <Description scrollStyle={scrollStyle} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        {/* <Route path="/signUp" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} /> */}
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
