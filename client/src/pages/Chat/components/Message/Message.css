@@ -10,6 +10,14 @@
     background: rgba(0, 0, 0, 0.27);
     /* transform: scale(0.8); */
 }
+.message-friend{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 2.53438rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
 .place-holder{ 
     display: flex;
     width: 37.9375rem;

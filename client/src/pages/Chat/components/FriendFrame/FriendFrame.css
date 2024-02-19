@@ -1,0 +1,86 @@
+.icon {
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+    margin-right: 1rem; /* Adjust spacing between icon and text */
+}
+
+
+/* CONTAINER STYLES */
+.friend-frame-button {
+    width: 20rem; /* or min-width for responsive design */
+    display: flex;
+    padding: 1.42556rem 2.40281rem 1.53056rem;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #FB8C8C;
+    background: rgba(0, 0, 0, 0.27);
+    overflow: hidden; /* Ensure that content doesn't overflow the box */
+}
+/* .friend-frame-button.active {
+    background-color: #FB8C8C;
+} */
+.friend-frame-button:hover {
+    background-color: #FB8C8C;
+}
+
+/* TEXT STYLES */
+.friend-frame-text {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.584rem;
+    font-style: normal;
+    font-weight: 500;
+    white-space: nowrap; /* Keep text on a single line */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis to overflow */
+    flex-grow: 1; /* Allow text to take up remaining space */
+}
+/* Additional styles for the text to ensure it doesn't overflow */
+.friend-frame-text span {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%; /* Prevent text from taking more than 100% width */
+}
+.icon {
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+    margin-right: 1rem; /* Adjust spacing between icon and text */
+}
+
+
+/* CONTAINER STYLES */
+.friend-frame-button {
+    width: 20rem; /* or min-width for responsive design */
+    display: flex;
+    padding: 1.42556rem 2.40281rem 1.53056rem;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1.74238rem;
+    border: 5.069px solid #FB8C8C;
+    background: rgba(0, 0, 0, 0.27);
+    overflow: hidden; /* Ensure that content doesn't overflow the box */
+}
+/* .friend-frame-button.active {
+    background-color: #FB8C8C;
+} */
+.friend-frame-button:hover {
+    background-color: #FB8C8C;
+}
+
+/* TEXT STYLES */
+.friend-frame-text {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.584rem;
+    font-style: normal;
+    font-weight: 500;
+    white-space: nowrap; /* Keep text on a single line */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis to overflow */
+    flex-grow: 1; /* Allow text to take up remaining space */
+}
+/* Additional styles for the text to ensure it doesn't overflow */
+.friend-frame-text span {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%; /* Prevent text from taking more than 100% width */
+}

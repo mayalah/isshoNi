@@ -1,25 +1,19 @@
-import './App.css';
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import './App.css';// import Login from "./pages/Login";
 import Landing from "./pages/Landing";
-import Home from "./pages/Home";
-import Chat from "./pages/Chat";
-import MainMenu from "./pages/MainMenu";
+import MainMenu from "../src/pages/Menu/MainMenu";
+import Chat from "../src/pages/Chat/Chat";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/mainmenu" element={<MainMenu />} />
+        <Route path="menu" element={<MainMenu />} />
+        <Route path="chat" element={<Chat />} />
       </Routes>
     </BrowserRouter>
-  );
-}
+  );  
+};
 
-export default App
+export default App;

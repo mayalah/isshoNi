@@ -13,27 +13,7 @@ fastify.register(cors, {
     origin: ["http://localhost:3000"],
     methods: ["GET","POST"]
 })
-// fastify.register(FastifyJwt, {
-//     secret: process.env.JWT_SECRET,
-//      cookie: {
-//         cookieName : 'token'
-//      }
-//   })
 
-
-// fastify.register(cookie)
-// fastify.decorate("authenticate", async function(request, reply){
-//     try{
-//         console.log(request.cookies.token)           
-//         const decode = await fastify.jwt.verify(request.cookies.token)
-//         request.email = decode.email
-//         console.log(email)
-
-//     }catch(err){
-//         console.log(err)
-//         reply.status(401).send({message: "Authentication failed"})
-//     }
-// })
 fastify.register(auth)
 fastify.register( userRoutes, {prefix:"/api/user"})
 

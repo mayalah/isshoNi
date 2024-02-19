@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo, useState } from "react";
-import "../index.css";
-import userIcon from "../assets/userIcon.svg";
-import "../components/css/UserFrame.css";
+import "../../../../index.css";
+import userIcon from "../../../../assets/userIcon.svg";
+import "./UserFrame.css";
 
 
 function UserFrame ({label}) {
