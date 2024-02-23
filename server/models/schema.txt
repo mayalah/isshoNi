@@ -13,3 +13,19 @@ create table email_verification(
     email text,
     token text
 );
+
+create table friend(
+   relationship_id text primary key,
+   user text,
+   friend text,
+   confirmed INT default 0,
+   date DATE 
+)
+create table message(
+    message_id text primary key,
+    sender text,
+    receiver text,
+    message_content text,
+    time TIME,
+    date DATE
+)
