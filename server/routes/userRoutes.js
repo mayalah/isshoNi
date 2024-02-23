@@ -15,5 +15,8 @@ async function userRoutes(fastify, options){
     fastify.post("/loginWithGoogle", (request, reply) => loginWithGoogle(fastify, request, reply) )
     fastify.post("/signUpWithGoogle", (request, reply) => signUpWithGoogle(fastify, request, reply))
 
+
+    
+
 }
 export default userRoutes;
