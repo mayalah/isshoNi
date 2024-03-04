@@ -1,0 +1,11 @@
+.cursor{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+.name_box{
+    position:relative;
+    left:.75rem;
+    padding:.365rem;
+}

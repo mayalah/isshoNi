@@ -1,0 +1,29 @@
+.container{
+    position:absolute;
+    background-color: rgb(85, 85, 85);
+    padding: 12px;
+    border-radius: 12px;
+    display:flex;
+    flex-direction: row;
+    z-index: 10;
+}
+.color_chooser{
+    display:flex;
+    flex-wrap: wrap;
+    max-width: 128px;
+    gap:2px;
+    border-right:1px solid black;
+}
+.color_element{
+    width:28px;
+    height:28px;
+    border-radius: 14px;
+}
+
+.move_cnt{
+    padding:2px;
+    display:flex;
+    flex-direction: column;
+    border-right:1px solid black;
+    justify-content: space-between;
+}
