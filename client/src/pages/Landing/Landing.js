@@ -5,7 +5,6 @@ import Topbar from "../Topbar";
 import { useState, useEffect } from "react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
-import { Link } from "react-router-dom";
 
 const Landing = () => {
   const [scrollStyle, setScrollStyle] = useState("First-Page");
@@ -35,7 +34,7 @@ const Landing = () => {
       <Topbar setLoginSignup={setLoginSignup} />
       <Homepage setLoginSignup={setLoginSignup} />
       <Description scrollStyle={scrollStyle} />
-      </div>
+    </div>
   );
 };
 

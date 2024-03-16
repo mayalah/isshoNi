@@ -6,3 +6,7 @@ export const signUpWithGoogleRoute = `${host}/api/user/signUpWithGoogle`;
 export const forgotPassword = `${host}/api/user/forgotPassword`;
 export const changePassword = `${host}/api/user/changePassword`;
 export const logOut = `${host}/api/user/logOut`;
+
+export const getAllFriends = `${host}/api/chat/getAllFriends`;
+export const getMessages = `${host}/api/chat/getMessages`;
+export const addMessage = `${host}/api/chat/addMessage`;
