@@ -1,8 +1,4 @@
 .friend-container{
-    /* display: flex;
-    height: 20.81894rem;
-    max-height: 29.81894rem;
-    overflowY: auto; */
     padding: 1.14838rem 1.02956rem 1.782rem 1.06919rem;
     flex-direction: column;
     flex-shrink: 0;
@@ -10,14 +6,12 @@
     align-items: flex-start;
     border-radius: 1.74238rem;
     background: rgba(0, 0, 0, 0.27);
+    overflow-y: "scroll";
+    max-height: "29rem";
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 .friend-container::-webkit-scrollbar {
     display: none;
-}
-/* Optional: if you want to show the scrollbar when the user hovers over the scroll-container */
-.friend-container:hover::-webkit-scrollbar {
-    display: block;
 }
 
 .custom-space{

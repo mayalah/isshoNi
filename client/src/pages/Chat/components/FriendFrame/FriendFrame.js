@@ -8,7 +8,7 @@ function FriendFrame({ label, onClick, isActive }) {
   return (
     <button
       className={`friend-frame-button friend-frame-text ${isActive ? "active" : ""}`}
-      onClick={onClick} // Use onClick prop directly
+      onClick={onClick} 
     >
       <img src={userIcon} alt="userIcon" className="icon" />
       <p>{label}</p>

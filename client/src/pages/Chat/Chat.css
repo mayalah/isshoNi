@@ -1,44 +1,49 @@
-body, .chat-bg {
-    height: 100%;
-    width: 100%;
-    font-family: "Work Sans", sans-serif;
-    color: #000000;
-    background-color: #24273A;
+body,
+.chat-bg {
+  height: 100%;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+  background-color: rgb(32, 32, 32);
 }
 
 /* BUTTON STYLING */
-.button-group, .button-me{
-    display: flex;
-    height: 2.80156rem;
-    padding: 0.47519rem 1.54438rem 0.4555rem 1.54438rem;
-    align-items: center;
-    gap: 0.55438rem;
-    border: 5px solid #7AC3FF;
-    border-radius: 2.75rem;
-    background: rgba(0, 0, 0, 0.27);
-    /* transform: scale(0.8); */
+.button-group,
+.button-me {
+  display: flex;
+  height: 2.80156rem;
+  padding: 0.47519rem 1.54438rem 0.4555rem 1.54438rem;
+  align-items: center;
+  gap: 0.55438rem;
+  border: 5px solid #7ac3ff;
+  border-radius: 2.75rem;
+  background: rgba(0, 0, 0, 0.67);
 }
 /* Add active class to the pressed button */
-.button-group.active, .button-me.active {
-    background-color: #7AC3FF;
+.button-group.active,
+.button-me.active {
+  background-color: #7ac3ff;
 }
 /* Remove active class when group button is pressed */
 .button-group:active ~ .button-me.active {
-    background-color: #7AC3FF;
+  background-color: #7ac3ff;
 }
 .button-me.active ~ .button-group.active {
-    background-color: #7AC3FF;
+  background-color: #7ac3ff;
 }
-.button-decision-text{
-    color: #FFF;
-    font-family: "Work Sans";
-    font-size: 1.20rem;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
+.button-decision-text {
+  color: #fff;
+  font-family: "Work Sans";
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
 }
-
-.scale{
-    transform: scale(1.2);
+.scale {
+  transform: scale(1.2);
 }
-
+.back-button {
+  position: fixed;
+  top: 60px;
+  left: 80px;
+  padding: 0.5rem;
+}

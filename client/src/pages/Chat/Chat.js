@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "../Chat/Chat.css"
-import "../../index.css"
+import "../Chat/Chat.css";
+import "../../index.css";
 import Friends from "./components/Friends/Friends";
 import UserFrame from "./components/User/UserFrame";
 import Message from "./components/Message/Message";
+import goBack from "../../assets/goBack.svg";
 
 function CHAT() {
-
-  // State to keep track of the active button
   const [activeButton, setActiveButton] = useState("me"); // Set initial value to "me" on page load
   const [selectedFriend, setSelectedFriend] = useState(null); // State to keep track of the selected friend
+  const [userEmail, setUserEmail] = useState("koolkishan@gmail.com"); // State to keep track of the user [TO BE IMPLEMENTED LATER]
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {
@@ -22,32 +22,51 @@ function CHAT() {
   const handleFriendSelection = (friendId) => {
     console.log(`${friendId} is in handleFriendSelection in CHAT component`);
     setSelectedFriend(friendId);
-  }
+  };
 
   return (
-    <div className="fxr" style={{ columnGap: "2rem", paddingTop: "5rem" }}>
-      <nav style={{ padding: "0.5rem" }}> 
-        <Link to="/">Go Back</Link>
+    <div>
+      <nav className="back-button">
+        <Link to="/">
+          <img
+            src={goBack}
+            alt="Go Back"
+            height={"50px"}
+            onClick={() => handleButtonClick("goBack")}
+          />
+        </Link>
       </nav>
-      <div className="fxc" style={{ rowGap: "1rem" }}>
-        <UserFrame label="koolkishan" />
-        <Friends setSelectedFriend={handleFriendSelection} /> {/* Pass the function to the Friends component as setSelectedFriend */}
-        <div className="fxr" style={{ columnGap: "1rem" }}>
-          <button
-            className={`button-me button-decision-text ${activeButton === "me" ? "active" : ""}`}
-            onClick={() => handleButtonClick("me")}
-          >
-            create a group
-          </button>
-          <button
-            className={`button-group button-decision-text ${activeButton === "group" ? "active" : ""}`}
-            onClick={() => handleButtonClick("group")}
-          >
-            join a group
-          </button>
+      <div
+        className="fxr chat-bg"
+        style={{ columnGap: "2rem", paddingTop: "5rem" }}
+      >
+        <div className="fxc" style={{ rowGap: "1rem" }}>
+          <UserFrame label="koolkishan" />
+          <Friends
+            setSelectedFriend={handleFriendSelection}
+            userEmail={userEmail}
+          />
+          <div className="fxr" style={{ columnGap: "1rem" }}>
+            <button
+              className={`button-me button-decision-text ${
+                activeButton === "me" ? "active" : ""
+              }`}
+              onClick={() => handleButtonClick("me")}
+            >
+              create a group
+            </button>
+            <button
+              className={`button-group button-decision-text ${
+                activeButton === "group" ? "active" : ""
+              }`}
+              onClick={() => handleButtonClick("group")}
+            >
+              join a group
+            </button>
+          </div>
         </div>
+        <Message setSelectedFriend={selectedFriend} userEmail={userEmail} />
       </div>
-      <Message setSelectedFriend={selectedFriend} /> {/* Pass the selectedFriend state to the Message component as setSelectedFriend */}
     </div>
   );
 }

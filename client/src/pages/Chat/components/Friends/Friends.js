@@ -1,22 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../Friends/Friends.css";
 import FriendFrame from "../FriendFrame/FriendFrame";
+import mockFriendsData from "./mockFriendsData.json"; // USE WITH MOCK DATA
+import * as APIRoutes from "../../../../utils/APIRoutes";
 
-function Friends({ setSelectedFriend }) {
+
+function Friends({ setSelectedFriend, userEmail }) {
     const [activeButton, setActiveButton] = useState(null);
+    // const [friends, setFriends] = useState([]); // USE WITH API -> will fail Friends.test.js 
+    const [friends, setFriends] = useState(mockFriendsData); // USE WITH MOCK DATA
 
-    const friends = [
-        { label: "Agnes#2857", id: "Agnes#2857" },
-        { label: "Siri#9264", id: "Siri#9264" },
-        { label: "Hana#8725", id: "Hana#8725" },
-        { label: "Kishan#0001", id: "Kishan#0001" },
-        { label: "Jess#0121", id: "Jess#0121" },
-        { label: "Mirhisl#0301", id: "Mirhisl#0301" },
-        { label: "Wishan#1301", id: "Wishan#1301" },
-        { label: "Carl#8191", id: "Carl#8191" },
-        { label: "Jen#2846", id: "Jen#2846" },
-        { label: "Pierce#9384", id: "Pierce#9384" },
-    ];
+    // NEED TO IMPLEMENT API CALL TO GET FRIENDS -> use mockFriendsData for now
+    useEffect(() => {
+        const fetchFriends = async () => {
+            try {
+                const response = await fetch(APIRoutes.getAllFriends, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: "user@example.com" }) // Replace with dynamic user email
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setFriends(data); // Assume the API returns an array of friends
+                console.log("Fetched friends:", data);
+            } catch (error) {
+                console.error("Error fetching friends:", error);
+            }
+        };
+        fetchFriends();
+    }, []); // Empty dependency array means this effect runs once on mount
 
     const handleButtonClick = (friendId) => {
         console.log(`IN FRIENDS COMPONENT: ${friendId} is clicked`);
