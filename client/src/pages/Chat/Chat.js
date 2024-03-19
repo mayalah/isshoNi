@@ -27,7 +27,7 @@ function CHAT() {
   return (
     <div>
       <nav className="back-button">
-        <Link to="/">
+        <Link to="/menu">
           <img
             src={goBack}
             alt="Go Back"
