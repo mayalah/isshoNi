@@ -4,10 +4,25 @@ import mockMessageData from "./mockMessageData.json";
 import * as APIRoutes from "../../../../utils/APIRoutes";
 import sendArrow from "../../../../assets/sendArrow.svg";
 import { format } from "date-fns";
+import axios from "axios";
 
 function Message({ setSelectedFriend, userEmail }) {
-  const [messages, setMessages] = useState(mockMessageData);
+  // const [messages, setMessages] = useState(mockMessageData);
   const [messageInput, setMessageInput] = useState("");
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const userEmail = "peciti3561@tospage.com";
+    axios
+      .post(APIRoutes.getMessages, { email: userEmail })
+      .then((response) => {
+        console.log(response.data);
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching messages:", error);
+      });
+  }, []); // Empty dependency array means this effect runs once on mount// Empty dependency array means this effect runs once on mount
 
   const handleSendMessage = () => {
     if (messageInput.trim()) {

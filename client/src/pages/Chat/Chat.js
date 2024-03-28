@@ -6,11 +6,13 @@ import Friends from "./components/Friends/Friends";
 import UserFrame from "./components/User/UserFrame";
 import Message from "./components/Message/Message";
 import goBack from "../../assets/goBack.svg";
+import { set } from "date-fns";
 
 function CHAT() {
   const [activeButton, setActiveButton] = useState("me"); // Set initial value to "me" on page load
   const [selectedFriend, setSelectedFriend] = useState(null); // State to keep track of the selected friend
   const [userEmail, setUserEmail] = useState("koolkishan@gmail.com"); // State to keep track of the user [TO BE IMPLEMENTED LATER]
+  const [FriendEmail, setFriendEmail] = useState(""); // State to keep track of the friend [TO BE IMPLEMENTED LATER]
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {
@@ -22,6 +24,12 @@ function CHAT() {
   const handleFriendSelection = (friendId) => {
     console.log(`${friendId} is in handleFriendSelection in CHAT component`);
     setSelectedFriend(friendId);
+  };
+
+  // Updates selectedFriend state with their email
+  const handleFriendSelectionEmail = (friendEmail) => {
+    console.log(`${friendEmail} is in handleFriendSelection in CHAT component`);
+    setFriendEmail(friendEmail);
   };
 
   return (
@@ -45,6 +53,7 @@ function CHAT() {
           <Friends
             setSelectedFriend={handleFriendSelection}
             userEmail={userEmail}
+            setFriendEmail={handleFriendSelectionEmail}
           />
           <div className="fxr" style={{ columnGap: "1rem" }}>
             <button
