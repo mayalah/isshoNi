@@ -1,0 +1,130 @@
+body,
+.main-bg {
+  height: 100%;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+  background-color: rgb(32, 32, 32);
+}
+
+.main-header {
+  color: #fff;
+  font-size: 2.53438rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.option-background,
+.room-background {
+  flex-shrink: 0;
+  border-radius: 1.74238rem;
+  background: rgba(0, 0, 0, 0.27);
+  border: 1.569px solid #fff;
+}
+.option-background {
+  width: 29.56175rem;
+  height: 33.11619rem;
+}
+.room-background {
+  width: 25.42338rem;
+  height: 15.44431rem;
+}
+
+/* MENU BUTTON DESIGN */
+.button-text {
+  color: #fff;
+  font-size: 1.90075rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 1.5rem;
+}
+
+.chat-button,
+.friends-button,
+.audio-button,
+.profile-button {
+  display: flex;
+  width: 24.04744rem;
+  padding: 0.06919rem 2.178rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.396rem;
+  border-radius: 1.74238rem;
+  background: rgba(255, 255, 255, 0);
+}
+.chat-button {
+  border: 5.069px solid #eb87b6;
+}
+.chat-button:hover {
+  background-color: #eb87b6;
+}
+.friends-button {
+  border: 5.069px solid #fb8c8c;
+}
+.friends-button:hover {
+  background-color: #fb8c8c;
+}
+.audio-button {
+  border: 5.069px solid #4fc8b7;
+}
+.audio-button:hover {
+  background-color: #4fc8b7;
+}
+.profile-button {
+  border: 5.069px solid #7ac3ff;
+}
+.profile-button:hover {
+  background-color: #7ac3ff;
+}
+
+/* ROOM BUTTON DESIGN */
+.create-room-button,
+.join-room-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.396rem;
+  border-radius: 1.782rem;
+}
+.create-room-button {
+  padding: 0.11881rem 0.75238rem;
+  border: 5.069px solid #8a3865;
+  background: #eb87b6;
+}
+.create-room-button:hover {
+  background-color: #8a3865;
+}
+.join-room-button {
+  padding: 0.1838rem 1.10881rem;
+  border: 3.168px solid #004883;
+  background: #7ac3ff;
+}
+.join-room-button:hover {
+  background-color: #004883;
+}
+
+.create-room-button-text,
+.join-room-button-text {
+  color: #fff;
+  font-size: 1.90075rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.create-room-text,
+.join-room-text {
+  color: #fff;
+  font-size: 1.98rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.main-back-button {
+  position: fixed;
+  top: 70px;
+  left: 100px;
+  padding: 0.5rem;
+}

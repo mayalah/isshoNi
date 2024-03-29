@@ -1,0 +1,23 @@
+.user-frame{
+    display: flex;
+    height: 3.80156rem;
+    padding: 0.47519rem 1.54438rem 0.4555rem 1.54438rem;
+    align-items: center;
+    gap: 0.55438rem;
+    border: 5px solid #7AC3FF;
+    border-radius: 2.75rem;
+    background: #7AC3FF;
+    /* transform: scale(0.8); */
+}
+.user-text{
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 1.782rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.icon {
+    width: 2.86581rem;
+    height: 2.87088rem;
+}
