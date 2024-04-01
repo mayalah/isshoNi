@@ -10,8 +10,6 @@ function MENU() {
   const navigate = useNavigate();
 
   const handleButtonClick = (buttonName) => {
-    console.log(buttonName);
-    console.log("I am clicked");
     setActiveButton(buttonName);
     switch (buttonName) {
       case "chat":
@@ -45,7 +43,7 @@ function MENU() {
       </nav>
       <div className="fxc main-bg">
         <div className="main-header vcrse" style={{ paddingTop: "4rem" }}>
-          <p>Hello, koolkishan#1234!</p>
+          <p>Hello, Peciti#3561!</p>
           <div className="fxr" style={{ columnGap: "2rem" }}>
             <div className="option-background vcrse">
               <button

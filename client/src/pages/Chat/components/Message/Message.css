@@ -1,15 +1,15 @@
 .message-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
-    height: 40rem; /* Set fixed height */
+    justify-content: center; 
+    align-items: center; 
+    height: 40rem; 
     width: 38rem;
     padding: 2rem;
     border-radius: 1.75rem;
     border: 1px solid #bddad0;
     background: rgba(0, 0, 0, 0.27);
-    overflow: hidden; /* Hide overflow */
+    overflow: hidden; 
   }
   
 .subheading,
@@ -29,29 +29,6 @@
   margin: 1px 0 60px; /* Combined margin */
 }
 
-.place-holder-sender,
-.place-holder-receiver,
-.place-holder-outer-box {
-  display: flex;
-  width: 39.9375rem;
-  height: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0.25rem;
-  flex-direction: column;
-  justify-content: center;
-}
-.place-holder-sender {
-  align-items: flex-end;
-}
-.place-holder-receiver {
-  align-items: flex-start;
-}
-.place-holder-outer-box {
-  align-items: flex;
-}
-
 .sender-container,
 .receiver-container {
   display: inline-block;
@@ -62,19 +39,17 @@
   color: #fff;
 }
 .sender-container {
-    align-self: flex-end; /* Align to the right for sender */
-    border: 1.267px solid #7ac3ff;
+  align-self: flex-end; /* Align to the right for sender */
+  border: 1.267px solid #7ac3ff;
+  align-content: flex-end;
 }
 .receiver-container {
-    align-self: flex-start; /* Align to the left for receiver */
-    border: 1.267px solid #fb8c8c;
+  align-self: flex-start; /* Align to the left for receiver */
+  border: 1.267px solid #fb8c8c;
 }
 
-
-
-/* Add styles for the send button */
 .send-button {
-  background-color: transparent; /* Remove button styling */
+  background-color: transparent; 
   border: none;
   padding: 0;
   cursor: pointer;
@@ -82,36 +57,33 @@
   justify-content: center;
   align-items: center;
 }
-/* Adjust the image size within the button */
+
 .send-icon {
-  height: 30px; /* Adjust size as needed */
+  height: 30px; 
 }
-/* Adjust the send bar */
+
 .send-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* This will place the input and button on opposite ends */
-    padding: 0.5rem; /* Adjust as needed */
+    justify-content: space-between; 
+    padding: 0.5rem; 
     background-color: rgba(0, 0, 0, 0.27);
     border-radius: 2.75rem;
-    width: 80%; /* or 100% if you want it to fill the parent container */
-    /* Other styles as needed */
+    width: 80%; 
 }
 
-/* Add styles for the message input */
 .message-input {
-    flex-grow: 1; /* Make sure it expands to fill the space */
+    flex-grow: 1; 
     border: none;
     border-radius: 20px;
-    padding: 0.5rem 1rem; /* Adjust padding as needed */
-    margin-right: 0.5rem; /* Space between the input and the send button */
+    padding: 0.5rem 1rem; 
+    margin-right: 0.5rem; 
     background-color: #333;
     color: #fff;
   }
 .message-timestamp {
-  /* Styling for message timestamp */
-  margin-left: 10px; /* Or any space you prefer */
-  color: #aaa; /* Example color for timestamp */
+  margin-left: 10px; 
+  color: #aaa; 
   font-size: 0.8rem;
 }
 .message-text {
@@ -119,17 +91,16 @@
 }
 
 .messages-list {
-    width: 100%; /* Take the full width of the container */
-    max-height: 36rem; /* Set max-height to less than .message-container to allow for padding */
-    overflow-y: auto; /* Allow scrolling for overflow */
-    margin: auto 0; /* Center in the available vertical space */
-    padding: 1rem; /* Add some padding inside the messages list */
+    width: 100%; 
+    max-height: 36rem; 
+    overflow-y: auto; 
+    margin: auto 0; 
+    padding: 1rem; 
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 /* Hide the scrollbar in Chrome */
 ::-webkit-scrollbar {
-    width: 0.5rem; /* Set the width of the scrollbar */
+    width: 0.5rem; 
 }
-
