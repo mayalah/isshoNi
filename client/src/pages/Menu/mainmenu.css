@@ -16,6 +16,7 @@ body,
 
 .option-background,
 .room-background {
+  position: relative;
   flex-shrink: 0;
   border-radius: 1.74238rem;
   background: rgba(0, 0, 0, 0.27);
@@ -86,10 +87,12 @@ body,
   align-items: center;
   gap: 0.396rem;
   border-radius: 1.782rem;
+  position: relative;
+  z-index: 62;
 }
 .create-room-button {
   padding: 0.11881rem 0.75238rem;
-  border: 5.069px solid #8a3865;
+  border: 9.069px solid #8a3865;
   background: #eb87b6;
 }
 .create-room-button:hover {
@@ -97,8 +100,9 @@ body,
 }
 .join-room-button {
   padding: 0.1838rem 1.10881rem;
-  border: 3.168px solid #004883;
+  border: 9.168px solid #004883;
   background: #7ac3ff;
+  margin-bottom: 20px;
 }
 .join-room-button:hover {
   background-color: #004883;
@@ -116,10 +120,11 @@ body,
 .create-room-text,
 .join-room-text {
   color: #fff;
-  font-size: 1.98rem;
+  font-size: 1.18rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  align-items: center;
 }
 
 .main-back-button {
@@ -127,4 +132,26 @@ body,
   top: 70px;
   left: 100px;
   padding: 0.5rem;
+}
+
+
+/* CHARACTER DESIGN */
+.red-character {
+  position: absolute; 
+  left: 15%; 
+  top: 23%; 
+  transform: translate(-50%, -50%) rotate(-15.754deg); 
+  z-index: 1; 
+  width: 5.33256rem;
+  height: 6.9295rem;
+  flex-shrink: 0;
+}
+.cloud-character{
+  position: absolute;
+  width: 5.23781rem;
+  height: 5.75144rem;
+  flex-shrink: 0;
+  z-index: 999;
+  right: 2%;
+  bottom: 4%;
 }
