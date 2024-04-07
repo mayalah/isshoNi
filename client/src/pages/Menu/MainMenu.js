@@ -4,28 +4,25 @@ import { useNavigate } from "react-router-dom";
 import "./mainmenu.css";
 import "../Chat/Chat";
 import goBack from "../../assets/goBack.svg";
+import cloudCharacter from "../../assets/cloudCharacter.svg";
+import redCharacter from "../../assets/redCharacter.svg";
 
 function MENU() {
   const [activeButton, setActiveButton] = useState(null);
   const navigate = useNavigate();
 
   const handleButtonClick = (buttonName) => {
-    console.log(buttonName);
-    console.log("I am clicked");
     setActiveButton(buttonName);
     switch (buttonName) {
       case "chat":
         navigate("/chat"); // Navigate to the chat page
         break;
-      case "friends":
-        navigate("/"); // Navigate to HOME FOR TESTING
+      case "create-room":
+        navigate("/link"); // Navigate to the create-room page
         break;
-      // case "audio":
-      //   navigate("/home"); // Navigate to HOME FOR TESTING - no current page
-      //   break;
-      // case "profile":
-      //   navigate("/home"); // Navigate to HOME FOR TESTING - no current page
-      //   break;
+      case "join-room":
+        navigate("/link"); // Navigate to the join-room page
+        break;
       default:
         break;
     }
@@ -45,7 +42,7 @@ function MENU() {
       </nav>
       <div className="fxc main-bg">
         <div className="main-header vcrse" style={{ paddingTop: "4rem" }}>
-          <p>Hello, koolkishan#1234!</p>
+          <p>Hello, Peciti#3561!</p>
           <div className="fxr" style={{ columnGap: "2rem" }}>
             <div className="option-background vcrse">
               <button
@@ -79,21 +76,35 @@ function MENU() {
             </div>
             <div className="fxc" style={{ rowGap: "2rem" }}>
               <div className="room-background vcr">
+                <img
+                  src={redCharacter}
+                  alt="cloudCharacter"
+                  className="red-character"
+                />
                 <button
                   className="create-room-button create-room-button-text"
                   onClick={() => handleButtonClick("create-room")}
                 >
-                  CREATE ROOM
+                  JOIN GAME NOW
                 </button>
-                <p className="join-room-text">to create a room</p>
+                <p className="join-room-text">
+                  Invite your friends to join a game!
+                </p>
               </div>
               <div className="room-background vcr">
-                <p className="join-room-text">Joining a room?</p>
+                <p className="join-room-text">
+                  Grab your friends, it's time to watch!
+                </p>
+                <img
+                  src={cloudCharacter}
+                  alt="cloudCharacter"
+                  className="cloud-character"
+                />
                 <button
                   className="join-room-button join-room-button-text"
                   onClick={() => handleButtonClick("join-room")}
                 >
-                  JOIN NOW
+                  JOIN WATCH PARTY
                 </button>
               </div>
             </div>

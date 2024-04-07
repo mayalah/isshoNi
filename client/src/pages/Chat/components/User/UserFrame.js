@@ -4,14 +4,13 @@ import userIcon from "../../../../assets/userIcon.svg";
 import "./UserFrame.css";
 
 
-function UserFrame ({label}) {
+function UserFrame ({userName}) {
     return (
       <div className="user-frame user-text">
         <div className="icon">
           <img src={userIcon} alt="userIcon" className="icon"/>
         </div>
-        {/* <a href ="">{label}</a> */}
-        <p>{label}</p>
+        <p>{userName}</p>
       </div>
     );
   };

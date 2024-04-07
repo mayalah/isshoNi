@@ -1,70 +1,145 @@
 import "./Message.css";
-import { useState, useEffect } from "react";
-import mockMessageData from "./mockMessageData.json";
+import { useState, useEffect, useRef } from "react";
 import * as APIRoutes from "../../../../utils/APIRoutes";
 import sendArrow from "../../../../assets/sendArrow.svg";
 import { format } from "date-fns";
 import axios from "axios";
+import io from "socket.io-client";
 
-function Message({ setSelectedFriend, userEmail }) {
-  // const [messages, setMessages] = useState(mockMessageData);
+function Message({ setSelectedFriend, userEmail, friendEmail }) {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [sortedMessages, setSortedMessages] = useState([]);
+  const socketRef = useRef(null);
 
+  // Initialize the socket connection
   useEffect(() => {
-    const userEmail = "peciti3561@tospage.com";
+    socketRef.current = io("http://localhost:3000");
+    socketRef.current.on("newMessage", (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    });
+    // Clean up the socket connection when the component unmounts
+    return () => {
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Fetch messages from the server
+  useEffect(() => {
     axios
-      .post(APIRoutes.getMessages, { email: userEmail })
+      .post(APIRoutes.getMessages, {
+        userEmail: userEmail,
+        friendEmail: friendEmail,
+        message_id: "",
+      })
       .then((response) => {
-        console.log(response.data);
         setMessages(response.data);
+        const sorted = response.data.sort((a, b) => {
+          return new Date(a.time) - new Date(b.time);
+        });
+        setSortedMessages(sorted);
       })
       .catch((error) => {
         console.error("Error fetching messages:", error);
       });
-  }, []); // Empty dependency array means this effect runs once on mount// Empty dependency array means this effect runs once on mount
+  }, [userEmail, friendEmail, sortedMessages]);
 
+  // Sort messages by date and time when the messages state changes
+  useEffect(() => {
+    const sortMessages = messages.sort(
+      (a, b) =>
+        new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time)
+    );
+    setSortedMessages(sortMessages);
+  }, [messages]);
+
+  // Send a message to the server from UI
   const handleSendMessage = () => {
     if (messageInput.trim()) {
-      // integrate API later, for now console.log
-      console.log(messageInput);
+      const currentDate = new Date();
+      const dateStr = currentDate.toISOString().split("T")[0]; // FORMAT: YYYY-MM-DD
+      const timeStr = currentDate.toLocaleTimeString("en-US"); // FORMAT: h:mm:ss A
 
-      // Clear the message input after sending
+      const newMessage = {
+        sender: userEmail,
+        receiver: friendEmail,
+        message: messageInput,
+        date: dateStr,
+        time: timeStr,
+      };
+
+      // Emit the message event to the server
+      if (socketRef.current) {
+        socketRef.current.emit("sendMessage", newMessage);
+      }
+
+      // UI update
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+      // Clears message input after sending
       setMessageInput("");
 
-    } else {
-      console.log("No message to send");
+      // Send message to server
+      axios
+        .post(APIRoutes.addMessage, newMessage)
+        .then((response) => {
+          console.log("Message sent successfully", response.data);
+        })
+        .catch((error) => {
+          console.error("Error sending message:", error);
+        });
     }
   };
 
-  // Fetch messages from the API and USER
-  let chosenMessages;
-  if (setSelectedFriend) {
-    chosenMessages = messages.find(
-      (message) => message.id === setSelectedFriend
-    );
-    console.log("Chosen Messages: ", chosenMessages);
-  }
+  const formatTimestamp = (dateString, timeString) => {
+    // Extract the hours, minutes, and seconds from the time string
+    const [time, modifier] = timeString.split(" ");
+    let [hours, minutes, seconds] = time.split(":");
 
-  // Helper function to format the datetime
-  const formatTimestamp = (timestamp) => {
-    // Parses the ISO string and formats it, e.g., 'HH:mm'
-    return format(new Date(timestamp), "HH:mm");
+    // Convert 12-hour time to 24-hour time
+    hours = parseInt(hours, 10);
+    hours = modifier === "PM" && hours !== 12 ? hours + 12 : hours;
+    hours = modifier === "AM" && hours === 12 ? 0 : hours;
+
+    const combinedDateTimeString = `${dateString} ${hours}:${minutes}:${seconds}`;
+    const date = new Date(combinedDateTimeString);
+
+    if (isNaN(date.getTime())) {
+      return "NaN";
+    }
+    const formattedTime = format(date, "hh:mm:ss a");
+
+    return formattedTime;
   };
-
-// Combine and sort messages by timestamp
-const combinedMessages = (chosenMessages?.messages ?? [])
-  .sort((a, b) => Date.parse(a.timestamp) - Date.parse(b.timestamp));
 
   return (
     <div className="message-container">
       <p className="subheading">message with</p>
       <p className="heading">{setSelectedFriend}</p>
       <div className="messages-list">
-        {combinedMessages.map((messageObject, index) => (
-          <div key={index} className={`${messageObject.type}-container`}>
-            <span className="message-text">{messageObject.text}</span>
-            <span className="message-timestamp">{formatTimestamp(messageObject.timestamp)}</span>
+        {sortedMessages.map((messageObject, index) => (
+          <div key={index}>
+            {messageObject.sender === userEmail ? (
+              <div className="sender-container">
+                <span className="message-text">
+                  {messageObject.message_content}
+                </span>
+                <span className="message-timestamp">
+                  {formatTimestamp(messageObject.date, messageObject.time)}
+                </span>
+              </div>
+            ) : (
+              <div className="receiver-container">
+                <span className="message-text">
+                  {messageObject.message_content}
+                </span>
+                <span className="message-timestamp">
+                  {formatTimestamp(messageObject.date, messageObject.time)}
+                </span>
+              </div>
+            )}
           </div>
         ))}
       </div>

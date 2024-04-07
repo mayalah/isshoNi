@@ -6,29 +6,25 @@ import Friends from "./components/Friends/Friends";
 import UserFrame from "./components/User/UserFrame";
 import Message from "./components/Message/Message";
 import goBack from "../../assets/goBack.svg";
-import { set } from "date-fns";
 
 function CHAT() {
-  const [activeButton, setActiveButton] = useState("me"); // Set initial value to "me" on page load
-  const [selectedFriend, setSelectedFriend] = useState(null); // State to keep track of the selected friend
-  const [userEmail, setUserEmail] = useState("koolkishan@gmail.com"); // State to keep track of the user [TO BE IMPLEMENTED LATER]
-  const [FriendEmail, setFriendEmail] = useState(""); // State to keep track of the friend [TO BE IMPLEMENTED LATER]
+  const [activeButton, setActiveButton] = useState("me"); 
+  const [selectedFriend, setSelectedFriend] = useState(null); 
+  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com"); 
+  const [friendEmail, setFriendEmail] = useState(""); 
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {
-    console.log(`${buttonName} is clicked in CHAT component`);
     setActiveButton(buttonName);
   };
 
   // Updates selectedFriend state with the friendId
   const handleFriendSelection = (friendId) => {
-    console.log(`${friendId} is in handleFriendSelection in CHAT component`);
     setSelectedFriend(friendId);
   };
 
   // Updates selectedFriend state with their email
   const handleFriendSelectionEmail = (friendEmail) => {
-    console.log(`${friendEmail} is in handleFriendSelection in CHAT component`);
     setFriendEmail(friendEmail);
   };
 
@@ -49,7 +45,7 @@ function CHAT() {
         style={{ columnGap: "2rem", paddingTop: "5rem" }}
       >
         <div className="fxc" style={{ rowGap: "1rem" }}>
-          <UserFrame label="koolkishan" />
+          <UserFrame userName="peciti#3561" />
           <Friends
             setSelectedFriend={handleFriendSelection}
             userEmail={userEmail}
@@ -74,7 +70,7 @@ function CHAT() {
             </button>
           </div>
         </div>
-        <Message setSelectedFriend={selectedFriend} userEmail={userEmail} />
+        {friendEmail && <Message setSelectedFriend={selectedFriend} userEmail={userEmail} friendEmail={friendEmail}/>}
       </div>
     </div>
   );

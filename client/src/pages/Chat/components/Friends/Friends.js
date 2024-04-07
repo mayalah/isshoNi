@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import "../Friends/Friends.css";
 import FriendFrame from "../FriendFrame/FriendFrame";
-import mockFriendsData from "./mockFriendsData.json"; // USE WITH MOCK DATA
 import * as APIRoutes from "../../../../utils/APIRoutes";
 import axios from "axios";
 
 function Friends({ setSelectedFriend, userEmail, setFriendEmail }) {
   const [activeButton, setActiveButton] = useState(null);
-  const [friends, setFriends] = useState([]); // USE WITH API -> will fail Friends.test.js
+  const [friends, setFriends] = useState([]); 
 
   useEffect(() => {
     const userEmail = "peciti3561@tospage.com";
@@ -20,11 +19,11 @@ function Friends({ setSelectedFriend, userEmail, setFriendEmail }) {
       .catch((error) => {
         console.error("Error fetching friends:", error);
       });
-  }, []); // Empty dependency array means this effect runs once on mount// Empty dependency array means this effect runs once on mount
+  }, []); 
 
   const handleButtonClick = (friendId) => {
     setActiveButton(friendId);
-    setSelectedFriend(friendId); // Pass the friendId to the parent component
+    setSelectedFriend(friendId); 
   };
 
 return (

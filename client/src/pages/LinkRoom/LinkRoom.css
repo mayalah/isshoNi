@@ -1,0 +1,48 @@
+body,
+.link-bg {
+  height: 100%;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+  background-color: rgb(32, 32, 32);
+}
+
+.main-link-header {
+  color: #fff;
+  font-size: 4.53438rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.link-input {
+  flex-grow: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #333;
+  color: #fff;
+  font-size: 2rem;
+}
+
+/* BUTTON STYLING */
+.link-button {
+  display: flex;
+  width: 40.9375rem;
+  height: 1.15rem;
+  padding: 4.625rem 3.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  border-radius: 2.75rem;
+  border: 8px solid #7ac3ff;
+  background: rgba(0, 0, 0, 0.27);
+}
+.back-button {
+  position: fixed;
+  top: 60px;
+  left: 80px;
+  padding: 0.5rem;
+}
+
