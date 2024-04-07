@@ -66,13 +66,22 @@ export const  addUserSignUpWithGoogle = async (credential) =>{
         const pictureURL = payload['picture']
         const name = payload['name']
         const userID = uuid()
+        const user = await dbconnector.execute({
+            sql: 'SELECT * FROM user WHERE googleID = ?',
+            args: [googleID]
+        })
+
+        if (user){
+            return {message: "success",name:name, email: email, image: pictureURL}
+        }
+        
         await dbconnector.execute({
             sql:"INSERT INTO user (userID, googleID, email, name, pictureURL, email_confirmed) VALUES (?,?,?,?,?,?)",
             args: [userID, googleID, email, name,pictureURL, 1]
         })
-        return "success"
+        return {message: "success", name:name, email: email, image: pictureURL}
     }catch(e){
-        return "fail"
+        return {message: "fail",  name:"", email: "", image: ""}
     }
 }
 
