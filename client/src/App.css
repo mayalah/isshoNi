@@ -40,13 +40,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background: purple; */
 }
 .fxr{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background: blue; */
 }
 

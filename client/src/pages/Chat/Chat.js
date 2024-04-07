@@ -8,10 +8,10 @@ import Message from "./components/Message/Message";
 import goBack from "../../assets/goBack.svg";
 
 function CHAT() {
-  const [activeButton, setActiveButton] = useState("me"); // Set initial value to "me" on page load
-  const [selectedFriend, setSelectedFriend] = useState(null); // State to keep track of the selected friend
-  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com"); // State to keep track of the user [TO BE IMPLEMENTED LATER]
-  const [friendEmail, setFriendEmail] = useState(""); // State to keep track of the friend [TO BE IMPLEMENTED LATER]
+  const [activeButton, setActiveButton] = useState("me"); 
+  const [selectedFriend, setSelectedFriend] = useState(null); 
+  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com"); 
+  const [friendEmail, setFriendEmail] = useState(""); 
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {

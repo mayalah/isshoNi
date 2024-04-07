@@ -1,17 +1,15 @@
 .message-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    height: 40rem; 
-    width: 38rem;
-    padding: 2rem;
-    border-radius: 1.75rem;
-    border: 1px solid #bddad0;
-    background: rgba(0, 0, 0, 0.27);
-    overflow: hidden; 
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40rem;
+  width: 38rem;
+  padding: 2rem;
+  border-radius: 1.75rem;
+  border: 1px solid #bddad0;
+  background: rgba(0, 0, 0, 0.27);
+}
+
 .subheading,
 .heading {
   color: #fff;
@@ -29,27 +27,36 @@
   margin: 1px 0 60px; /* Combined margin */
 }
 
-.sender-container,
-.receiver-container {
-  display: inline-block;
-  flex-shrink: 0;
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 36rem;
+  overflow-y: auto;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.sender-container {
+  align-self: flex-end;
+  border: 1.267px solid #7ac3ff;
   padding: 0.25rem 1.25rem;
   margin-bottom: 19px;
   border-radius: 1.75rem;
   color: #fff;
 }
-.sender-container {
-  align-self: flex-end; /* Align to the right for sender */
-  border: 1.267px solid #7ac3ff;
-  align-content: flex-end;
-}
+
 .receiver-container {
-  align-self: flex-start; /* Align to the left for receiver */
+  align-items: flex-start;
   border: 1.267px solid #fb8c8c;
+  padding: 0.25rem 1.25rem;
+  margin-bottom: 19px;
+  border-radius: 1.75rem;
+  color: #fff;
 }
 
 .send-button {
-  background-color: transparent; 
+  background-color: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
@@ -59,48 +66,38 @@
 }
 
 .send-icon {
-  height: 30px; 
+  height: 30px;
 }
 
 .send-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    padding: 0.5rem; 
-    background-color: rgba(0, 0, 0, 0.27);
-    border-radius: 2.75rem;
-    width: 80%; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.27);
+  border-radius: 2.75rem;
+  width: 80%;
 }
 
 .message-input {
-    flex-grow: 1; 
-    border: none;
-    border-radius: 20px;
-    padding: 0.5rem 1rem; 
-    margin-right: 0.5rem; 
-    background-color: #333;
-    color: #fff;
-  }
+  flex-grow: 1;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  background-color: #333;
+  color: #fff;
+}
 .message-timestamp {
-  margin-left: 10px; 
-  color: #aaa; 
+  margin-left: 10px;
+  color: #aaa;
   font-size: 0.8rem;
 }
 .message-text {
   margin-right: 10px;
 }
 
-.messages-list {
-    width: 100%; 
-    max-height: 36rem; 
-    overflow-y: auto; 
-    margin: auto 0; 
-    padding: 1rem; 
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
 /* Hide the scrollbar in Chrome */
 ::-webkit-scrollbar {
-    width: 0.5rem; 
+  width: 0.5rem;
 }
