@@ -6,6 +6,7 @@ import userRoutes from "./routes/userRoutes.js";
 // import cookie from '@fastify/cookie';
 import auth from "./services/authService.js";
 import chatRoutes from "./routes/chatRoutes.js";
+import liveblockRoutes from "./routes/liveblocksRoute.js";
 
 const fastify = Fastify({logger: false})
 
@@ -18,6 +19,7 @@ fastify.register(cors, {
 fastify.register(auth)
 fastify.register( userRoutes, {prefix:"/api/user"})
 fastify.register(chatRoutes,{prefix:"/api/chat"})
+fastify.register(liveblockRoutes,{prefix:"/api/liveblocks"})
 
 fastify.listen({port: process.env.PORT}).then(()=>{
     console.log(`sever is running on ${process.env.PORT}`)

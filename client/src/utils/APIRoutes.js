@@ -10,3 +10,6 @@ export const logOut = `${host}/api/user/logOut`;
 export const getAllFriends = `${host}/api/chat/getAllFriends`;
 export const getMessages = `${host}/api/chat/getMessages`;
 export const addMessage = `${host}/api/chat/addMessage`;
+
+export const liveblocksAuthRoute = `${host}/api/liveblocks/auth`;
+export const resolveUsersRoute = `${host}/api/liveblocks/resolveUsers`;

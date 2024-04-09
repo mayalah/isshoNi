@@ -6,11 +6,14 @@ import "../../index.css";
 import goBack from "../../assets/goBack.svg";
 import linkCharacter from "../../assets/linkCharacter.svg";
 import SignInWithGGButton from "./SignInPage";
+import Comments from "../Game/components/Comments";
 
 function LINKROOM() {
   const [activeButton, setActiveButton] = useState("me");
-  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com");
-  const [linkInput, setLinkInput] = useState("");
+  // const [userEmail, setUserEmail] = useState("peciti3561@tospage.com");
+  const [roomId, setRoomId] = useState("");
+
+  const [haveRoomId, setHaveRoomId] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,13 +22,12 @@ function LINKROOM() {
     setActiveButton(buttonName);
   };
 
-  // Send a message to the server from UI
-  const handleSendMessage = () => {
-    if (linkInput.trim()) {
-      console.log("Message sent:", linkInput);
-      setLinkInput("");
-    }
-  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    setRoomId(roomId);
+    setHaveRoomId(true);
+    navigate("/comments", { state: { roomId: roomId } })
+  }
   const handleSignInClick = () => {
     navigate("/signinwithGG");
   }
@@ -43,7 +45,7 @@ function LINKROOM() {
           />
         </Link>
       </nav>
-      <div className="w-[100px] h-[30px] bg-white relative top-4 flex flex-row justify-center items-center rounded-sm ml-2">
+      <div className="w-[200px] h-[30px] bg-white relative top-4  flex flex-row justify-center items-center rounded-sm ml-2">
         <button onClick ={handleSignInClick}>
           Sign In
         </button>
@@ -53,24 +55,27 @@ function LINKROOM() {
       <div className="fxr link-bg" style={{ paddingTop: "6rem" }}>
         <div className="fxc main-link-header" style={{ rowGap: "1rem" }}>
           ENTER ROOM ID TO JOIN
-          <div className="link-button">
+          <form className="link-button" onSubmit ={handleOnSubmit}>
           
             <input
               type="text"
               className="link-input"
               placeholder="type here..."
-              value={linkInput}
-              onChange={(e) => setLinkInput(e.target.value)}
+              value={roomId}
+              onChange={(e) => setRoomId(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  handleSendMessage();
+                  handleOnSubmit(e);
                 }
               }}
             />
-          </div>
+            
+          </form>
           <img src={linkCharacter} alt="Link Character" />
+          
         </div>
       </div>
+      {/* {haveRoomId ? <Comments roomIdPara={roomId} /> : <></>} */}
     </div>
   );
 }

@@ -52,8 +52,12 @@ export default function Login(){
         }
       }, [handleGoogle]);
     return(
-      <>
-        {loading ? <div>Loading....</div> : <div id="signUpDiv"></div>}
-    </>
+      <div className ="w-screen h-screen flex flex-col justify-center items-center mt-11 ">
+            <div className="flex flex-row justify-center items-center">
+
+{loading ? <div>Loading....</div> : <div id="signUpDiv"></div>}
+</div>
+      </div>
+  
     )
 }
