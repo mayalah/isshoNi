@@ -71,7 +71,8 @@ export const  addUserSignUpWithGoogle = async (credential) =>{
             args: [googleID]
         })
 
-        if (user){
+
+        if (user.rows.length > 0){
             return {message: "success",name:name, email: email, image: pictureURL}
         }
         
