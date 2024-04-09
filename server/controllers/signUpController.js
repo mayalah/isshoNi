@@ -20,11 +20,13 @@ export const signUpWithGoogle = async(fastify, request, reply)=>{
 
 
     const res = await addUserSignUpWithGoogle( credential)
-
-    if (res=== "fail"){
+    console.log(res)
+    if (res.message=== "fail"){
         reply.status(500).send({message: "fail"})
     }else{
-        const email = res
+        const email = res.email
+        const name = res.name
+        const image = res.image
         const token = await fastify.jwt.sign({email: email}, {expiresIn: '10d'})
 
         reply
@@ -33,6 +35,6 @@ export const signUpWithGoogle = async(fastify, request, reply)=>{
             sameSite: true // alternative CSRF protection
             })
             .code(200)
-            .status(200).send({message:"success"})
+            .status(200).send({message:"success", name: name, email:email, image:image})
     }
 }
