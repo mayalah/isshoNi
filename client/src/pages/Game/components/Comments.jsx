@@ -14,6 +14,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { useState, useEffect } from "react";
 import ThreadContainer from "./Thread";
 import {useLocation} from "react-router-dom";
+import Canvas from "./Canvas";
 
 
 import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
@@ -28,7 +29,11 @@ export default function Comments() {
   console.log("room id", roomId);
 
   return (
-    <div>
+    <div className="w-screen h-screen">
+      <div className ="">
+        <h1 className=" text-white text-4xl"> Isshoni</h1>
+      </div>
+
   
       <RoomProvider id={roomId} 
       initialPresence={{
@@ -48,7 +53,7 @@ export default function Comments() {
         }
       >
         <ClientSideSuspense fallback={<Loading />}>
-          {() => <ThreadContainer/>}
+          {() => <Canvas/>}
         </ClientSideSuspense>
       </ErrorBoundary>
     </RoomProvider>

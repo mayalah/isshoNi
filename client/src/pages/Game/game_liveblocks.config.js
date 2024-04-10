@@ -28,7 +28,7 @@ const client = createClient({
       params.append('userIds', userId);
     });
 
-    const response = await axios.post(`http://localhost:3111/api/liveblocks/resolveUsers?${params.toString()}`);
+    const response = await axios.post(`http://localhost:8009/api/liveblocks/resolveUsers?${params.toString()}`);
 
 
     const users = await response.data;

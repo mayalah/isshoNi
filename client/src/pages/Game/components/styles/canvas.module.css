@@ -101,9 +101,9 @@
 
 }
 
-/* .canvas {
+.canvas {
     background-color: var(--color-surface-canvas);
-   
+
     touch-action: none;
     background-color: #5e1818;
 
@@ -112,7 +112,7 @@
     left: 80px;
 
 
-} */
+}
 
 .comments {
     position: absolute;
@@ -149,13 +149,13 @@
 
 }
 
-/* .renderer_svg {
-    
+.renderer_svg {
+
     width: 800px;
     height: 600px;
     background-color: #3a2a2a;
 
-} */
+}
 
 .selection_net {
     fill: var(--color-primary);
@@ -179,3 +179,7 @@
     height: 64px;
     opacity: 0.2;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities

@@ -1,4 +1,4 @@
-export const host = "http://localhost:3111";
+export const host = "http://localhost:8009";
 export const loginRoute = `${host}/api/user/login`;
 export const signUpRoute = `${host}/api/user/signUp`;
 export const loginWithGoogleRoute = `${host}/api/user/loginWithGoogle`;
