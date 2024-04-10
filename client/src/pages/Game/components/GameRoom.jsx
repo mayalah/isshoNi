@@ -15,6 +15,9 @@ import { useState, useEffect } from "react";
 import ThreadContainer from "./Thread";
 import {useLocation} from "react-router-dom";
 import Canvas from "./Canvas";
+import { Link } from "react-router-dom";
+import goBack from "../../../assets/goBack.svg";
+import "./GameRoom.module.css";
 
 
 import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
@@ -22,18 +25,33 @@ import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
 
 // import { Layer } from "@/app/types";
 
-export default function Comments() {
+export default function GameRoom() {
+  const [activeButton, setActiveButton] = useState("me");
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
+
 
     const location = useLocation();
   const roomId = location.state.roomId;
   console.log("room id", roomId);
 
   return (
+    
     <div className="w-screen h-screen">
-      <div className ="">
-        <h1 className=" text-white text-4xl"> Isshoni</h1>
+      <div className ="fixed top-[45px] left-[298px] ">
+        <h1 className=" text-white text-[60px]"> Isshoni.io</h1>
       </div>
-
+      <nav className="absolute top-[20px] left-[30px]">
+        <Link to="/menu">
+          <img
+            src={goBack}
+            alt="Go Back"
+            height={"40px"}
+            onClick={() => handleButtonClick("goBack")}
+          />
+        </Link>
+      </nav>
   
       <RoomProvider id={roomId} 
       initialPresence={{

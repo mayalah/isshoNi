@@ -502,6 +502,7 @@ export default function Canvas() {
   const [word, setWord] = useState("")
   const [player, setPlayer] = useState("")
   return (
+    // start return
     <>
    
       {clock && <CountdownClock initialSeconds={60} />}
@@ -518,14 +519,15 @@ export default function Canvas() {
         Broadcast
       </button>
       {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>}
-
+    <PlayButton></PlayButton>
 
       <div>
 
         <div>
 
-          {/* <div className="absolute top-[100px] left-[100px] bg-white " */}
-          <div className ={styles.canvas}>
+          <div className="absolute top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px]">
+           {/* <div className ={styles.canvas}> */}
+           <ColorPickPanel onChange={setFill} />
             <SelectionTools
               isAnimated={
                 canvasState.mode !== CanvasMode.Translating &&
@@ -536,9 +538,9 @@ export default function Canvas() {
             />
 
             <svg
-              // className="md:w-[800px] xl:w-[1000px] h-[700px] bg-white"
+              className="w-[800px]  h-[661px] bg-[#171717] rounded-[44px] "
               // className =" w-[1000px] h-[700px] bg-white"
-              className ={styles.renderer_svg}
+              // className ={styles.renderer_svg}
               onWheel={onWheel}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
@@ -601,7 +603,7 @@ export default function Canvas() {
             canRedo={canRedo}
           />
 
-          <ColorPickPanel onChange={setFill} />
+        
         </div>
         <div className="absolute flex flex-col md:left-[910px] gap-4 xl:left-[1120px] top-[100px] overflow-hidden md:w-[300px] xl:w-[360px]   ">
           <div className="flex flex-row gap-x-3">
@@ -617,55 +619,7 @@ export default function Canvas() {
   );
 }
 
-// function Example() {
-//   const { threads } = useThreads();
 
-//   const getCorrectAnswer = async ({ thread }) => {
-//     thread.comments.map((comment) => {
-//       // console.log(comment.body?.content[0]);
-//       if (comment.body?.content[0].children[0].text == "hello") {
-//         comment.body.content[0].children[0].text = "CORRECTED ANSWER";
-//       }
-//     });
-//   };
-//   const maxComments = 8;
-
-//   const getComments = ({ thread }) => {
-//     return thread.comments.slice(-maxComments).map((comment) => {
-//       return comment;
-//     });
-//   };
-
-//   return (
-//     <div>
-//       {threads.map(
-//         (thread) => (
-//           getCorrectAnswer({ thread: thread }),
-//           (
-//             <Thread
-//               key={thread.id}
-//               thread={{
-//                 ...thread,
-//                 comments: getComments({ thread }),
-//               }}
-//               className="thread"
-//             />
-//           )
-//         )
-//       )}
-//       {threads.length == 0 ? (
-//         <Composer
-//           className="composer"
-//           overrides={{
-//             COMPOSER_PLACEHOLDER: "Your message …",
-//           }}
-//         />
-//       ) : (
-//         <></>
-//       )}
-//     </div>
-//   );
-// }
 
 
 
@@ -695,58 +649,125 @@ function User1({ user }) {
   );
 }
 
+// const CountdownClock = ({ initialSeconds = 60 }) => {
+//   const [seconds, setSeconds] = useState(initialSeconds);
+
+//   useEffect(() => {
+//     if (seconds <= 0) {
+//       // Stop the countdown at 0 to avoid negative values
+//       return;
+//     }
+//     const intervalId = setInterval(() => {
+//       setSeconds((prevSeconds) => prevSeconds - 1);
+//     }, 1000);
+
+//     // Cleanup interval on component unmount
+//     return () => clearInterval(intervalId);
+//   }, [seconds]);
+
+//   useEffect(() => {
+//     if (seconds <= 0) {
+//       // Handle completion, e.g., alert or callback
+
+//       alert("Time's up!");
+//     }
+//   }, [seconds]);
+
+//   // Calculate the stroke dashoffset for the SVG circle
+//   const radius = 18; // Adjust radius for size of the clock
+//   const circumference = 2 * Math.PI * radius;
+//   const offset = ((initialSeconds - seconds) / initialSeconds) * circumference;
+
+//   return (
+//     <div className="">
+//       <svg className="w-24 h-24" viewBox="0 0 40 40">
+//         <circle
+//           className="text-gray-300"
+//           stroke="currentColor"
+//           fill="transparent"
+//           strokeWidth="4"
+//           r="18"
+//           cx="20"
+//           cy="20"
+//         />
+//         <circle
+//           className="text-red-500"
+//           stroke="currentColor"
+//           fill="transparent"
+//           strokeWidth="4"
+//           strokeDasharray={circumference}
+//           strokeDashoffset={offset}
+//           r="18"
+//           cx="20"
+//           cy="20"
+//           transform="rotate(-90 20 20)" // Rotate to start from the top
+//         />
+//         <text
+//           x="50%"
+//           y="50%"
+//           className="text-cyan-600"
+//           textAnchor="middle"
+//           strokeWidth="1px"
+//           dy=".3em"
+//           fill="currentColor"
+//         >
+//           {seconds}
+//         </text>
+//       </svg>
+//     </div>
+//   );
+// };
+
 const CountdownClock = ({ initialSeconds = 60 }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
   useEffect(() => {
     if (seconds <= 0) {
-      // Stop the countdown at 0 to avoid negative values
       return;
     }
     const intervalId = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds - 1);
     }, 1000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [seconds]);
 
   useEffect(() => {
     if (seconds <= 0) {
-      // Handle completion, e.g., alert or callback
-
       alert("Time's up!");
     }
   }, [seconds]);
 
-  // Calculate the stroke dashoffset for the SVG circle
-  const radius = 18; // Adjust radius for size of the clock
+  // Updated radius and calculations for the larger clock
+  const radius = 40; // New radius
+  const strokeWidth = 4; // Adjust stroke width if needed for visual appeal
+  const viewBoxSize = radius * 2 + strokeWidth * 2; // Calculate viewbox size to ensure full visibility
   const circumference = 2 * Math.PI * radius;
   const offset = ((initialSeconds - seconds) / initialSeconds) * circumference;
 
   return (
-    <div className="">
-      <svg className="w-24 h-24" viewBox="0 0 40 40">
+    <div>
+      <svg className="w-48 h-48 absolute " viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
         <circle
           className="text-gray-300"
           stroke="currentColor"
           fill="transparent"
-          strokeWidth="4"
-          r="18"
-          cx="20"
-          cy="20"
+          strokeWidth={strokeWidth}
+          r={radius}
+          cx={radius + strokeWidth}
+          cy={radius + strokeWidth}
         />
         <circle
           className="text-red-500"
           stroke="currentColor"
           fill="transparent"
-          strokeWidth="4"
+          strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          r="18"
-          cx="20"
-          cy="20"
-          transform="rotate(-90 20 20)" // Rotate to start from the top
+          r={radius}
+          cx={radius + strokeWidth}
+          cy={radius + strokeWidth}
+          transform={`rotate(-90 ${radius + strokeWidth} ${radius + strokeWidth})`} // Rotate to start from the top
         />
         <text
           x="50%"
@@ -756,6 +777,7 @@ const CountdownClock = ({ initialSeconds = 60 }) => {
           strokeWidth="1px"
           dy=".3em"
           fill="currentColor"
+          transform={`translate(${strokeWidth}, ${strokeWidth})`} // Adjust text position based on new radius and viewbox
         >
           {seconds}
         </text>
@@ -763,6 +785,7 @@ const CountdownClock = ({ initialSeconds = 60 }) => {
     </div>
   );
 };
+
 
 function WordDisplay({word, player, currentUser}){
     const wordArr = word.split("")
@@ -778,5 +801,13 @@ function WordDisplay({word, player, currentUser}){
       </div>)
     )
 
+}
+// absolute top-[165px] left-[669px]
+function PlayButton (){
+  return(
+    <div className=" absolute top-[165px] left-[679px] z-10 flex flex-row justify-center items-center w-[133px] h-[52px] border-[#EB87B6] bg-[#AC4F98]  rounded-[30px] border-[6px] ">
+      <button className ='text-white text-2xl'>Start</button>
+    </div>
+  )
 }
 

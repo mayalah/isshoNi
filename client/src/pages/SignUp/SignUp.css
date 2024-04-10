@@ -1,11 +1,113 @@
 .SignUp {
   position: fixed;
-  top: 20;
-  left: 20;
-  width: 80%;
-  height: 80%;
-  background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity as needed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+}
+
+.SignUpModal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid black;
+  height: 500px;
+}
+
+input {
+  display: block;
+  width: 96%;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.SignUpButton, .GoogleSignUpButton {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #4285f4;
+  color: white;
+  cursor: pointer;
+}
+
+.SignUpButton {
+  font-size: 17px;
+}
+
+.GoogleSignUpButton {
+  background-color: #ffffff;
+  color: black;
+}
+
+.CloseButton {
+  float: right;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 20px;
+}
+
+.DividerContainer {
+  display: flex; /* Use flexbox to align children */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  margin: 20px 0;
+}
+
+.DividerLine {
+  flex-grow: 1; 
+  background: #ccc; 
+  height: 1px; 
+  margin: 0 10px; 
+}
+
+.DividerText {
+  padding: 0 10px; 
+  color: #ccc; 
+  background: #fff; 
+  position: relative; 
+  z-index: 1; 
+}
+
+
+.signup{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: rgb(84, 84, 84);
+}
+
+.PasswordToggleButton {
+  background: none;
+  border: none;
+  color: #9b9b9b;
+  cursor: pointer;
+  font-size: 14px;  
+  width: 100%;
+  text-align: right;
+}
+
+.passwordfield{
+  margin-bottom: -20px;
+  margin-top: 20px;
+  font-size: 15px;
+  text-align: left;
+  width: 98%;
+}
+
+
+.sign-up{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 30px;
 }

@@ -39,13 +39,13 @@ export default function ThreadContainer() {
             }
                 
             });
-        //   comment.body.content[0].children[0].text = "CORRECTED ANSWER";
+
         }
       });
     };
   
     return (
-      <div className ="thread-container" >
+      <div className ="" >
         {threads.map(
           (thread) => (
             getComments({ thread}),

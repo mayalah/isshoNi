@@ -27,6 +27,7 @@ function MENU() {
         break;
     }
   };
+  const userName = localStorage.getItem("userName");
 
   return (
     <div>
@@ -40,11 +41,11 @@ function MENU() {
           />
         </Link>
       </nav>
-      <div className="fxc main-bg">
-        <div className="main-header vcrse" style={{ paddingTop: "4rem" }}>
-          <p>Hello, Peciti#3561!</p>
-          <div className="fxr" style={{ columnGap: "2rem" }}>
-            <div className="option-background vcrse">
+      <div className="main-bg">
+        <div className="main-header">
+          <p>Hello, {userName}!!!</p>
+          <div className="menu-styling">
+            <div className="option-background">
               <button
                 id="chat"
                 className="chat-button"
@@ -74,8 +75,8 @@ function MENU() {
                 <p className="button-text">Profile Settings</p>
               </button>
             </div>
-            <div className="fxc" style={{ rowGap: "2rem" }}>
-              <div className="room-background vcr">
+            <div className="option-styling">
+              <div className="room-background">
                 <img
                   src={redCharacter}
                   alt="cloudCharacter"
@@ -91,7 +92,7 @@ function MENU() {
                   Invite your friends to join a game!
                 </p>
               </div>
-              <div className="room-background vcr">
+              <div className="room-background">
                 <p className="join-room-text">
                   Grab your friends, it's time to watch!
                 </p>

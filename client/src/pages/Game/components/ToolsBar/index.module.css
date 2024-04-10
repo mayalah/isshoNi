@@ -1,9 +1,9 @@
 .tools_panel_container {
-  position: absolute;
+  /* position: absolute; */
   /* bottom: 500px; */
-  right: 0;
+  /* right: 0;
   left: 618px;
-  top: 800px;
+  top: 800px; */
   display: flex;
   align-items: center;
   justify-content: start;
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 6px;
 }
 
 .seperator {

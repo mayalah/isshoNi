@@ -4,6 +4,10 @@ body,
   width: 100%;
   font-family: "Work Sans", sans-serif;
   background-color: rgb(32, 32, 32);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-header {
@@ -12,6 +16,28 @@ body,
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+}
+
+.menu-styling {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  padding-top: 2rem;
+}
+.option-styling{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
 }
 
 .option-background,
@@ -25,11 +51,20 @@ body,
 .option-background {
   width: 29.56175rem;
   height: 33.11619rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 .room-background {
   width: 25.42338rem;
   height: 15.44431rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* MENU BUTTON DESIGN */
 .button-text {
@@ -125,10 +160,12 @@ body,
   font-weight: 500;
   line-height: normal;
   align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .main-back-button {
-  position: fixed;
+  position: absolute;
   top: 70px;
   left: 100px;
   padding: 0.5rem;

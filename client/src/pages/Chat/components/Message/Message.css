@@ -17,14 +17,17 @@
   line-height: normal;
   text-align: center;
 }
+
 .subheading {
   font-size: 1.2rem;
   font-weight: 400;
 }
+
 .heading {
   font-size: 2.5rem;
   font-weight: 800;
-  margin: 1px 0 60px; /* Combined margin */
+  margin: 1px 0 60px;
+  /* Combined margin */
 }
 
 .messages-list {
@@ -44,6 +47,7 @@
   margin-bottom: 19px;
   border-radius: 1.75rem;
   color: #fff;
+  width: 200px;
 }
 
 .receiver-container {
@@ -53,6 +57,7 @@
   margin-bottom: 19px;
   border-radius: 1.75rem;
   color: #fff;
+  width: 200px;
 }
 
 .send-button {
@@ -77,6 +82,10 @@
   background-color: rgba(0, 0, 0, 0.27);
   border-radius: 2.75rem;
   width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .message-input {
@@ -88,11 +97,13 @@
   background-color: #333;
   color: #fff;
 }
+
 .message-timestamp {
   margin-left: 10px;
   color: #aaa;
   font-size: 0.8rem;
 }
+
 .message-text {
   margin-right: 10px;
 }

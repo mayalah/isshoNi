@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./LinkRoom.css";
 import "../../index.css";
 import goBack from "../../assets/goBack.svg";
 import linkCharacter from "../../assets/linkCharacter.svg";
 import SignInWithGGButton from "./SignInPage";
-import Comments from "../Game/components/Comments";
+import GameRoom from "../Game/components/GameRoom";
 
 function LINKROOM() {
   const [activeButton, setActiveButton] = useState("me");
@@ -26,12 +26,11 @@ function LINKROOM() {
     e.preventDefault();
     setRoomId(roomId);
     setHaveRoomId(true);
-    navigate("/comments", { state: { roomId: roomId } })
-  }
+    navigate("/gameRoom", { state: { roomId: roomId } });
+  };
   const handleSignInClick = () => {
     navigate("/signinwithGG");
-  }
-
+  };
 
   return (
     <div>
@@ -45,18 +44,15 @@ function LINKROOM() {
           />
         </Link>
       </nav>
+
       <div className="w-[200px] h-[30px] bg-white relative top-4  flex flex-row justify-center items-center rounded-sm ml-2">
-        <button onClick ={handleSignInClick}>
-          Sign In
-        </button>
+        <button onClick={handleSignInClick}>Sign In</button>
       </div>
-    
-     
-      <div className="fxr link-bg" style={{ paddingTop: "6rem" }}>
-        <div className="fxc main-link-header" style={{ rowGap: "1rem" }}>
+
+      <div className="link-bg" style={{ paddingTop: "6rem" }}>
+        <div className="main-link-header" style={{ rowGap: "1rem" }}>
           ENTER ROOM ID TO JOIN
-          <form className="link-button" onSubmit ={handleOnSubmit}>
-          
+          <form className="link-button" onSubmit={handleOnSubmit}>
             <input
               type="text"
               className="link-input"
@@ -69,10 +65,8 @@ function LINKROOM() {
                 }
               }}
             />
-            
           </form>
           <img src={linkCharacter} alt="Link Character" />
-          
         </div>
       </div>
       {/* {haveRoomId ? <Comments roomIdPara={roomId} /> : <></>} */}

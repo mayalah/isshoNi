@@ -1,4 +1,3 @@
-
 import "./Message.css";
 import { useState, useEffect, useRef } from "react";
 import * as APIRoutes from "../../../../utils/APIRoutes";
@@ -123,6 +122,7 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
         {sortedMessages.map((messageObject, index) => (
           <div key={index}>
             {messageObject.sender === userEmail ? (
+              <div className="flex flex-row justify-end w-full">
               <div className="sender-container">
                 <span className="message-text">
                   {messageObject.message_content}
@@ -131,7 +131,9 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
                   {formatTimestamp(messageObject.date, messageObject.time)}
                 </span>
               </div>
+              </div>
             ) : (
+              <div className="flex flex-row justify-start w-full">
               <div className="receiver-container">
                 <span className="message-text">
                   {messageObject.message_content}
@@ -140,11 +142,12 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
                   {formatTimestamp(messageObject.date, messageObject.time)}
                 </span>
               </div>
+              </div>
             )}
           </div>
         ))}
       </div>
-      <div className="send-bar fxr">
+      <div className="send-bar">
         <input
           type="text"
           className="message-input"
@@ -166,4 +169,3 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
 }
 
 export default Message;
-

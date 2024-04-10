@@ -19,6 +19,7 @@ export default function ToolsBar({
   canRedo,
 }) {
   return (
+    <div className =" absolute top-[230px] left-[75px]">
     <div className={styles.tools_panel_container}>
       <div className={styles.tools_panel}>
         <div className={styles.tools_panel_section}>
@@ -68,5 +69,7 @@ export default function ToolsBar({
         </div>
       </div>
     </div>
+  </div>
+
   );
 }

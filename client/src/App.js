@@ -5,7 +5,7 @@ import Chat from "../src/pages/Chat/Chat";
 import LinkRoom from "./pages/LinkRoom/LinkRoom";
 import SignInGoogle from "./pages/LinkRoom/SignInPage";
 
-import Comments from "./pages/Game/components/Comments";
+import GameRoom from "./pages/Game/components/GameRoom";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="chat" element={<Chat />} />
         <Route path="link" element={<LinkRoom />} />
         <Route path="signinwithGG" element={<SignInGoogle />} />
-        <Route path="comments" element={<Comments />} />  
+        <Route path="gameRoom" element={<GameRoom />} />  
       </Routes>
     </BrowserRouter>
   );  

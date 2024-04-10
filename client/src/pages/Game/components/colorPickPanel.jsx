@@ -1,11 +1,11 @@
 import { Color } from "../types";
 import { colorToCss } from "../utils";
-import styles from "./ColorPicker.module.css";
+import styles from "./ColorPickerPanel.module.css";
 
 
 export default function ColorPickPanel({ onChange }) {
   return (
-    <div className=" absolute top-[810px] left-[400px] flex flex-row gap-x-1">
+    <div className=" absolute top-[16px] left-[36px] flex flex-row gap-x-1 w-[313px] h-[66px] border-[#AC4F98] border-sm rounded-[40px] ">
       <ColorButton color={{ r: 243, g: 82, b: 35 }} onClick={onChange} />
       <ColorButton color={{ r: 255, g: 198, b: 38 }} onClick={onChange} />
       <ColorButton color={{ r: 68, g: 202, b: 99 }} onClick={onChange} />
