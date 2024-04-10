@@ -21,7 +21,7 @@ function MENU() {
         navigate("/link"); // Navigate to the create-room page
         break;
       case "join-room":
-        navigate("/link"); // Navigate to the join-room page
+        navigate("/videoselect"); // Navigate to the join-room page
         break;
       default:
         break;
