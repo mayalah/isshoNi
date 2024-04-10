@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -24,50 +25,27 @@ const SignIn = ({ setLoginSignup}) => {
   };
 
   const handleGoogle = async (response) => {
-    // const credential = response.credential;
-    // setLoading(true);
-    // axios.post(signInWithGoogleRoute, { credential: credential })
-    //   .then((response) => {
-    //     if (response.data.message === "success") {
-    //       console.log(response.data);
-    //       localStorage.setItem("userName", data.name)
-    //             localStorage.setItem("userEmail", data.email)
-    //             localStorage.setItem("userImage", data.image)
-    //             console.log(localStorage.getItem("userName"))
-    //             console.log(localStorage.getItem("userEmail"))
-    //             console.log(localStorage.getItem("userImage"))
-    //       navigate("/menu");
-    //     }
-    //     setLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //     setLoading(false);
-    //   });
-    const url = signUpWithGoogleRoute
-        const credential =response.credential
-        console.log(credential)
-        setLoading(true)
-        axios.post(url,
-          {credential: credential}).then(response =>{
-            const data = response.data
-            const message = data.message
-            console.log(data)
+    const credential = response.credential;
+    setLoading(true);
+    axios.post(signUpWithGoogleRoute, { credential: credential })
+      .then((response) => {
 
-             if (message == "success"){
-                localStorage.setItem("userName", data.name)
+        const data = response.data;
+        if (response.data.message === "success") {
+          localStorage.setItem("userName", data.name)
                 localStorage.setItem("userEmail", data.email)
                 localStorage.setItem("userImage", data.image)
                 console.log(localStorage.getItem("userName"))
                 console.log(localStorage.getItem("userEmail"))
                 console.log(localStorage.getItem("userImage"))
-                navigate("/menu")
-            }
-            setLoading(false)
-        }).catch(error =>{
-          console.log(error)
-
-        })
+          navigate("/menu");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -79,13 +57,13 @@ const SignIn = ({ setLoginSignup}) => {
         });
         google.accounts.id.renderButton(
           document.getElementById("googleSignUpDiv"),
-          // { theme: "outline", size: "large" } // You can adjust the options
-          {
-            theme: "filled_white",
-            text: "signin_with",
-            shape: "pill",
-            
-          }
+           // You can adjust the options
+           {
+                        theme: "filled_white",
+                        text: "signin_with",
+                        shape: "pill",
+                        
+                      }
         );
       }
     };

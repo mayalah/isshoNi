@@ -15,7 +15,7 @@ export default function Login(){
           {credential: credential}).then(response =>{
             const data = response.data
             const message = data.message
-            console.log(data)
+
 
              if (message == "success"){
                 localStorage.setItem("userName", data.name)

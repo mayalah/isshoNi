@@ -33,9 +33,16 @@ const SignUp = ({ setLoginSignup }) => {
     axios.post(url, { credential: credential }).then((response) => {
       console.log(response.data);
       const res = response.data.message;
+      const data = response.data;
       console.log(res);
       if (res === "success") {
-        navigate("/home");
+        localStorage.setItem("userName", data.name)
+        localStorage.setItem("userEmail", data.email)
+        localStorage.setItem("userImage", data.image)
+        console.log(localStorage.getItem("userName"))
+        console.log(localStorage.getItem("userEmail"))
+        console.log(localStorage.getItem("userImage"))
+        navigate("/menu");
       }
       setLoading(false);
     }).catch((error) => {

@@ -45,9 +45,7 @@ function LINKROOM() {
         </Link>
       </nav>
 
-      <div className="w-[200px] h-[30px] bg-white relative top-4  flex flex-row justify-center items-center rounded-sm ml-2">
-        <button onClick={handleSignInClick}>Sign In</button>
-      </div>
+    
 
       <div className="link-bg" style={{ paddingTop: "6rem" }}>
         <div className="main-link-header" style={{ rowGap: "1rem" }}>
@@ -69,7 +67,7 @@ function LINKROOM() {
           <img src={linkCharacter} alt="Link Character" />
         </div>
       </div>
-      {/* {haveRoomId ? <Comments roomIdPara={roomId} /> : <></>} */}
+      {haveRoomId ? <GameRoom roomIdPara={roomId} /> : <></>}
     </div>
   );
 }

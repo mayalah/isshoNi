@@ -21,7 +21,7 @@ function MENU() {
         navigate("/link"); // Navigate to the create-room page
         break;
       case "join-room":
-        navigate("/link"); // Navigate to the join-room page
+        navigate("/videoselect"); // Navigate to the join-room page
         break;
       default:
         break;
@@ -43,7 +43,7 @@ function MENU() {
       </nav>
       <div className="main-bg">
         <div className="main-header">
-          <p>Hello, {userName}!!!</p>
+          <p>Hello, Peciti#3561!</p>
           <div className="menu-styling">
             <div className="option-background">
               <button

@@ -17,7 +17,7 @@
   width: 100%;
   max-width: 450px;
   border: 1px solid black;
-  height: 500px;
+  height: 550px;
 }
 
 input {
@@ -29,7 +29,8 @@ input {
   border: 1px solid #ccc;
 }
 
-.SignUpButton, .GoogleSignUpButton {
+.SignUpButton,
+.GoogleSignUpButton {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -57,29 +58,32 @@ input {
 }
 
 .DividerContainer {
-  display: flex; /* Use flexbox to align children */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
+  display: flex;
+  /* Use flexbox to align children */
+  align-items: center;
+  /* Center items vertically */
+  justify-content: center;
+  /* Center items horizontally */
   margin: 20px 0;
 }
 
 .DividerLine {
-  flex-grow: 1; 
-  background: #ccc; 
-  height: 1px; 
-  margin: 0 10px; 
+  flex-grow: 1;
+  background: #ccc;
+  height: 1px;
+  margin: 0 10px;
 }
 
 .DividerText {
-  padding: 0 10px; 
-  color: #ccc; 
-  background: #fff; 
-  position: relative; 
-  z-index: 1; 
+  padding: 0 10px;
+  color: #ccc;
+  background: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 
-.signup{
+.signup {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -92,12 +96,12 @@ input {
   border: none;
   color: #9b9b9b;
   cursor: pointer;
-  font-size: 14px;  
+  font-size: 14px;
   width: 100%;
   text-align: right;
 }
 
-.passwordfield{
+.passwordfield {
   margin-bottom: -20px;
   margin-top: 20px;
   font-size: 15px;
@@ -106,7 +110,7 @@ input {
 }
 
 
-.sign-up{
+.sign-up {
   text-align: center;
   margin-top: 10px;
   font-size: 30px;
