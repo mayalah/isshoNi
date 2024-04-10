@@ -11,24 +11,18 @@ import liveblockRoutes from "./routes/liveblocksRoute.js";
 const fastify = Fastify({logger: false})
 
 
-// fastify.register(cors, {
-//     origin: ["http://localhost:3000"],
-//     methods: ["GET","POST"]
-// })
+fastify.register(cors, {
+    origin: ["http://localhost:3000"],
+    methods: ["GET","POST"]
+})
 
-// fastify.register(auth)
-// fastify.register( userRoutes, {prefix:"/api/user"})
-// fastify.register(chatRoutes,{prefix:"/api/chat"})
-// fastify.register(liveblockRoutes,{prefix:"/api/liveblocks"})
+fastify.register(auth)
+fastify.register( userRoutes, {prefix:"/api/user"})
+fastify.register(chatRoutes,{prefix:"/api/chat"})
+fastify.register(liveblockRoutes,{prefix:"/api/liveblocks"})
 
-// fastify.listen({port: process.env.PORT}).then(()=>{
-//     console.log(`sever is running on ${process.env.PORT}`)
-// }).catch((e)=>{
-
-//     process.exit(1);
-// })
-fastify.listen({port: 3111}).then(()=>{
-    console.log("sever is running on ")
+fastify.listen({port: process.env.PORT}).then(()=>{
+    console.log(`sever is running on ${process.env.PORT}`)
 }).catch((e)=>{
 
     process.exit(1);
