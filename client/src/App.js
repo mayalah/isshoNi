@@ -5,6 +5,7 @@ import Chat from "../src/pages/Chat/Chat";
 import LinkRoom from "./pages/LinkRoom/LinkRoom";
 import SignInGoogle from "./pages/LinkRoom/SignInPage";
 import VideoSelectRoom from "./pages/Video/VideoSelectRoom";
+import VideoRoom from "./pages/Video/VideoRoom";
 
 import Comments from "./pages/Game/components/Comments";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="signinwithGG" element={<SignInGoogle />} />
         <Route path="comments" element={<Comments />} />
         <Route path="videoselect" element={<VideoSelectRoom />} />
+        <Route path="video_room" element={<VideoRoom />} />
       </Routes>
     </BrowserRouter>
   );
