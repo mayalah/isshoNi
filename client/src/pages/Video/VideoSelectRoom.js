@@ -1,7 +1,12 @@
 //import VideoRoom from "./VideoRoom.js";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
+import joinRoomSVG from "../../assets/join-room.svg";
+import createRoomSVG from "../../assets/create-room.svg";
+import linkCharacterSVG from "../../assets/linkCharacter.svg";
+
+import styles from "./VideoSelectRoom.module.css";
 
 export default function VideoSelectRoom() {
   const [selectInput, setSelectInput] = useState("");
@@ -9,6 +14,8 @@ export default function VideoSelectRoom() {
 
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
+
+  const fileRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -40,6 +47,10 @@ export default function VideoSelectRoom() {
       console.error("No file");
       return;
     }
+    if (fileName == "") {
+      console.error("Input video name");
+      return;
+    }
     const formData = new FormData();
     console.log(file);
     formData.append("video", file);
@@ -57,33 +68,74 @@ export default function VideoSelectRoom() {
       .catch((error) => console.error("Error:", error));
   }
 
+  function onClickBrowseComputer() {
+    fileRef.current.click();
+  }
   return (
-    <div>
-      <div>
-        {/* Input youtube video link or AWS S3 link */}
-        <label>Make Video Room</label>
-        <input onChange={(e) => setSelectInput(e.target.value)} />
-        <button onClick={onClickCreateRoomBtn}>Select</button>
-      </div>
-      <div>
-        {/* Input existing room ID */}
-        <label>Go into existing video room</label>
-        <input onChange={(e) => setSelectExist(e.target.value)} />
-        <button onClick={onClickJoinRoomBtn}>Go!</button>
-      </div>
-      {/* Upload */}
-      <form>
-        <label>Pick a video</label>
-        <input
-          type="file"
-          accept="video/quicktime, video/mp4"
-          onChange={(event) => onFileChange(event)}
-        />
-        <input onChange={(e) => setFileName(e.target.value)} />
-        <button type="submit" onClick={(event) => onUploadClick(event)}>
-          Submit
-        </button>
-      </form>
+    <div className={styles.container}>
+      {/* Creating a room */}
+      <section className={styles.create_video_cnt}>
+        <h1>Create a Video Room!</h1>
+        <div className={styles.create_inputbox}>
+          <input
+            placeholder="select video!"
+            onChange={(e) => setSelectInput(e.target.value)}
+          />
+          <div
+            className={styles.create_submit_cnt}
+            onClick={onClickCreateRoomBtn}
+          >
+            <img src={createRoomSVG} />
+          </div>
+        </div>
+      </section>
+      {/* Joining a room */}
+      <section className={styles.join_videoroom_cnt}>
+        <h2>Joining a Room?</h2>
+        <div className={styles.join_inputbox}>
+          <input
+            placeholder="insert URL"
+            onChange={(e) => setSelectExist(e.target.value)}
+          />
+          <div className={styles.join_submit_cnt} onClick={onClickJoinRoomBtn}>
+            <img src={joinRoomSVG} />
+          </div>
+        </div>
+        <img src={linkCharacterSVG} className={styles.link_character} />
+      </section>
+      {/* Upload video */}
+      <section className={styles.upload_video_cnt}>
+        <h2>Upload Video!</h2>
+        <form className={styles.video_form}>
+          <input
+            className={styles.file_input}
+            ref={fileRef}
+            type="file"
+            accept="video/quicktime, video/mp4"
+            onChange={(event) => onFileChange(event)}
+          />
+          <div className={styles.video_upload} onClick={onClickBrowseComputer}>
+            Browse Computer to Upload Video!
+          </div>
+          <div className={styles.video_selected}>
+            {file == "" ? "" : file.name}
+          </div>
+
+          <input
+            className={styles.video_name_input}
+            type="text"
+            onChange={(e) => setFileName(e.target.value)}
+            placeholder="Type Video Name"
+          />
+          <button
+            className={styles.video_submit}
+            type="submit"
+            onClick={(event) => onUploadClick(event)}
+          >
+            Submit
+          </button>
+        </form>
+      </section>
     </div>
   );
 }
