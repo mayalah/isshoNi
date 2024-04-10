@@ -29,7 +29,7 @@ const SignIn = ({ setLoginSignup}) => {
     axios.post(signInWithGoogleRoute, { credential: credential })
       .then((response) => {
         if (response.data.message === "success") {
-          navigate("/home");
+          navigate("/menu");
         }
         setLoading(false);
       })

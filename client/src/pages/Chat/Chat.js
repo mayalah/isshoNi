@@ -8,10 +8,10 @@ import Message from "./components/Message/Message";
 import goBack from "../../assets/goBack.svg";
 
 function CHAT() {
-  const [activeButton, setActiveButton] = useState("me"); 
-  const [selectedFriend, setSelectedFriend] = useState(null); 
-  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com"); 
-  const [friendEmail, setFriendEmail] = useState(""); 
+  const [activeButton, setActiveButton] = useState("me");
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com");
+  const [friendEmail, setFriendEmail] = useState("");
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {
@@ -30,7 +30,7 @@ function CHAT() {
 
   return (
     <div>
-      <nav className="back-button">
+      <nav className="back-button-chat">
         <Link to="/menu">
           <img
             src={goBack}
@@ -40,18 +40,15 @@ function CHAT() {
           />
         </Link>
       </nav>
-      <div
-        className="fxr chat-bg"
-        style={{ columnGap: "2rem", paddingTop: "5rem" }}
-      >
-        <div className="fxc" style={{ rowGap: "1rem" }}>
+      <div className="chat-bg chat-bg-margin">
+        <div className="left-menu-style">
           <UserFrame userName="peciti#3561" />
           <Friends
             setSelectedFriend={handleFriendSelection}
             userEmail={userEmail}
             setFriendEmail={handleFriendSelectionEmail}
           />
-          <div className="fxr" style={{ columnGap: "1rem" }}>
+          <div className="bottom-button-menu-style">
             <button
               className={`button-me button-decision-text ${
                 activeButton === "me" ? "active" : ""
@@ -70,7 +67,13 @@ function CHAT() {
             </button>
           </div>
         </div>
-        {friendEmail && <Message setSelectedFriend={selectedFriend} userEmail={userEmail} friendEmail={friendEmail}/>}
+        {friendEmail && (
+          <Message
+            setSelectedFriend={selectedFriend}
+            userEmail={userEmail}
+            friendEmail={friendEmail}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,0 @@
-
-DB_TOKEN = eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIyMDI0LTAyLTAyVDA0OjQwOjEyLjg4NjMyNzk5NVoiLCJpZCI6IjBlMzlmMGE3LWMxMWUtMTFlZS1iMzkwLTAyNzczMDE1ZDUyNSJ9.voDJUhy6QTZETUkdqcyM6XvgOGLv1R4y-xG_9ujbuGBBfywOYi8sdkXV8pFwtZXt-c5If0--53nbwlLuZyWtBA
-PORT = 3111
-JWT_SECRET= thisisasecretsdfjksfksdjflkdsjf4732648732643gdf
-GMAIL_USER= nhi.dev401@gmail.com
-GMAIL_PW = dxqw damc tvdb lwqv
-WORKFACTOR = 5
-GOOGLE_CLIENT_ID =439198849513-e8i1q1gr4vv070qt6kl2laa8vr2ae0qh.apps.googleusercontent.com
