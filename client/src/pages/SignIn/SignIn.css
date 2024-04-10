@@ -1,11 +1,114 @@
 .SignIn {
   position: fixed;
-  top: 20;
-  left: 20;
-  width: 80%;
-  height: 80%;
-  background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity as needed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000; 
+}
+
+.SignInModal {
+  background-color: white; /* Solid white background for the modal */
+  padding: 20px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 450px; /* Max width for the modal */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #000000; 
+  height: 500px;
+}
+
+input {
+  display: block;
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.SignInButton, .SSOSignInButton {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background-color: #4285f4;
+  color: rgb(5, 5, 5);
+  cursor: pointer;
+
+}
+
+.SignInButton{
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.SSOSignInButton {
+  background-color: #ffffff;
+}
+
+.CloseButton {
+  float: right;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 20px;
+  color: #ccc;
+}
+
+.Divider {
+  text-align: center;
+  margin: 30px 0;
+  border-top: 1px solid #ccc;
+  line-height: 0.1em;
+  color: #ccc;
+}
+
+.ForgetPassword {
+  width: 98%;
+  text-align: right;
+  margin-top: 17px;
+  margin-bottom: 20px;
+  text-decoration: underline; /* Added underline text decoration */
+  font-size: 12px;
+}
+
+.login{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.signup{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: rgb(84, 84, 84);
+}
+
+.field{
+  margin-bottom: -2px;
+  font-size: 15px;
+  text-align: left;
+  width: 98%;
+}
+.passwordfield{
+  margin-bottom: -20px;
+  margin-top: 20px;
+  font-size: 15px;
+  text-align: left;
+  width: 98%;
+}
+
+.PasswordToggleButton {
+  background: none;
+  border: none;
+  color: #9b9b9b;
+  cursor: pointer;
+  font-size: 14px;  
+  width: 100%;
+  text-align: right;
 }
