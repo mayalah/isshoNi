@@ -499,13 +499,13 @@ export default function Canvas() {
     <>
       <div>
         <div>
-          <div className="relative top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px] w-[816px]">
+          <div className="relative top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px] w-[816px] 2xl:w-[1000px] 2xl:h-[700px]">
 
            <ColorPickPanel onChange={setFill} />
            <PlayButton   setWord ={setWord} setPlayer={setPlayer}  setRunningClock={setIsRunning} ></PlayButton>
            {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>} 
            <CountdownClock initialSeconds={60} isRunning={isRunning} />
-           <div className="absolute p-3 top-[-90px] left-[1020px] flex flex-row flex-wrap gap-x-2 gap-y-[2px] justify-start items-start  w-[180px] h-[150px] border-2 border-[#EB87B6] rounded-[24px]">
+           <div className="absolute p-3 top-[-90px] left-[1020px] 2xl:left-[1220px] flex flex-row flex-wrap gap-x-2 gap-y-[2px] justify-start items-start  w-[180px] h-[150px] border-2 border-[#EB87B6] rounded-[24px]">
 
             {currentUser && <User user={currentUser}></User>}
             {others.map((other) => (
@@ -524,7 +524,7 @@ export default function Canvas() {
             />
 
             <svg
-              className="w-[800px]  h-[661px] bg-[#171717] rounded-[44px] "
+              className="w-[800px] h-[661px] 2xl:w-[980px] 2xl: h-[680px] bg-[#171717] rounded-[44px] "
               // className =" w-[1000px] h-[700px] bg-white"
               // className ={styles.renderer_svg}
               onWheel={onWheel}
@@ -661,7 +661,7 @@ const CountdownClock = ({ initialSeconds , isRunning }) => {
   const offset = ((initialSeconds - seconds) / initialSeconds) * circumference;
 
   return (
-    <div className="absolute top-[-90px] left-[850px]">
+    <div className="absolute top-[-90px] left-[850px] 2xl:left-[1050px]">
       {/* Adjusted viewBox and direct attribute specification for size */}
       <svg width="148" height="148" viewBox="0 0 60 60">
         <circle

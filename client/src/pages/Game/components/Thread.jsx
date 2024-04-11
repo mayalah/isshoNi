@@ -47,7 +47,7 @@ export default function ThreadContainer({word}) {
     };
   
     return (
-      <div className =" absolute top-[70px] left-[850px] w-[360px]  ">
+      <div className =" absolute top-[70px] left-[850px] 2xl:left-[1050px] w-[360px]  ">
         {/* <div className =" mt-2 mr-2 ml-2 border-[#EB87B6] border-4 h-[590px] rounded-[24px]" > */}
         {
         threads.map(

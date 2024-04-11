@@ -39,7 +39,7 @@ export default function GameRoom() {
   return (
     
     <div className="w-screen h-screen">
-      <div className ="fixed top-[45px] left-[298px] ">
+      <div className ="fixed top-[45px] left-[298px] 2xl:left-[400px] ">
       {/* <div className =" flex flex-row justify-start items-center"> */}
         <h1 className=" text-white text-[60px]"> Isshoni.io</h1>
       </div>

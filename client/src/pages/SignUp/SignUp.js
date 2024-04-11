@@ -9,6 +9,7 @@ import { signUpWithGoogleRoute } from "../../utils/APIRoutes";
 
 const SignUp = ({ setLoginSignup }) => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,8 @@ const SignUp = ({ setLoginSignup }) => {
     event.preventDefault();
     console.log("Signing in with:", username, password);
     setLoginSignup(""); // Closes the sign-in modal.
+ 
+
   };
 
   const togglePasswordVisibility = () => {
@@ -115,7 +118,7 @@ const SignUp = ({ setLoginSignup }) => {
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-
+          
           <div className="passwordfield">
             <a>Password</a>
           </div>
