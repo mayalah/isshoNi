@@ -66,10 +66,8 @@ export default function Canvas() {
   const [wordList, setWordList] = useState([]);
   const [isPlayed, setIsPlayed] = useState(false);
   const [messageList, setMessageList] = useState([]);
-  const [clock, setClock] = useState(false);
-  const handlePlayClickClock = () => {
-    setClock(!clock);
-  };
+  const [clock, setClock] = useState(1);
+  
 
 
   const layerIds = useStorage((root) => root.layerIds);
@@ -482,7 +480,7 @@ export default function Canvas() {
       unselectLayers,
     ]
   );
-  const broadcast=  useBroadcastEvent()
+
   useEventListener(({event})=>{
     if (event.type ==="play"){
       console.log(event.word)
@@ -492,42 +490,32 @@ export default function Canvas() {
     }
 
   })
-  const handleBroadcastClick =()=>{
-    console.log("broadcast")
-    const word= "hello"
-    broadcast({type:"play", word:word, sender:currentUser.info.name})
-    setWord(word)
-    setPlayer(currentUser.info.name)
-  }
+ 
   const [word, setWord] = useState("")
   const [player, setPlayer] = useState("")
+  const [isRunning, setIsRunning] = useState(false);
+  
+
   return (
     // start return
     <>
-   
-      {clock && <CountdownClock initialSeconds={60} />}
-      <button
-        onClick={handlePlayClickClock}
-        className=" w-20 h-10 bg-white "
-      >
-        Clock
-      </button>
-      <button
-        onClick={handleBroadcastClick}
-        className=" w-[100px] h-10 bg-slate-700 "
-      >
-        Broadcast
-      </button>
-      {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>}
-    <PlayButton></PlayButton>
-
       <div>
-
         <div>
+          <div className="relative top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px] w-[816px]">
 
-          <div className="absolute top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px]">
-           {/* <div className ={styles.canvas}> */}
            <ColorPickPanel onChange={setFill} />
+           <PlayButton   setWord ={setWord} setPlayer={setPlayer} setClock={setClock} setRunningClock={setIsRunning} ></PlayButton>
+           {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>} 
+           <CountdownClock initialSeconds={60} isRunning={isRunning} />
+           <div className="absolute p-3 top-[-90px] left-[1020px] flex flex-row flex-wrap gap-x-2 gap-y-[2px] justify-start items-start  w-[180px] h-[150px] border-2 border-[#EB87B6] rounded-[24px]">
+
+            {currentUser && <User user={currentUser}></User>}
+            {others.map((other) => (
+              <User user={other}></User>
+            ))}
+
+         
+        </div>
             <SelectionTools
               isAnimated={
                 canvasState.mode !== CanvasMode.Translating &&
@@ -592,9 +580,7 @@ export default function Canvas() {
                 )}
               </g>
             </svg>
-          </div>
-
-          <ToolsBar
+            <ToolsBar
             canvasState={canvasState}
             setCanvasState={setState}
             undo={history.undo}
@@ -602,18 +588,14 @@ export default function Canvas() {
             canUndo={canUndo}
             canRedo={canRedo}
           />
+           <ThreadContainer />
+          </div>
+
+        
 
         
         </div>
-        <div className="absolute flex flex-col md:left-[910px] gap-4 xl:left-[1120px] top-[100px] overflow-hidden md:w-[300px] xl:w-[360px]   ">
-          <div className="flex flex-row gap-x-3">
-            {currentUser && <User1 user={currentUser}></User1>}
-            {others.map((other) => (
-              <User1 user={other}></User1>
-            ))}
-          </div>
-          <ThreadContainer />
-        </div>
+       
       </div>
     </>
   );
@@ -623,7 +605,7 @@ export default function Canvas() {
 
 
 
-function User1({ user }) {
+function User({ user }) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
@@ -641,133 +623,70 @@ function User1({ user }) {
       <img
         onMouseEnter={() => setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
-        className="w-10 h-10 rounded-full"
+        className="w-10 h-10 rounded-full border-[#FB8C8C] shadow-sm border-4"
         src={user.info.image}
         alt="Medium avatar"
       />
     </div>
   );
 }
+const CountdownClock = ({ initialSeconds , isRunning }) => {
 
-// const CountdownClock = ({ initialSeconds = 60 }) => {
-//   const [seconds, setSeconds] = useState(initialSeconds);
-
-//   useEffect(() => {
-//     if (seconds <= 0) {
-//       // Stop the countdown at 0 to avoid negative values
-//       return;
-//     }
-//     const intervalId = setInterval(() => {
-//       setSeconds((prevSeconds) => prevSeconds - 1);
-//     }, 1000);
-
-//     // Cleanup interval on component unmount
-//     return () => clearInterval(intervalId);
-//   }, [seconds]);
-
-//   useEffect(() => {
-//     if (seconds <= 0) {
-//       // Handle completion, e.g., alert or callback
-
-//       alert("Time's up!");
-//     }
-//   }, [seconds]);
-
-//   // Calculate the stroke dashoffset for the SVG circle
-//   const radius = 18; // Adjust radius for size of the clock
-//   const circumference = 2 * Math.PI * radius;
-//   const offset = ((initialSeconds - seconds) / initialSeconds) * circumference;
-
-//   return (
-//     <div className="">
-//       <svg className="w-24 h-24" viewBox="0 0 40 40">
-//         <circle
-//           className="text-gray-300"
-//           stroke="currentColor"
-//           fill="transparent"
-//           strokeWidth="4"
-//           r="18"
-//           cx="20"
-//           cy="20"
-//         />
-//         <circle
-//           className="text-red-500"
-//           stroke="currentColor"
-//           fill="transparent"
-//           strokeWidth="4"
-//           strokeDasharray={circumference}
-//           strokeDashoffset={offset}
-//           r="18"
-//           cx="20"
-//           cy="20"
-//           transform="rotate(-90 20 20)" // Rotate to start from the top
-//         />
-//         <text
-//           x="50%"
-//           y="50%"
-//           className="text-cyan-600"
-//           textAnchor="middle"
-//           strokeWidth="1px"
-//           dy=".3em"
-//           fill="currentColor"
-//         >
-//           {seconds}
-//         </text>
-//       </svg>
-//     </div>
-//   );
-// };
-
-const CountdownClock = ({ initialSeconds = 60 }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
 
+
+
   useEffect(() => {
     if (seconds <= 0) {
+      // Stop the countdown at 0 to avoid negative values
       return;
     }
-    const intervalId = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1);
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [seconds]);
+    if (isRunning){
+      const intervalId = setInterval(() => {
+        setSeconds((prevSeconds) => prevSeconds - 1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  }, [seconds, isRunning]);
 
   useEffect(() => {
     if (seconds <= 0) {
-      alert("Time's up!");
+      // Handle completion, e.g., alert or callback
+      // alert("Time's up!");
+      setSeconds(initialSeconds);
     }
-  }, [seconds]);
+  }, [seconds, initialSeconds]);
 
-  // Updated radius and calculations for the larger clock
-  const radius = 40; // New radius
-  const strokeWidth = 4; // Adjust stroke width if needed for visual appeal
-  const viewBoxSize = radius * 2 + strokeWidth * 2; // Calculate viewbox size to ensure full visibility
+  // Calculate the stroke dashoffset for the SVG circle
+  const radius = 25; // Adjusted radius for size of the clock
   const circumference = 2 * Math.PI * radius;
   const offset = ((initialSeconds - seconds) / initialSeconds) * circumference;
 
   return (
-    <div>
-      <svg className="w-48 h-48 absolute " viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
+    <div className="absolute top-[-90px] left-[850px]">
+      {/* Adjusted viewBox and direct attribute specification for size */}
+      <svg width="148" height="148" viewBox="0 0 60 60">
         <circle
           className="text-gray-300"
+
           stroke="currentColor"
           fill="transparent"
-          strokeWidth={strokeWidth}
-          r={radius}
-          cx={radius + strokeWidth}
-          cy={radius + strokeWidth}
+          strokeWidth="8"
+          r="25" // Adjusted radius
+          cx="30" // Adjusted center x-coordinate
+          cy="30" // Adjusted center y-coordinate
         />
         <circle
-          className="text-red-500"
+          className="text-[#4FC8B7]"
           stroke="currentColor"
           fill="transparent"
-          strokeWidth={strokeWidth}
+          strokeWidth="8"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          r={radius}
-          cx={radius + strokeWidth}
-          cy={radius + strokeWidth}
-          transform={`rotate(-90 ${radius + strokeWidth} ${radius + strokeWidth})`} // Rotate to start from the top
+          r="25" // Adjusted radius
+          cx="30" // Adjusted center x-coordinate
+          cy="30" // Adjusted center y-coordinate
+          transform="rotate(-90 30 30)" // Adjust rotation center
         />
         <text
           x="50%"
@@ -777,7 +696,7 @@ const CountdownClock = ({ initialSeconds = 60 }) => {
           strokeWidth="1px"
           dy=".3em"
           fill="currentColor"
-          transform={`translate(${strokeWidth}, ${strokeWidth})`} // Adjust text position based on new radius and viewbox
+          style={{ fontSize: '18px' }} // Adjust font size for visibility
         >
           {seconds}
         </text>
@@ -787,26 +706,42 @@ const CountdownClock = ({ initialSeconds = 60 }) => {
 };
 
 
-function WordDisplay({word, player, currentUser}){
-    const wordArr = word.split("")
-    console.log("player inside word display", player)
-    return(
-      currentUser.info.name === player ? (
-      <div className ="flex flex-row gap-x-1">
-        {wordArr.map((c)=><p className =" text-white text-3xl">{c}</p>)}
-      </div>
-      ):
-      (<div className ="flex flex-row gap-x-1">
-        {wordArr.map((c)=><p className =" text-white text-3xl">_</p>)}
-      </div>)
-    )
+const WordDisplay = ({ word, player, currentUser }) => {
+  const wordArr = word.split('');
 
-}
-// absolute top-[165px] left-[669px]
-function PlayButton (){
+  return (
+    <div className="absolute top-[570px] left-[280px] flex justify-center my-8">
+      {wordArr.map((c, index) => (
+        <div
+          key={index}
+          className="w-12 h-12 bg-gray-700 border-2 border-gray-600 rounded-md flex justify-center items-center text-3xl font-bold text-white mx-[0.5px]"
+        >
+          {currentUser.info.name === player ? c : (
+            <span className="text-transparent text-shadow-glow">{c}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+function PlayButton ( {setWord, setPlayer, setClock, setRunningClock}){
+
+  const broadcast=  useBroadcastEvent()
+  const currentUser = useSelf()
+ 
+  const broadcastClick =()=>{
+    console.log("broadcast")
+    const word= "hello"
+    broadcast({type:"play", word:word, sender:currentUser.info.name})
+    setWord(word)
+    setPlayer(currentUser.info.name)
+    setRunningClock(true)
+  }
+
   return(
-    <div className=" absolute top-[165px] left-[679px] z-10 flex flex-row justify-center items-center w-[133px] h-[52px] border-[#EB87B6] bg-[#AC4F98]  rounded-[30px] border-[6px] ">
-      <button className ='text-white text-2xl'>Start</button>
+    <div className=" absolute top-[20px] right-[20px] z-10 flex flex-row justify-center items-center w-[133px] h-[52px] border-[#EB87B6] bg-[#AC4F98]  rounded-[30px] border-[6px] ">
+      <button className ='text-white text-2xl' onClick ={broadcastClick}>Play</button>
     </div>
   )
 }
