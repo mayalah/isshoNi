@@ -129,6 +129,7 @@
     background-color:transparent;
     color:white;
     border-radius: 2rem;
+    padding-left:1rem;
 }
 
 .video_name_input::placeholder{

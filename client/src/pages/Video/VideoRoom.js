@@ -197,15 +197,13 @@ function VideoPlayer({ isYoutube, link, roomID }) {
         {isYoutube ? (
           //    Video from Youtube
           <div data-vjs-player>
-            <video
-              id="vid1"
-              className="video-js vjs-default-skin"
-              autoPlay
-              controls
-              // width="640"
-              // height="264"
-              data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=3ptagZOU_Wg"}] }'
-            ></video>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/3ptagZOU_Wg"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
           </div>
         ) : (
           // Video retrieved from AWS S3 bucket
