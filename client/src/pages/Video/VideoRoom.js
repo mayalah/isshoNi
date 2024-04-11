@@ -21,6 +21,8 @@ import pauseSVG from "../../assets/pauseBtn.svg";
 import copyLinkSVG from "../../assets/copyLink.svg";
 import closeSVG from "../../assets/close.svg";
 
+import Loading from "./Loading";
+
 import styles from "./VideoRoom.module.css";
 
 import io from "socket.io-client";
@@ -47,7 +49,7 @@ function VideoRoom() {
         }),
       }}
     >
-      <ClientSideSuspense fallback={<div>Loading...</div>}>
+      <ClientSideSuspense fallback={<Loading />}>
         {() => (
           <Video
             link={link}
