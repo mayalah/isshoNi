@@ -1,0 +1,149 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:2rem;
+    gap:5rem;
+}
+
+.create_video_cnt{
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+    align-items: center;
+    margin-top:3.5rem;
+}
+
+.create_video_cnt h1{
+    font-size: 3rem;
+    font-weight: 900;
+    color:white
+}
+
+.create_inputbox{
+    display:flex;
+    align-items: center;
+    background-color: transparent;
+    border: .5rem #7AC3FF solid;
+    border-radius: 2rem;
+    padding:.5rem;
+    height: 5.6rem;
+    width:30vw;
+    color:white;
+}
+
+.create_inputbox input{
+    outline: none;
+    border:none;
+    background-color:transparent;
+}
+
+.create_inputbox input::placeholder{
+    color:white;
+}
+
+.join_videoroom_cnt{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2rem;
+}
+
+.join_videoroom_cnt h2{
+    font-size: 2.75rem;
+    font-weight:900;
+    color:white
+}
+
+.join_inputbox{
+    display:flex;
+    align-items: center;
+    background-color: transparent;
+    border: .5rem #4FC8B7 solid;
+    border-radius: 2rem;
+    padding:.5rem;
+    height: 5.6rem;
+    color:white;
+}
+
+.join_inputbox input{
+    outline: none;
+    border:none;
+    background-color:transparent;
+}
+
+.join_inputbox input::placeholder{
+    color:white;
+}
+
+.link_character{
+    width: 50%; 
+}
+
+.upload_video_cnt{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video_form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload_video_cnt h2{
+    font-size: 2.75rem;
+    font-weight:900;
+    color:white
+}
+
+.file_input{
+    display:none;
+}
+
+.video_upload{
+    color:white;
+    user-select: none;
+}
+
+.video_upload:hover{
+    color:rgb(90, 90, 90);
+    cursor:pointer
+}
+
+.video_upload:active{
+    color:rgb(80, 80, 80);
+}
+
+.video_selected{
+    color:white;
+    height:2rem;
+}
+
+.video_name_input{
+    border: .5rem #7AC3FF solid;
+    height: 5rem;
+    width:20rem;
+    outline:none;
+    background-color:transparent;
+    color:white;
+    border-radius: 2rem;
+}
+
+.video_name_input::placeholder{
+    color:white
+}
+
+.video_submit{
+    color:white
+}
+
+.video_submit:hover{
+    color:rgb(90, 90, 90);
+    cursor:pointer
+}
+
+.video_submit:active{
+    color:rgb(80, 80, 80);
+}

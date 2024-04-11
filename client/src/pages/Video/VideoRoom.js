@@ -16,6 +16,13 @@ import "videojs-youtube";
 
 import { useLocation } from "react-router-dom";
 
+import playSVG from "../../assets/playBtn.svg";
+import pauseSVG from "../../assets/pauseBtn.svg";
+import copyLinkSVG from "../../assets/copyLink.svg";
+import closeSVG from "../../assets/close.svg";
+
+import styles from "./VideoRoom.module.css";
+
 import io from "socket.io-client";
 
 // const socket = io("http://localhost:3001/");
@@ -94,17 +101,20 @@ const Video = ({ link, isYoutube, roomID }) => {
   }, []);
 
   return (
-    <div className="App">
-      {`Room ID: ${roomID}`}
-      <br />
-      There are {others.length} other people here!
-      <VideoPlayer isYoutube={settings_isYoutube} link={settings_link} />
+    <div>
+      {/* {`Room ID: ${roomID}`} */}
+      {/* There are {others.length} other people here! */}
+      <VideoPlayer
+        isYoutube={settings_isYoutube}
+        link={settings_link}
+        roomID={roomID}
+      />
       {/* <button onClick={() => socket.emit("event", "123")}>Socket</button> */}
     </div>
   );
 };
 
-function VideoPlayer({ isYoutube, link }) {
+function VideoPlayer({ isYoutube, link, roomID }) {
   /**
    * Need to make video look better/stylize (CSS)
    * Figure out ways to get around browser document issue
@@ -113,6 +123,7 @@ function VideoPlayer({ isYoutube, link }) {
   console.log("Link is " + link);
   console.log(typeof link);
   const [currentTime, setCurrentTime] = useState(0);
+  const [modal, setModal] = useState(false);
 
   const buttonRef = useRef(null);
 
@@ -175,26 +186,33 @@ function VideoPlayer({ isYoutube, link }) {
   function handleTimeUpdate() {
     setCurrentTime(videoRef.current.currentTime);
   }
+  function onModalClick() {
+    setModal(true);
+  }
+
   return (
-    <div>
-      {isYoutube ? (
-        // Video from Youtube
-        <div data-vjs-player>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/3ptagZOU_Wg"
-            frameborder="0"
-            allowfullscreen
-          ></iframe>
-        </div>
-      ) : (
-        // Video retrieved from AWS S3 bucket
-        <div style={{ display: "flex", flexDirecion: "column" }}>
+    <div className={styles.container}>
+      {modal ? <CopyLinkModal roomID={roomID} setModal={setModal} /> : null}
+      <section className={styles.video_cnt}>
+        {isYoutube ? (
+          //    Video from Youtube
+          <div data-vjs-player>
+            <video
+              id="vid1"
+              className="video-js vjs-default-skin"
+              autoPlay
+              controls
+              // width="640"
+              // height="264"
+              data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=3ptagZOU_Wg"}] }'
+            ></video>
+          </div>
+        ) : (
+          // Video retrieved from AWS S3 bucket
           <video
             ref={videoRef}
-            width="320"
-            height="240"
+            // width="320"
+            // height="240"
             onTimeUpdate={handleTimeUpdate}
             // poster={pic}
           >
@@ -202,24 +220,62 @@ function VideoPlayer({ isYoutube, link }) {
               src={`http://localhost:3111/api/video/videoRetrieval/${link}`}
             ></source>
           </video>
-          <input
-            type="range"
-            className="custom-seek-bar"
-            min="0"
-            max={
-              videoRef.current ? parseFloat(videoRef.current.duration) || 0 : 0
-            }
-            step="0.01"
-            value={currentTime}
-            onChange={handleSeekChange}
-          />
-          <button onClick={handlePause}>Pause</button>
-          <button onClick={handlePlay}>Play</button>
-          <button ref={buttonRef} onClick={() => changeTime(5)}>
-            Set Current Time to 5 seconds
-          </button>
+        )}
+      </section>
+      <section className={styles.right_cnt}>
+        <div className={styles.comments_cnt}>
+          <div className={styles.copy_link_cnt} onClick={onModalClick}>
+            <img src={copyLinkSVG} />
+          </div>
         </div>
-      )}
+        <div className={styles.video_controls_cnt}>
+          <div className={styles.seek_bar_cnt}>
+            <input
+              type="range"
+              className="custom-seek-bar"
+              min="0"
+              max={
+                videoRef.current
+                  ? parseFloat(videoRef.current.duration) || 0
+                  : 0
+              }
+              step="0.01"
+              value={currentTime}
+              onChange={handleSeekChange}
+            />
+          </div>
+          <div className={styles.controls_cnt}>
+            <div onClick={handlePlay}>
+              <img src={playSVG} />
+            </div>
+            <div onClick={handlePause}>
+              <img src={pauseSVG} />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function CopyLinkModal({ roomID, setModal }) {
+  function onModalCloseClick() {
+    setModal(false);
+  }
+  return (
+    <div className={styles.modal_cnt}>
+      <div className={styles.modal_close_cnt} onClick={onModalCloseClick}>
+        <div className={styles.modal_close_hover}>
+          <img src={closeSVG} />
+        </div>
+      </div>
+      <div className={styles.modal_content_cnt}>
+        <h1>This is the room ID</h1>
+        <h2>Invite your friends</h2>
+        <div className={styles.roomID_cnt}>
+          <h3>{roomID}</h3>
+        </div>
+      </div>
     </div>
   );
 }
