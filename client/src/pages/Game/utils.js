@@ -196,8 +196,8 @@ import {
     camera
   ) {
     return {
-      x: Math.round(e.clientX-80) - camera.x,
-      y: Math.round(e.clientY-100) - camera.y,
+      x: Math.round(e.clientX-40) - camera.x,
+      y: Math.round(e.clientY-136) - camera.y,
     };
   }
   
