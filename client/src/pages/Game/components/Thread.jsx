@@ -7,7 +7,9 @@ import {
   } from "../game_liveblocks.config";
 
   import { Composer, Thread } from "@liveblocks/react-comments";
-export default function ThreadContainer() {
+export default function ThreadContainer({word}) {
+  console.log("word",word)
+
     const currentUser = useSelf();
     const others = useOthers();
   
@@ -20,7 +22,7 @@ export default function ThreadContainer() {
       // thread.comments.map((comment) => {
 
 
-        if (comment.body?.content[0].children[0].text == "hello") {
+        if (comment.body?.content[0].children[0].text.toLowerCase() == word.toLowerCase()) {
             editComment({
                 threadId: thread.id,
                 commentId: comment.id,

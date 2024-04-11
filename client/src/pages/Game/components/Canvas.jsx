@@ -39,11 +39,14 @@ import MultiplayerGuides from "./MultiplayerGuides";
 import Path from "./Path";
 import ToolsBar from "./ToolsBar";
 
+
 import { Composer, Thread } from "@liveblocks/react-comments";
 
 import ColorPickPanel from "./colorPickPanel";
 
 import ThreadContainer from "./Thread";
+import wordList from "./wordList";
+
 
 const MAX_LAYERS = 100;
 const scribbleWords = [
@@ -60,15 +63,10 @@ const scribbleWords = [
 ];
 
 
+
 export default function Canvas() {
   const others = useOthers();
   const currentUser = useSelf();
-  const [wordList, setWordList] = useState([]);
-  const [isPlayed, setIsPlayed] = useState(false);
-  const [messageList, setMessageList] = useState([]);
-  const [clock, setClock] = useState(1);
-  
-
 
   const layerIds = useStorage((root) => root.layerIds);
 
@@ -504,7 +502,7 @@ export default function Canvas() {
           <div className="relative top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px] w-[816px]">
 
            <ColorPickPanel onChange={setFill} />
-           <PlayButton   setWord ={setWord} setPlayer={setPlayer} setClock={setClock} setRunningClock={setIsRunning} ></PlayButton>
+           <PlayButton   setWord ={setWord} setPlayer={setPlayer}  setRunningClock={setIsRunning} ></PlayButton>
            {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>} 
            <CountdownClock initialSeconds={60} isRunning={isRunning} />
            <div className="absolute p-3 top-[-90px] left-[1020px] flex flex-row flex-wrap gap-x-2 gap-y-[2px] justify-start items-start  w-[180px] h-[150px] border-2 border-[#EB87B6] rounded-[24px]">
@@ -588,7 +586,7 @@ export default function Canvas() {
             canUndo={canUndo}
             canRedo={canRedo}
           />
-           <ThreadContainer />
+           <ThreadContainer word={word} />
           </div>
 
         
@@ -707,10 +705,11 @@ const CountdownClock = ({ initialSeconds , isRunning }) => {
 
 
 const WordDisplay = ({ word, player, currentUser }) => {
-  const wordArr = word.split('');
+  const wordUppercase = word.toUpperCase();
+  const wordArr = wordUppercase.split('');
 
   return (
-    <div className="absolute top-[570px] left-[280px] flex justify-center my-8">
+    <div className="absolute top-[560px] left-[20px] flex justify-center my-8">
       {wordArr.map((c, index) => (
         <div
           key={index}
@@ -725,14 +724,14 @@ const WordDisplay = ({ word, player, currentUser }) => {
   );
 };
 
-function PlayButton ( {setWord, setPlayer, setClock, setRunningClock}){
+function PlayButton ( {setWord, setPlayer, setRunningClock}){
 
   const broadcast=  useBroadcastEvent()
   const currentUser = useSelf()
  
   const broadcastClick =()=>{
-    console.log("broadcast")
-    const word= "hello"
+    const word = wordList[Math.floor(Math.random() * wordList.length)]
+
     broadcast({type:"play", word:word, sender:currentUser.info.name})
     setWord(word)
     setPlayer(currentUser.info.name)
