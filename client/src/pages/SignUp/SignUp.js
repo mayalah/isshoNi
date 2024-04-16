@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
-import { signUpWithGoogleRoute } from "../../utils/APIRoutes";
+import { signUpRoute, signUpWithGoogleRoute } from "../../utils/APIRoutes";
 /* global google */
 
 
@@ -18,10 +18,19 @@ const SignUp = ({ setLoginSignup }) => {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    console.log("Signing in with:", username, password);
-    setLoginSignup(""); // Closes the sign-in modal.
- 
 
+    axios.post(signUpRoute, { username, password, email })
+    .then((response) => {
+      if (response.status === 200) {
+        setLoginSignup("");
+        alert("Sign up successful, check your email for verification")
+        console.log("Sign up successful");
+      }
+
+    })
+    setLoginSignup("");
+
+  
   };
 
   const togglePasswordVisibility = () => {
@@ -67,6 +76,7 @@ const SignUp = ({ setLoginSignup }) => {
             theme: "filled_white",
             text: "signin_with",
             shape: "pill",
+
           }
         );
       }
@@ -116,6 +126,17 @@ const SignUp = ({ setLoginSignup }) => {
             placeholder="Enter your username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <div className="field">
+            <a>Email</a>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Enter your username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
           

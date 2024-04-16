@@ -46,6 +46,7 @@ export const signUpService = async(fastify,email, password, username) =>{
         const id = uuid()
         await hashedPW(id,email,password)
         await sendingMail(fastify, email)
+        console.log("SignUp successfully inside service")
         return "SignUp successfully"
 
     } catch (e) {

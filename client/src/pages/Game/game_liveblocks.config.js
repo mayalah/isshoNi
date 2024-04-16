@@ -23,12 +23,14 @@ const client = createClient({
 
 // //   // Get users' info from their ID
   resolveUsers: async ({ userIds }) => {
+    const url = resolveUsersRoute;
+    
     const params = new URLSearchParams();
     userIds.forEach((userId) => {
       params.append('userIds', userId);
     });
 
-    const response = await axios.post(`http://localhost:8009/api/liveblocks/resolveUsers?${params.toString()}`);
+    const response = await axios.post(`${resolveUsersRoute}?${params.toString()}`);
 
 
     const users = await response.data;

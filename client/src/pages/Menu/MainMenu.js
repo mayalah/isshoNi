@@ -43,7 +43,7 @@ function MENU() {
       </nav>
       <div className="main-bg">
         <div className="main-header">
-          <p>Hello, Peciti#3561!</p>
+          <p>Hello,{userName}!!!</p>
           <div className="menu-styling">
             <div className="option-background">
               <button
