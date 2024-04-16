@@ -5,6 +5,7 @@ import Topbar from "../Topbar";
 import { useState, useEffect } from "react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
+import ForgetPassword from "../ForgetPassword/ForgetPassword";
 
 const Landing = () => {
   const [scrollStyle, setScrollStyle] = useState("First-Page");
@@ -28,6 +29,8 @@ const Landing = () => {
         <SignUp setLoginSignup={setLoginSignup} />
       ) : loginSignUp === "SignIn" ? (
         <SignIn setLoginSignup={setLoginSignup} />
+      ) : loginSignUp === "ForgetPassword" ? (
+        <ForgetPassword setLoginSignup={setLoginSignup} />
       ) : (
         <></>
       )}

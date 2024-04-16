@@ -142,7 +142,9 @@ const SignIn = ({ setLoginSignup}) => {
           />
 
           <div className="ForgetPassword">
-            <a href="#" >Forget password?</a>
+            <a href="#" onClick={() => setLoginSignup("ForgetPassword")} >
+            Forget password?
+            </a>
           </div>
 
           <button type="submit" className="SignInButton">

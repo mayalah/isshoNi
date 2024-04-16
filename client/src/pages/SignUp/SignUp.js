@@ -5,8 +5,6 @@ import "./SignUp.css";
 import { signUpRoute, signUpWithGoogleRoute } from "../../utils/APIRoutes";
 /* global google */
 
-
-
 const SignUp = ({ setLoginSignup }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -26,11 +24,8 @@ const SignUp = ({ setLoginSignup }) => {
         alert("Sign up successful, check your email for verification")
         console.log("Sign up successful");
       }
-
     })
     setLoginSignup("");
-
-  
   };
 
   const togglePasswordVisibility = () => {
