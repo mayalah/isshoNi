@@ -7,7 +7,7 @@ import { signInWithGoogleRoute, signUpWithGoogleRoute } from "../../utils/APIRou
 /* global google */
 
 const SignIn = ({ setLoginSignup}) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const SignIn = ({ setLoginSignup}) => {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    console.log("Signing in with:", username, password);
+    console.log("Signing in with:", password);
     setLoginSignup("");
   };
 
@@ -108,14 +108,14 @@ const SignIn = ({ setLoginSignup}) => {
 
         <form onSubmit={handleSignIn}>
           <div className="field">
-            <a>Username</a>
+            <a>Email</a>
           </div>
 
           <input
             type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
 
