@@ -134,6 +134,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [modal, setModal] = useState(false);
   const [youtubePlayer, setYoutubePlayer] = useState(null);
+  const [youtubeLink, setYoutubeLink] = useState("");
 
   const buttonRef = useRef(null);
   const youtubeRef = useRef(null);
@@ -148,6 +149,8 @@ function VideoPlayer({ isYoutube, link, roomID }) {
       // Only execute if videoRef is available and video is not ready
       // Check if link exists
       videoRef.current.src = `http://localhost:3111/api/video/videoRetrieval/${link}`;
+    } else {
+      setYoutubeLink(link.split("v=")[1]);
     }
   }, [link]);
 
@@ -292,7 +295,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
           // ></iframe>
           <YouTube
             className={styles.youtubePlayer}
-            videoId="3ptagZOU_Wg"
+            videoId={`${youtubeLink}`}
             onReady={onYoutubeVideoReady}
             opts={opts}
           />
