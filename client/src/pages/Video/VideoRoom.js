@@ -6,9 +6,11 @@ import {
   useEventListener,
   useStorage,
   useMutation,
+  useThreads,
 } from "./video_liveblocks.config.js";
 import { RoomProvider } from "./video_liveblocks.config.js";
 import { ClientSideSuspense, shallow } from "@liveblocks/react";
+import { Composer, Thread } from "@liveblocks/react-comments";
 
 // import videojs from "video.js";
 import "video.js/dist/video-js.css";
@@ -24,6 +26,8 @@ import closeSVG from "../../assets/close.svg";
 import Loading from "./Loading";
 
 import styles from "./VideoRoom.module.css";
+
+import YouTube from "react-youtube";
 
 import io from "socket.io-client";
 
@@ -122,12 +126,17 @@ function VideoPlayer({ isYoutube, link, roomID }) {
    * Figure out ways to get around browser document issue
    * Test the video player more for bugs
    */
+
   console.log("Link is " + link);
   console.log(typeof link);
+
+  const { threads } = useThreads();
   const [currentTime, setCurrentTime] = useState(0);
   const [modal, setModal] = useState(false);
+  const [youtubePlayer, setYoutubePlayer] = useState(null);
 
   const buttonRef = useRef(null);
+  const youtubeRef = useRef(null);
 
   const broadcast = useBroadcastEvent();
 
@@ -142,32 +151,71 @@ function VideoPlayer({ isYoutube, link, roomID }) {
     }
   }, [link]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (youtubePlayer) {
+        const newTime = youtubePlayer.getCurrentTime();
+        setCurrentTime(newTime);
+      }
+    }, 100); // Update every second
+
+    return () => {
+      clearInterval(intervalId); // Cleanup the interval on component unmount
+    };
+  }, [youtubePlayer]);
+
+  // useEffect(() => {
+  //   // Initialize YouTube Player API if the video is from YouTube
+  //   if (isYoutube && youtubeRef.current) {
+  //     const player = new window.YT.Player(youtubeRef.current, {
+  //       events: {
+  //         onReady: onYoutubeVideoReady,
+  //       },
+  //     });
+  //     setYoutubePlayer(player);
+  //   }
+  // }, [isYoutube]);
+
   useEventListener(({ connectionId, event }) => {
     switch (event.type) {
       case "pause":
         if (videoRef.current) {
           console.log(videoRef.current);
           videoRef.current.pause();
+        } else {
+          youtubePlayer.pauseVideo();
         }
         break;
       case "play":
         if (videoRef.current) {
           videoRef.current.play();
+        } else {
+          youtubePlayer.playVideo();
         }
         break;
       case "seek":
         if (videoRef.current) {
           videoRef.current.currentTime = event.time;
+        } else {
+          youtubePlayer.seekTo(event.time);
         }
     }
   });
 
   const handleSeekChange = (event) => {
-    const newTime = parseFloat(event.target.value);
-    setCurrentTime(newTime);
-    broadcast({ type: "seek", time: newTime });
-    console.log(newTime);
-    videoRef.current.currentTime = newTime;
+    if (isYoutube) {
+      const newTime = parseFloat(event.target.value);
+      setCurrentTime(newTime);
+      broadcast({ type: "seek", time: newTime });
+      console.log(newTime);
+      youtubePlayer.seekTo(newTime);
+    } else {
+      const newTime = parseFloat(event.target.value);
+      setCurrentTime(newTime);
+      broadcast({ type: "seek", time: newTime });
+      console.log(newTime);
+      videoRef.current.currentTime = newTime;
+    }
   };
 
   function changeTime() {
@@ -176,14 +224,26 @@ function VideoPlayer({ isYoutube, link, roomID }) {
   }
   function handlePlay() {
     broadcast({ type: "play" });
-    videoRef.current.play();
-    console.log(videoRef.current.currentTime);
-    console.log(videoRef.current.duration);
+    if (isYoutube) {
+      if (youtubePlayer) {
+        youtubePlayer.playVideo(); // Play the video
+        console.log(youtubePlayer.getCurrentTime());
+        console.log(youtubePlayer.getDuration());
+      }
+    } else {
+      videoRef.current.play();
+      console.log(videoRef.current.currentTime);
+      console.log(videoRef.current.duration);
+    }
   }
   function handlePause() {
     broadcast({ type: "pause" });
-    videoRef.current.pause();
-    console.log(videoRef.current.currentTime);
+    if (isYoutube) {
+      youtubePlayer.pauseVideo();
+    } else {
+      videoRef.current.pause();
+      console.log(videoRef.current.currentTime);
+    }
   }
   function handleTimeUpdate() {
     setCurrentTime(videoRef.current.currentTime);
@@ -191,6 +251,30 @@ function VideoPlayer({ isYoutube, link, roomID }) {
   function onModalClick() {
     setModal(true);
   }
+  function onYoutubeVideoReady(event) {
+    const player = event.target;
+    // Hide the controls
+    player.setOption({
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        rel: 0,
+        fs: 0,
+        disablekb: 1,
+      },
+    });
+    setYoutubePlayer(player);
+    youtubeRef.current = player;
+  }
+
+  const opts = {
+    height: "500",
+    width: "900",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      controls: 0,
+    },
+  };
 
   return (
     <div className={styles.container}>
@@ -198,15 +282,20 @@ function VideoPlayer({ isYoutube, link, roomID }) {
       <section className={styles.video_cnt}>
         {isYoutube ? (
           //    Video from Youtube
-          <div data-vjs-player>
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/3ptagZOU_Wg"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
-          </div>
+          // <iframe
+          //   width="560"
+          //   height="315"
+          //   src="https://www.youtube.com/embed/3ptagZOU_Wg"
+          //   frameborder="0"
+          //   allowfullscreen
+          //   control={false}
+          // ></iframe>
+          <YouTube
+            className={styles.youtubePlayer}
+            videoId="3ptagZOU_Wg"
+            onReady={onYoutubeVideoReady}
+            opts={opts}
+          />
         ) : (
           // Video retrieved from AWS S3 bucket
           <video
@@ -227,6 +316,12 @@ function VideoPlayer({ isYoutube, link, roomID }) {
           <div className={styles.copy_link_cnt} onClick={onModalClick}>
             <img src={copyLinkSVG} />
           </div>
+          <div>
+            {/* {threads.map((thread) => (
+              <Thread key={thread.id} thread={thread} className="thread" />
+            ))}
+            <Composer className="composer" /> */}
+          </div>
         </div>
         <div className={styles.video_controls_cnt}>
           <div className={styles.seek_bar_cnt}>
@@ -235,7 +330,9 @@ function VideoPlayer({ isYoutube, link, roomID }) {
               className="custom-seek-bar"
               min="0"
               max={
-                videoRef.current
+                isYoutube && youtubePlayer
+                  ? parseFloat(youtubePlayer.getDuration()) || 0
+                  : videoRef.current
                   ? parseFloat(videoRef.current.duration) || 0
                   : 0
               }
