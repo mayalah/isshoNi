@@ -19,12 +19,12 @@ async function userRoutes(fastify, options) {
   fastify.post("/logOut", { onRequest: [fastify.authenticate] }, logOut);
   fastify.post(
     "/forgotPassword",
-    { onRequest: [fastify.authenticate] },
+    // { onRequest: [fastify.authenticate] },
     (request, reply) => forgotPassword(fastify, request, reply)
   );
   fastify.post(
     "/changePassword",
-    { onRequest: [fastify.authenticate] },
+    // { onRequest: [fastify.authenticate] },
     changePassword
   );
   fastify.post("/loginWithGoogle", (request, reply) =>

@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "../ResetPassword/ResetPassword.css";
 import characters from "../../assets/characters.svg";
+import { changePassword } from "../../utils/APIRoutes";
+import axios from "axios";
 
-function ResetPassword({ setLoginSignup }) {
+
+function ResetPassword({}) {
+  const [searchParams] = useSearchParams();
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  const email = searchParams.get('email');
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -15,6 +20,20 @@ function ResetPassword({ setLoginSignup }) {
   const goBackHome = () => {
     navigate("/");
   };
+
+  const handleResetPassword = () => {
+    axios.post(changePassword, { email, password })
+    .then((response) => {
+      if (response.status === 200) {
+        alert("Password reset successful");
+        navigate("/");
+      }
+    
+    else{
+      alert("Password reset failed. Please try again");
+    }});
+  }
+
 
   return (
     <div>
@@ -47,7 +66,7 @@ function ResetPassword({ setLoginSignup }) {
         <button
           type="submit"
           className="ResetButton"
-          onClick={() => goBackHome()}
+          onClick={handleResetPassword}
         >
           Reset Password
         </button>
@@ -55,5 +74,4 @@ function ResetPassword({ setLoginSignup }) {
     </div>
   );
 }
-
 export default ResetPassword;

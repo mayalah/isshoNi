@@ -18,7 +18,7 @@ auth:{
 })
 export const sendingMailResetPassword = async (fastify, usermail)=>{
 
-    const url = new URL("http://localhost:3000/menu")
+    const url = new URL("http://localhost:3000/resetpassword")
     url.searchParams.set('email', usermail);
     const mailConfiguration = {
         from: process.env.GMAIL_USER,
