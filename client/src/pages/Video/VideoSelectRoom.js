@@ -61,7 +61,7 @@ export default function VideoSelectRoom() {
     }
     console.log(formData);
 
-    fetch(`http://localhost:3111/api/video/uploadVideo/${fileName}`, {
+    fetch(`http://localhost:8009/api/video/uploadVideo/${fileName}`, {
       method: "POST",
       body: formData,
     })
