@@ -1,12 +1,11 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
-import { signInWithGoogleRoute, signUpWithGoogleRoute } from "../../utils/APIRoutes"; // Replace with your actual route
+import {signInWithGoogleRoute,signUpWithGoogleRoute,} from "../../utils/APIRoutes";
 /* global google */
 
-const SignIn = ({ setLoginSignup}) => {
+const SignIn = ({ setLoginSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -27,17 +26,17 @@ const SignIn = ({ setLoginSignup}) => {
   const handleGoogle = async (response) => {
     const credential = response.credential;
     setLoading(true);
-    axios.post(signUpWithGoogleRoute, { credential: credential })
+    axios
+      .post(signUpWithGoogleRoute, { credential: credential })
       .then((response) => {
-
         const data = response.data;
         if (response.data.message === "success") {
-          localStorage.setItem("userName", data.name)
-                localStorage.setItem("userEmail", data.email)
-                localStorage.setItem("userImage", data.image)
-                console.log(localStorage.getItem("userName"))
-                console.log(localStorage.getItem("userEmail"))
-                console.log(localStorage.getItem("userImage"))
+          localStorage.setItem("userName", data.name);
+          localStorage.setItem("userEmail", data.email);
+          localStorage.setItem("userImage", data.image);
+          console.log(localStorage.getItem("userName"));
+          console.log(localStorage.getItem("userEmail"));
+          console.log(localStorage.getItem("userImage"));
           navigate("/menu");
         }
         setLoading(false);
@@ -57,31 +56,31 @@ const SignIn = ({ setLoginSignup}) => {
         });
         google.accounts.id.renderButton(
           document.getElementById("googleSignUpDiv"),
-           // You can adjust the options
-           {
-                        theme: "filled_white",
-                        text: "signin_with",
-                        shape: "pill",
-                        
-                      }
+          // You can adjust the options
+          {
+            theme: "filled_white",
+            text: "signin_with",
+            shape: "pill",
+          }
         );
       }
     };
-  
+
     // Listen for the Google script to load
-    window.addEventListener('google-script-loaded', handleScriptLoad);
-  
+    window.addEventListener("google-script-loaded", handleScriptLoad);
+
     // Load the Google API script
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
     script.defer = true;
-    script.onload = () => window.dispatchEvent(new Event('google-script-loaded'));
+    script.onload = () =>
+      window.dispatchEvent(new Event("google-script-loaded"));
     document.body.appendChild(script);
-  
+
     // Cleanup
     return () => {
-      window.removeEventListener('google-script-loaded', handleScriptLoad);
+      window.removeEventListener("google-script-loaded", handleScriptLoad);
     };
   }, []);
 
@@ -142,8 +141,8 @@ const SignIn = ({ setLoginSignup}) => {
           />
 
           <div className="ForgetPassword">
-            <a href="#" onClick={() => setLoginSignup("ForgetPassword")} >
-            Forget password?
+            <a href="#" onClick={() => setLoginSignup("ForgetPassword")}>
+              Forget password?
             </a>
           </div>
 
