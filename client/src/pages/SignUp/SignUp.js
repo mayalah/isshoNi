@@ -17,14 +17,13 @@ const SignUp = ({ setLoginSignup }) => {
   const handleSignIn = (event) => {
     event.preventDefault();
 
-    axios.post(signUpRoute, { username, password, email })
-    .then((response) => {
+    axios.post(signUpRoute, { username, password, email }).then((response) => {
       if (response.status === 200) {
         setLoginSignup("");
-        alert("Sign up successful, check your email for verification")
+        alert("Sign up successful, check your email for verification");
         console.log("Sign up successful");
       }
-    })
+    });
     setLoginSignup("");
   };
 
@@ -37,24 +36,27 @@ const SignUp = ({ setLoginSignup }) => {
     const credential = response.credential;
     console.log(credential);
     setLoading(true);
-    axios.post(url, { credential: credential }).then((response) => {
-      console.log(response.data);
-      const res = response.data.message;
-      const data = response.data;
-      console.log(res);
-      if (res === "success") {
-        localStorage.setItem("userName", data.name)
-        localStorage.setItem("userEmail", data.email)
-        localStorage.setItem("userImage", data.image)
-        console.log(localStorage.getItem("userName"))
-        console.log(localStorage.getItem("userEmail"))
-        console.log(localStorage.getItem("userImage"))
-        navigate("/menu");
-      }
-      setLoading(false);
-    }).catch((error) => {
-      console.log(error);
-    });
+    axios
+      .post(url, { credential: credential })
+      .then((response) => {
+        console.log(response.data);
+        const res = response.data.message;
+        const data = response.data;
+        console.log(res);
+        if (res === "success") {
+          localStorage.setItem("userName", data.name);
+          localStorage.setItem("userEmail", data.email);
+          localStorage.setItem("userImage", data.image);
+          console.log(localStorage.getItem("userName"));
+          console.log(localStorage.getItem("userEmail"));
+          console.log(localStorage.getItem("userImage"));
+          navigate("/menu");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -71,34 +73,38 @@ const SignUp = ({ setLoginSignup }) => {
             theme: "filled_white",
             text: "signin_with",
             shape: "pill",
-
           }
         );
       }
     };
-  
+
     // Listen for the Google script to load
-    window.addEventListener('google-script-loaded', handleScriptLoad);
-  
+    window.addEventListener("google-script-loaded", handleScriptLoad);
+
     // Load the Google API script
-    const script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
     script.defer = true;
-    script.onload = () => window.dispatchEvent(new Event('google-script-loaded'));
+    script.onload = () =>
+      window.dispatchEvent(new Event("google-script-loaded"));
     document.body.appendChild(script);
-  
+
     // Cleanup
     return () => {
-      window.removeEventListener('google-script-loaded', handleScriptLoad);
+      window.removeEventListener("google-script-loaded", handleScriptLoad);
     };
   }, []);
-  
+
   return (
     <div className="SignUp">
       <div className="SignUpModal">
-
-        <button onClick={() => {setLoginSignup("");}} className="CloseButton">
+        <button
+          onClick={() => {
+            setLoginSignup("");
+          }}
+          className="CloseButton"
+        >
           X
         </button>
 
@@ -129,12 +135,12 @@ const SignUp = ({ setLoginSignup }) => {
 
           <input
             type="text"
-            placeholder="Enter your username"
+            placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          
+
           <div className="passwordfield">
             <a>Password</a>
           </div>
