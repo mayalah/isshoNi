@@ -9,10 +9,10 @@ const Homepage = ({ setLoginSignup }) => {
   const navigate = useNavigate();
   const handleMainMenuClick = () => {
     // Navigate to the main menu page
-    // if (localStorage.getItem("userName") === null) {
-    //   alert("Please sign in first");
-    //   return;
-    // }
+    if (localStorage.getItem("userName") === null) {
+      alert("Please sign in first");
+      return;
+    }
     navigate("/menu");
   };
   /* END OF DELETE LATER */
