@@ -4,12 +4,12 @@ import FriendFrame from "../FriendFrame/FriendFrame";
 import * as APIRoutes from "../../../../utils/APIRoutes";
 import axios from "axios";
 
-function Friends({ setSelectedFriend, userEmail, setFriendEmail }) {
+function Friends({ setSelectedFriend, userEmailProp, setFriendEmail }) {
   const [activeButton, setActiveButton] = useState(null);
   const [friends, setFriends] = useState([]); 
 
   useEffect(() => {
-    const userEmail = "peciti3561@tospage.com";
+    const userEmail = userEmailProp;
     axios
       .post(APIRoutes.getAllFriends, { email: userEmail })
       .then((response) => {
