@@ -5,7 +5,6 @@ import rocket from "../../../assets/rocket.svg";
 import { useNavigate } from "react-router-dom"; //WILL DELETE LATER
 
 const Homepage = ({ setLoginSignup }) => {
-  
   /* WILL DELETE LATER */
   const navigate = useNavigate();
   const handleMainMenuClick = () => {
@@ -42,15 +41,11 @@ const Homepage = ({ setLoginSignup }) => {
       </div>
 
       {/* WILL DELETE LATER */}
-      <div
-        className="button-container"
-        onClick={handleMainMenuClick}
-      >
+      <div className="button-container" onClick={handleMainMenuClick}>
         Main Menu
         <img src={rocket} />
       </div>
       {/* END OF DELETE LATER */}
-      
     </div>
   );
 };
