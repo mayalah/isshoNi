@@ -23,6 +23,9 @@ function MENU() {
       case "join-room":
         navigate("/videoselect"); // Navigate to the join-room page
         break;
+      case "work-in-progress":
+        navigate("/work_in_progress"); // Navigate to the work-in-progress page
+        break;
       default:
         break;
     }
@@ -43,7 +46,7 @@ function MENU() {
       </nav>
       <div className="main-bg">
         <div className="main-header">
-          <p>Hello,{userName}!!!</p>
+          <p>Hello, {userName}!!!</p>
           <div className="menu-styling">
             <div className="option-background">
               <button
@@ -56,21 +59,21 @@ function MENU() {
               <button
                 id="friends"
                 className="friends-button"
-                onClick={() => handleButtonClick("friends")}
+                onClick={() => handleButtonClick("work-in-progress")}
               >
                 <p className="button-text">My Friends</p>
               </button>
               <button
                 id="audio"
                 className="audio-button"
-                onClick={() => handleButtonClick("audio")}
+                onClick={() => handleButtonClick("work-in-progress")}
               >
                 <p className="button-text">Audio Settings</p>
               </button>
               <button
                 id="profile"
                 className="profile-button"
-                onClick={() => handleButtonClick("profile")}
+                onClick={() => handleButtonClick("work-in-progress")}
               >
                 <p className="button-text">Profile Settings</p>
               </button>

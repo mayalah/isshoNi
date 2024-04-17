@@ -8,10 +8,12 @@ import Message from "./components/Message/Message";
 import goBack from "../../assets/goBack.svg";
 
 function CHAT() {
+  const email =localStorage.getItem("userEmail");
   const [activeButton, setActiveButton] = useState("me");
   const [selectedFriend, setSelectedFriend] = useState(null);
-  const [userEmail, setUserEmail] = useState("peciti3561@tospage.com");
+  const [userEmail, setUserEmail] = useState(email);
   const [friendEmail, setFriendEmail] = useState("");
+  const userName = userEmail.split("@")[0];
 
   // Verifies which button is clicked & sets
   const handleButtonClick = (buttonName) => {
@@ -42,10 +44,10 @@ function CHAT() {
       </nav>
       <div className="chat-bg chat-bg-margin">
         <div className="left-menu-style">
-          <UserFrame userName="peciti#3561" />
+          <UserFrame userName={userName} />
           <Friends
             setSelectedFriend={handleFriendSelection}
-            userEmail={userEmail}
+            userEmailProp={userEmail}
             setFriendEmail={handleFriendSelectionEmail}
           />
           <div className="bottom-button-menu-style">
