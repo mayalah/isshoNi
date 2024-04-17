@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import joinRoomSVG from "../../assets/join-room.svg";
 import createRoomSVG from "../../assets/create-room.svg";
 import linkCharacterSVG from "../../assets/linkCharacter.svg";
+import blueSubmitSVG from "../../assets/blueSubmit.svg";
 
 import styles from "./VideoSelectRoom.module.css";
 
@@ -38,6 +39,7 @@ export default function VideoSelectRoom() {
   }
 
   function onFileChange(event) {
+    if (event.target.files[0] === undefined) return;
     setFile(event.target.files[0]);
   }
 
@@ -71,6 +73,7 @@ export default function VideoSelectRoom() {
   function onClickBrowseComputer() {
     fileRef.current.click();
   }
+  console.log(file);
   return (
     <div className={styles.container}>
       {/* Creating a room */}
@@ -114,26 +117,29 @@ export default function VideoSelectRoom() {
             accept="video/quicktime, video/mp4"
             onChange={(event) => onFileChange(event)}
           />
-          <div className={styles.video_upload} onClick={onClickBrowseComputer}>
-            Browse Computer to Upload Video!
-          </div>
-          <div className={styles.video_selected}>
-            {file == "" ? "" : file.name}
+
+          <div
+            className={
+              file === "" ? styles.video_upload : styles.video_upload_selected
+            }
+            onClick={onClickBrowseComputer}
+          >
+            {file === ""
+              ? "Browse Computer to Upload Video!"
+              : `Upload ${file["name"]}!`}
           </div>
 
-          <input
-            className={styles.video_name_input}
-            type="text"
-            onChange={(e) => setFileName(e.target.value)}
-            placeholder="Type Video Name"
-          />
-          <button
-            className={styles.video_submit}
-            type="submit"
-            onClick={(event) => onUploadClick(event)}
-          >
-            Submit
-          </button>
+          <div className={styles.join_inputbox}>
+            <input
+              className={styles.video_name_input}
+              type="text"
+              onChange={(e) => setFileName(e.target.value)}
+              placeholder="rename and click enter"
+            />
+            <div className={styles.join_submit_cnt} onClick={onUploadClick}>
+              <img src={blueSubmitSVG} />
+            </div>
+          </div>
         </form>
       </section>
     </div>

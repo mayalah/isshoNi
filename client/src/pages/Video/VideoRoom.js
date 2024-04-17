@@ -1,4 +1,4 @@
-import { LiveObject } from "@liveblocks/client";
+import { LiveObject, LiveList } from "@liveblocks/client";
 import { useState, useEffect, useRef } from "react";
 import {
   useOthers,
@@ -31,7 +31,7 @@ import YouTube from "react-youtube";
 
 import io from "socket.io-client";
 
-// const socket = io("http://localhost:3001/");
+// const socket = io("http://localhost:8009/");
 
 function VideoRoom() {
   const location = useLocation();
@@ -51,6 +51,7 @@ function VideoRoom() {
           isYoutube: false,
           set: false,
         }),
+        chatHistory: new LiveList(),
       }}
     >
       <ClientSideSuspense fallback={<Loading />}>
@@ -91,7 +92,7 @@ const Video = ({ link, isYoutube, roomID }) => {
     // socket.on("socket", (msg) => {
     //   console.log("Inside useEffect ", msg);
     // });
-    // const response = fetch("http://localhost:3001/", {
+    // const response = fetch("http://localhost:8009/", {
     //   headers: { Range: `bytes=0-14454715` },
     // })
     //   .then((response) => {
@@ -148,7 +149,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
     if (link != "" && !isYoutube) {
       // Only execute if videoRef is available and video is not ready
       // Check if link exists
-      videoRef.current.src = `http://localhost:3111/api/video/videoRetrieval/${link}`;
+      videoRef.current.src = `http://localhost:8009/api/video/videoRetrieval/${link}`;
     } else {
       setYoutubeLink(link.split("v=")[1]);
     }
@@ -309,7 +310,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
             // poster={pic}
           >
             <source
-              src={`http://localhost:3111/api/video/videoRetrieval/${link}`}
+              src={`http://localhost:8009/api/video/videoRetrieval/${link}`}
             ></source>
           </video>
         )}

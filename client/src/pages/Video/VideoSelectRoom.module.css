@@ -59,7 +59,7 @@
     display:flex;
     align-items: center;
     background-color: transparent;
-    border: .5rem #4FC8B7 solid;
+    border: .5rem #7AC3FF solid;
     border-radius: 2rem;
     padding:.5rem;
     height: 5.6rem;
@@ -84,12 +84,15 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom:10vh;
+    gap:2rem;
 }
 
 .video_form{
     display:flex;
     flex-direction: column;
     align-items: center;
+    gap:2rem;
 }
 
 .upload_video_cnt h2{
@@ -105,6 +108,27 @@
 .video_upload{
     color:white;
     user-select: none;
+    border: .5rem solid #078FFF;
+    padding:1rem;
+    border-radius: 2rem;
+    background-color: #7AC3FF;
+    font-weight:800;
+    width: 25vw;
+    display:flex;
+    justify-content: center;
+}
+
+.video_upload_selected{
+    color:white;
+    user-select: none;
+    border: .5rem solid #078FFF;
+    padding:1rem;
+    border-radius: 2rem;
+    background-color: #078FFF;
+    font-weight:800;
+    width: 25vw;
+    display:flex;
+    justify-content: center;
 }
 
 .video_upload:hover{
