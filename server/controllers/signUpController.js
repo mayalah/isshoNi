@@ -5,10 +5,10 @@ export const signUp= async(fastify,request, reply)=>{
     const email = request.body.email;
     const password = request.body.password
     const username = request.body.username
-    console.log("backend sign up hit")
+
 
     const res = await signUpService(fastify,email, password, username)
-    console.log(res)
+
     if (res === "SignUp successfully"){
         reply.status(200).send({message: 'signup success'}) 
     }else{

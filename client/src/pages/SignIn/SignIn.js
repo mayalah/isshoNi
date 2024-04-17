@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
-import {signInWithGoogleRoute,signUpWithGoogleRoute,} from "../../utils/APIRoutes";
+import {  signUpWithGoogleRoute,loginRoute} from "../../utils/APIRoutes"; // Replace with your actual route
 /* global google */
 
 const SignIn = ({ setLoginSignup }) => {
@@ -16,7 +16,22 @@ const SignIn = ({ setLoginSignup }) => {
   const handleSignIn = (event) => {
     event.preventDefault();
     console.log("Signing in with:", password);
-    setLoginSignup("");
+    axios.post(loginRoute, { email, password })
+    .then((response) => {
+      if (response.status === 200) {
+        const userName = email.split("@")[0];
+
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("userEmail", email);
+
+
+        setLoginSignup("");
+        navigate("/menu");
+      }else{
+        console.log("Sign in failed");
+      }
+      })
+    
   };
 
   const togglePasswordVisibility = () => {

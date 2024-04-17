@@ -6,6 +6,7 @@ import LinkRoom from "./pages/LinkRoom/LinkRoom";
 import SignInGoogle from "./pages/LinkRoom/SignInPage";
 import VideoSelectRoom from "./pages/Video/VideoSelectRoom";
 import VideoRoom from "./pages/Video/VideoRoom";
+import WorkInProgress from "./pages/Progress/Progress";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 import GameRoom from "./pages/Game/components/GameRoom";
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="gameRoom" element={<GameRoom />} />
         <Route path="videoselect" element={<VideoSelectRoom />} />
         <Route path="video_room" element={<VideoRoom />} />
+        <Route path="work_in_progress" element={<WorkInProgress />} />
         <Route path="resetpassword" element={<ResetPassword />} />
       </Routes>
     </BrowserRouter>

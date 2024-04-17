@@ -1,0 +1,41 @@
+body,
+.progress-bg {
+  height: 100%;
+  width: 100%;
+  font-family: "Work Sans", sans-serif;
+  background-color: rgb(32, 32, 32);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-progress-header {
+  color: #fff;
+  font-size: 2.53438rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+}
+
+.go-home-button{
+  display: flex;
+  width: 24.04744rem;
+  padding: 0.06919rem 2.178rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.396rem;
+  border-radius: 1.74238rem;
+  background: #eb87b6;
+  border: 5.069px solid #8a3865;
+  margin-top: 3rem;
+}
+.go-home-button:hover {
+  background-color: #8a3865;
+
+}

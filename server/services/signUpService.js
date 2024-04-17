@@ -39,14 +39,17 @@ const hashedPW = async function hashingPassword(userID,email, password){
 }
 export const signUpService = async(fastify,email, password, username) =>{
     try {
+        const pictureURL ="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
         await dbconnector.execute({
-            sql: 'INSERT INTO user(email, name) VALUES(?,?)',
-            args: [email, username]
+            sql: 'INSERT INTO user(email, name, pictureURL) VALUES(?,?, ?)',
+            args: [email, username, pictureURL]
         });
+       
+
         const id = uuid()
         await hashedPW(id,email,password)
         await sendingMail(fastify, email)
-        console.log("SignUp successfully inside service")
+
         return "SignUp successfully"
 
     } catch (e) {
