@@ -1,10 +1,10 @@
-import { sendingMail } from "../services/mailService.js";
+import { sendingMail, sendingMailResetPassword } from "../services/mailService.js";
 import { changePasswordService } from "../services/forgotResetPWService.js";
 export const forgotPassword = async(fastify, request, reply)=>{
     const email = request.body.email
     console.log(email)
     try{
-        await sendingMail(fastify, email)
+        await sendingMailResetPassword(fastify, email)
         reply.status(200).send({message:"Email sent"})
     }catch(err){
         console.log(err.message)

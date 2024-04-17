@@ -16,6 +16,27 @@ auth:{
     pass:process.env.GMAIL_PW
 }
 })
+export const sendingMailResetPassword = async (fastify, usermail)=>{
+
+    const url = new URL("http://localhost:3000/menu")
+    url.searchParams.set('email', usermail);
+    const mailConfiguration = {
+        from: process.env.GMAIL_USER,
+        to : usermail,
+        subject: "Account Verification",
+        text:`Please follow the given link to verify your email 
+            ${url.toString()} 
+            Thanks`
+    }
+    try{
+        await transporter.sendMail(mailConfiguration)
+        console.log("Email sent successfully")
+        return 
+    }catch(err){
+        console.log(err.message)
+        return 
+    }
+}
 // sending mail confirmations
 export const sendingMail = async (fastify, usermail)=>{
 
