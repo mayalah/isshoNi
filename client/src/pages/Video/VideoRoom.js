@@ -318,7 +318,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
       <section className={styles.right_cnt}>
         <div className={styles.comments_cnt}>
           <div className={styles.copy_link_cnt} onClick={onModalClick}>
-            <img src={copyLinkSVG} />
+            <img className={styles.svg_img} src={copyLinkSVG} />
           </div>
           <div>
             {/* {threads.map((thread) => (
@@ -347,10 +347,10 @@ function VideoPlayer({ isYoutube, link, roomID }) {
           </div>
           <div className={styles.controls_cnt}>
             <div onClick={handlePlay}>
-              <img src={playSVG} />
+              <img className={styles.svg_img} src={playSVG} />
             </div>
             <div onClick={handlePause}>
-              <img src={pauseSVG} />
+              <img className={styles.svg_img} src={pauseSVG} />
             </div>
           </div>
         </div>
@@ -365,9 +365,9 @@ function CopyLinkModal({ roomID, setModal }) {
   }
   return (
     <div className={styles.modal_cnt}>
-      <div className={styles.modal_close_cnt} onClick={onModalCloseClick}>
-        <div className={styles.modal_close_hover}>
-          <img src={closeSVG} />
+      <div className={styles.modal_close_cnt}>
+        <div className={styles.modal_close_hover} onClick={onModalCloseClick}>
+          <img className={styles.svg_img} src={closeSVG} />
         </div>
       </div>
       <div className={styles.modal_content_cnt}>

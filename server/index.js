@@ -32,7 +32,7 @@ fastify.register(liveblockRoutes, { prefix: "/api/liveblocks" });
 fastify
   .listen({ port: process.env.PORT })
   .then(() => {
-    console.log(`sever is running on ${process.env.PORT}`);
+    console.log(`server is running on ${process.env.PORT}`);
   })
   .catch((e) => {
     fastify.log(e);

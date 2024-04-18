@@ -7,6 +7,8 @@ import {
 } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 
+import { createClient } from "@libsql/client";
+
 const s3Client = new S3Client({});
 const S3BUCKET = "test-bucket-1703562676217";
 
@@ -77,4 +79,53 @@ export const uploadVideo = async (request, reply) => {
     console.error("Error uploading file to S3:", error);
     reply.status(500).send({ error: "Internal Server Error" });
   }
+};
+
+const client = createClient({
+  url: process.env.PAUL_TURSO_URL,
+  authToken: process.env.PAUL_TURSO_TOKEN,
+});
+
+export const addRoomID = async (request, reply) => {
+  console.log(request.body + request.body.roomID);
+  client
+    .execute({
+      sql: "insert into room (roomID) values (?)",
+      args: [request.body],
+    })
+    .then(() => {
+      console.log("Added Room Hooray!");
+      reply.code(200).send("success");
+    })
+    .catch((error) => {
+      console.error(error);
+      reply.code(400).send("error");
+    });
+};
+
+export const checkIfYTRoomExist = async (request, reply) => {
+  const { date, ytID } = request.params;
+  const url = `video-${date}-https://www.youtube.com/watch?v=${ytID}`;
+  let result = 0;
+  const res = await client.execute({
+    sql: "select count(*) from room where roomID = ?",
+    args: [url],
+  });
+
+  reply.code(200).send({ result: res["rows"][0]["count (*)"] });
+  //return { result: res["rows"][0]["count (*)"] };
+};
+
+export const checkIfRoomExist = async (request, reply) => {
+  const { roomID } = request.params;
+  console.log("Not youtube check");
+  console.log(roomID);
+  let result = 0;
+  const res = await client.execute({
+    sql: "select count(*) from room where roomID = ?",
+    args: [roomID],
+  });
+  console.log(res["rows"][0]["count (*)"]);
+  reply.code(200).send({ result: res["rows"][0]["count (*)"] });
+  //return { result: res["rows"][0]["count (*)"] };
 };
