@@ -13,3 +13,5 @@ export const addMessage = `${host}/api/chat/addMessage`;
 
 export const liveblocksAuthRoute = `${host}/api/liveblocks/auth`;
 export const resolveUsersRoute = `${host}/api/liveblocks/resolveUsers`;
+
+export const addRoomID = `${host}/api/video/addRoomID`;

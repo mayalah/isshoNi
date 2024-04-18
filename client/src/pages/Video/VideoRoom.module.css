@@ -54,6 +54,10 @@
     flex:1;
 }
 
+.svg_img{
+    -webkit-user-drag: none;
+}
+
 .copy_link_cnt{
     display:flex;
     flex-direction: row;
@@ -79,7 +83,12 @@
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
+    
+}
 
+.modal_close_hover{
+    border-radius: 1rem;
+    user-select: none;
 }
 
 .modal_close_hover:hover{

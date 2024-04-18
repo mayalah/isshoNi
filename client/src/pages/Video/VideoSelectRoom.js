@@ -1,23 +1,27 @@
 //import VideoRoom from "./VideoRoom.js";
 import { useState, useRef } from "react";
 
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import joinRoomSVG from "../../assets/join-room.svg";
 import createRoomSVG from "../../assets/create-room.svg";
 import linkCharacterSVG from "../../assets/linkCharacter.svg";
 import blueSubmitSVG from "../../assets/blueSubmit.svg";
 
+import { addRoomID } from "../../utils/APIRoutes";
+
 import styles from "./VideoSelectRoom.module.css";
 
 export default function VideoSelectRoom() {
   const [selectInput, setSelectInput] = useState("");
   const [selectExist, setSelectExist] = useState("");
+  const [noRoomExist, setNoRoomExist] = useState("");
 
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
 
   const fileRef = useRef(null);
-
   const navigate = useNavigate();
 
   function onClickCreateRoomBtn() {
@@ -26,16 +30,65 @@ export default function VideoSelectRoom() {
     if (selectInput.includes("youtube.com")) {
       isYoutube = true;
     }
-    console.log(uid);
-    navigate("/video_room", {
-      state: { link: selectInput, roomID: uid, isYoutube: isYoutube },
-    });
+    console.log("Clicked on create room");
+    fetch(`http://localhost:8009/api/video/addRoomID`, {
+      method: "POST",
+      body: uid,
+    })
+      .then(() => {
+        console.log(uid);
+        navigate("/video_room", {
+          state: { link: selectInput, roomID: uid, isYoutube: isYoutube },
+        });
+      })
+      .catch(console.error);
   }
 
   function onClickJoinRoomBtn() {
-    navigate("/video_room", {
-      state: { link: "", roomID: selectExist, isYoutube: false },
-    });
+    if (selectExist.includes("youtube.com")) {
+      const parts = selectExist.split("-");
+      const numberPart = parts[1];
+      const ytVideoIDParts = selectExist.split("v=");
+      const ytVideoID = ytVideoIDParts[1];
+      // fetch(
+      //   `http://localhost:8009/api/video/checkIfYTRoomExist/${numberPart}/${ytVideoID}`,
+      //   {
+      //     method: "GET",
+      //   }
+      // )
+      axios
+        .get(
+          `http://localhost:8009/api/video/checkIfYTRoomExist/${numberPart}/${ytVideoID}`
+        )
+        .then((res) => {
+          console.log(res.data.result);
+          if (res.data.result > 0) {
+            navigate("/video_room", {
+              state: { link: "", roomID: selectExist, isYoutube: false },
+            });
+          } else {
+            setNoRoomExist("No such room exists!");
+            console.log("No such room exists here!");
+          }
+        })
+        .catch(console.error);
+    } else {
+      // Non youtube link
+      axios
+        .get(`http://localhost:8009/api/video/checkIfRoomExist/${selectExist}`)
+        .then((res) => {
+          console.log(res.data.result);
+          if (res.data.result > 0) {
+            navigate("/video_room", {
+              state: { link: "", roomID: selectExist, isYoutube: false },
+            });
+          } else {
+            setNoRoomExist("No such room exists!");
+            console.log("No such room exists here!");
+          }
+        })
+        .catch(console.error);
+    }
   }
 
   function onFileChange(event) {
@@ -88,20 +141,21 @@ export default function VideoSelectRoom() {
             className={styles.create_submit_cnt}
             onClick={onClickCreateRoomBtn}
           >
-            <img src={createRoomSVG} />
+            <img className={styles.svg_img} src={createRoomSVG} />
           </div>
         </div>
       </section>
       {/* Joining a room */}
       <section className={styles.join_videoroom_cnt}>
         <h2>Joining a Room?</h2>
+        <div className={styles.no_room_error}>{noRoomExist}</div>
         <div className={styles.join_inputbox}>
           <input
             placeholder="insert URL"
             onChange={(e) => setSelectExist(e.target.value)}
           />
           <div className={styles.join_submit_cnt} onClick={onClickJoinRoomBtn}>
-            <img src={joinRoomSVG} />
+            <img className={styles.svg_img} src={joinRoomSVG} />
           </div>
         </div>
         <img src={linkCharacterSVG} className={styles.link_character} />
@@ -137,7 +191,7 @@ export default function VideoSelectRoom() {
               placeholder="rename and click enter"
             />
             <div className={styles.join_submit_cnt} onClick={onUploadClick}>
-              <img src={blueSubmitSVG} />
+              <img className={styles.svg_img} src={blueSubmitSVG} />
             </div>
           </div>
         </form>
