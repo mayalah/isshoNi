@@ -46,6 +46,7 @@ import ColorPickPanel from "./colorPickPanel";
 
 import ThreadContainer from "./Thread";
 import wordList from "./wordList";
+import { set, setSeconds } from "date-fns";
 
 
 const MAX_LAYERS = 100;
@@ -483,7 +484,8 @@ export default function Canvas() {
     if (event.type ==="play"){
       console.log(event.word)
       setWord(event.word)
-
+      setSeconds(event.time)
+      setIsRunning(true)
       setPlayer(event.sender)
     }
 
@@ -492,6 +494,8 @@ export default function Canvas() {
   const [word, setWord] = useState("")
   const [player, setPlayer] = useState("")
   const [isRunning, setIsRunning] = useState(false);
+  const [seconds, setSeconds] = useState(60);
+  
   
 
   return (
@@ -502,13 +506,13 @@ export default function Canvas() {
           <div className="relative top-[136px] left-[40px] border-8 border-[#AC4F98] rounded-[44px] w-[816px] 2xl:w-[1000px] 2xl:h-[700px]">
 
            <ColorPickPanel onChange={setFill} />
-           <PlayButton   setWord ={setWord} setPlayer={setPlayer}  setRunningClock={setIsRunning} ></PlayButton>
-           {word && <WordDisplay word={word} player ={player} currentUser={currentUser}></WordDisplay>} 
-           <CountdownClock initialSeconds={60} isRunning={isRunning} />
+           <PlayButton   setWord ={setWord} setPlayer={setPlayer}  setRunningClock={setIsRunning} setSeconds={setSeconds} ></PlayButton>
+           {word && <WordDisplay word={word} player ={player} currentUser={currentUser} seconds={seconds}></WordDisplay> } 
+           <CountdownClock initialSeconds={60} isRunning={isRunning} seconds={seconds} setSeconds={setSeconds} />
            <div className="absolute p-3 top-[-90px] left-[1020px] 2xl:left-[1220px] flex flex-row flex-wrap gap-x-2 gap-y-[2px] justify-start items-start  w-[180px] h-[150px] border-2 border-[#EB87B6] rounded-[24px]">
 
             {currentUser && <User user={currentUser}></User>}
-            {others.map((other) => (
+            {others.map((other) => ( 
               <User user={other}></User>
             ))}
 
@@ -628,12 +632,11 @@ function User({ user }) {
     </div>
   );
 }
-const CountdownClock = ({ initialSeconds , isRunning }) => {
+const CountdownClock = ({ initialSeconds , isRunning, seconds, setSeconds }) => {
 
-  const [seconds, setSeconds] = useState(initialSeconds);
-
-
-
+  // const [seconds, setSeconds] = useState(initialSeconds);
+  console.log("running", isRunning)
+  console.log("second",seconds)
   useEffect(() => {
     if (seconds <= 0) {
       // Stop the countdown at 0 to avoid negative values
@@ -650,8 +653,8 @@ const CountdownClock = ({ initialSeconds , isRunning }) => {
   useEffect(() => {
     if (seconds <= 0) {
       // Handle completion, e.g., alert or callback
-      // alert("Time's up!");
-      setSeconds(initialSeconds);
+      alert("Time's up!");
+      // setSeconds(initialSeconds);
     }
   }, [seconds, initialSeconds]);
 
@@ -704,7 +707,7 @@ const CountdownClock = ({ initialSeconds , isRunning }) => {
 };
 
 
-const WordDisplay = ({ word, player, currentUser }) => {
+const WordDisplay = ({ word, player, currentUser, seconds }) => {
   const wordUppercase = word.toUpperCase();
   const wordArr = wordUppercase.split('');
 
@@ -715,7 +718,7 @@ const WordDisplay = ({ word, player, currentUser }) => {
           key={index}
           className="w-12 h-12 bg-gray-700 border-2 border-gray-600 rounded-md flex justify-center items-center text-3xl font-bold text-white mx-[0.5px]"
         >
-          {currentUser.info.name === player ? c : (
+          {currentUser.info.name === player | (seconds === 0) ? c : (
             <span className="text-transparent text-shadow-glow">{c}</span>
           )}
         </div>
@@ -724,18 +727,20 @@ const WordDisplay = ({ word, player, currentUser }) => {
   );
 };
 
-function PlayButton ( {setWord, setPlayer, setRunningClock}){
+function PlayButton ( {setWord, setPlayer, setRunningClock, setSeconds}){
 
   const broadcast=  useBroadcastEvent()
   const currentUser = useSelf()
  
   const broadcastClick =()=>{
     const word = wordList[Math.floor(Math.random() * wordList.length)]
+    const time = 60
 
-    broadcast({type:"play", word:word, sender:currentUser.info.name})
+    broadcast({type:"play", word:word, sender:currentUser.info.name, time: time})
     setWord(word)
     setPlayer(currentUser.info.name)
     setRunningClock(true)
+    setSeconds(time)
   }
 
   return(
