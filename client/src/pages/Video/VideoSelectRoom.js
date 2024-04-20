@@ -5,9 +5,9 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import joinRoomSVG from "../../assets/join-room.svg";
-import createRoomSVG from "../../assets/create-room.svg";
 import linkCharacterSVG from "../../assets/linkCharacter.svg";
 import blueSubmitSVG from "../../assets/blueSubmit.svg";
+import DropDown from "./component/Dropdown";
 
 import { addRoomID } from "../../utils/APIRoutes";
 
@@ -132,18 +132,10 @@ export default function VideoSelectRoom() {
       {/* Creating a room */}
       <section className={styles.create_video_cnt}>
         <h1>Create a Video Room!</h1>
-        <div className={styles.create_inputbox}>
-          <input
-            placeholder="select video!"
-            onChange={(e) => setSelectInput(e.target.value)}
-          />
-          <div
-            className={styles.create_submit_cnt}
-            onClick={onClickCreateRoomBtn}
-          >
-            <img className={styles.svg_img} src={createRoomSVG} />
-          </div>
-        </div>
+        <DropDown
+          setSelectInput={setSelectInput}
+          onClickCreateRoomBtn={onClickCreateRoomBtn}
+        />
       </section>
       {/* Joining a room */}
       <section className={styles.join_videoroom_cnt}>

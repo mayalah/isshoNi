@@ -1,187 +1,223 @@
-.container{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    padding:2rem;
-    gap:5rem;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 5rem;
 }
 
-.create_video_cnt{
-    display:flex;
-    flex-direction: column;
-    gap:2rem;
-    align-items: center;
-    margin-top:3.5rem;
+.create_video_cnt {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3.5rem;
 }
 
-.create_video_cnt h1{
-    font-size: 3rem;
-    font-weight: 900;
-    color:white
+.create_video_cnt h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+}
+.dropdown_box_not_open {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 2rem;
+  padding: 0.1rem;
+  color: white;
+  width: 30vw;
 }
 
-.create_inputbox{
-    display:flex;
-    align-items: center;
-    background-color: transparent;
-    border: .5rem #7AC3FF solid;
-    border-radius: 2rem;
-    padding:.5rem;
-    height: 5.6rem;
-    width:30vw;
-    color:white;
+.dropdown_box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 0.5rem #7ac3ff solid;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  color: white;
+  height: 15rem;
+  overflow: auto;
+  position: fixed;
+  z-index: 1000;
+  width: 30vw;
+  background-color: rgb(32, 32, 32);
 }
 
-.create_inputbox input{
-    outline: none;
-    border:none;
-    background-color:transparent;
+.dropdown_box_item {
+  align-items: center;
+  background-color: transparent;
+  border: 0.5rem #7ac3ff solid;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  margin: 0.3rem;
+  color: white;
 }
 
-.create_inputbox input::placeholder{
-    color:white;
+.create_inputbox {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0.5rem #7ac3ff solid;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  height: 5.6rem;
+  width: 30vw;
+  color: white;
+  margin-bottom: 1rem;
 }
 
-.join_videoroom_cnt{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+.create_inputbox input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.join_videoroom_cnt h2{
-    font-size: 2.75rem;
-    font-weight:900;
-    color:white
+.create_inputbox input::placeholder {
+  color: white;
 }
 
-.join_inputbox{
-    display:flex;
-    align-items: center;
-    background-color: transparent;
-    border: .5rem #7AC3FF solid;
-    border-radius: 2rem;
-    padding:.5rem;
-    height: 5.6rem;
-    color:white;
+.join_videoroom_cnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.join_inputbox input{
-    outline: none;
-    border:none;
-    background-color:transparent;
+.join_videoroom_cnt h2 {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: white;
 }
 
-.join_inputbox input::placeholder{
-    color:white;
+.join_inputbox {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0.5rem #7ac3ff solid;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  height: 5.6rem;
+  color: white;
 }
 
-.link_character{
-    width: 50%; 
-    -webkit-user-drag: none;
+.join_inputbox input {
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
 
-.upload_video_cnt{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom:10vh;
-    gap:2rem;
+.join_inputbox input::placeholder {
+  color: white;
 }
 
-.video_form{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    gap:2rem;
+.link_character {
+  width: 50%;
+  -webkit-user-drag: none;
 }
 
-.upload_video_cnt h2{
-    font-size: 2.75rem;
-    font-weight:900;
-    color:white
+.upload_video_cnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10vh;
+  gap: 2rem;
 }
 
-.file_input{
-    display:none;
+.video_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
-.video_upload{
-    color:white;
-    user-select: none;
-    border: .5rem solid #078FFF;
-    padding:1rem;
-    border-radius: 2rem;
-    background-color: #7AC3FF;
-    font-weight:800;
-    width: 25vw;
-    display:flex;
-    justify-content: center;
+.upload_video_cnt h2 {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: white;
 }
 
-.video_upload_selected{
-    color:white;
-    user-select: none;
-    border: .5rem solid #078FFF;
-    padding:1rem;
-    border-radius: 2rem;
-    background-color: #078FFF;
-    font-weight:800;
-    width: 25vw;
-    display:flex;
-    justify-content: center;
+.file_input {
+  display: none;
 }
 
-.video_upload:hover{
-    color:rgb(90, 90, 90);
-    cursor:pointer
+.video_upload {
+  color: white;
+  user-select: none;
+  border: 0.5rem solid #078fff;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #7ac3ff;
+  font-weight: 800;
+  width: 25vw;
+  display: flex;
+  justify-content: center;
 }
 
-.video_upload:active{
-    color:rgb(80, 80, 80);
+.video_upload_selected {
+  color: white;
+  user-select: none;
+  border: 0.5rem solid #078fff;
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #078fff;
+  font-weight: 800;
+  width: 25vw;
+  display: flex;
+  justify-content: center;
 }
 
-.video_selected{
-    color:white;
-    height:2rem;
+.video_upload:hover {
+  color: rgb(90, 90, 90);
+  cursor: pointer;
 }
 
-.video_name_input{
-    border: .5rem #7AC3FF solid;
-    height: 5rem;
-    width:20rem;
-    outline:none;
-    background-color:transparent;
-    color:white;
-    border-radius: 2rem;
-    padding-left:1rem;
+.video_upload:active {
+  color: rgb(80, 80, 80);
 }
 
-.video_name_input::placeholder{
-    color:white
+.video_selected {
+  color: white;
+  height: 2rem;
 }
 
-.video_submit{
-    color:white
+.video_name_input {
+  border: 0.5rem #7ac3ff solid;
+  height: 5rem;
+  width: 20rem;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  border-radius: 2rem;
+  padding-left: 1rem;
 }
 
-.video_submit:hover{
-    color:rgb(90, 90, 90);
-    cursor:pointer
+.video_name_input::placeholder {
+  color: white;
 }
 
-.video_submit:active{
-    color:rgb(80, 80, 80);
+.video_submit {
+  color: white;
 }
 
-.no_room_error{
-    width:30vw;
-    height:5vh;
-    color:red;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.video_submit:hover {
+  color: rgb(90, 90, 90);
+  cursor: pointer;
 }
 
-.svg_img{
-    -webkit-user-drag: none;
+.video_submit:active {
+  color: rgb(80, 80, 80);
+}
+
+.no_room_error {
+  width: 30vw;
+  height: 5vh;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg_img {
+  -webkit-user-drag: none;
 }
