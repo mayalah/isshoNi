@@ -12,6 +12,7 @@
   font-size: 4vw;
   margin-top: 18vh;
   margin-bottom: 0;
+  z-index: 1;
 }
 .headline-2 {
   font-family: "WorkSans-ExtraBold";
@@ -26,6 +27,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin: 0;
+  z-index: 1;
 }
 .button-container {
   box-sizing: border-box;
@@ -42,6 +44,7 @@
   font-family: "WorkSans-Medium";
   margin-top: 3rem;
   border: 1px transparent solid;
+  z-index: 1;
 }
 .button-container:hover {
   border: solid 0.5vw transparent;
@@ -50,6 +53,7 @@
     linear-gradient(to right, #ff3e74, #ffde26, #6cecc4);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  z-index: 1;
 }
 .button-box {
   margin-top: 10vh;

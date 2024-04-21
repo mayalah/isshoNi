@@ -112,7 +112,7 @@ const SignUp = ({ setLoginSignup }) => {
           <div className="sign-up">Sign up</div>
 
           <div className="signup">
-            Already have an account?
+            Already have an account? &nbsp;
             <a href="#" onClick={() => setLoginSignup("SignIn")}>
               Log in
             </a>

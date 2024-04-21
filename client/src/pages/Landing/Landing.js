@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
+import StarMap from "./components/StarMap";
 
 const Landing = () => {
   const [scrollStyle, setScrollStyle] = useState("First-Page");
@@ -25,6 +26,7 @@ const Landing = () => {
   }, [scrollStyle]);
   return (
     <div className={`App ${scrollStyle}`}>
+      <StarMap />
       {loginSignUp === "SignUp" ? (
         <SignUp setLoginSignup={setLoginSignup} />
       ) : loginSignUp === "SignIn" ? (
