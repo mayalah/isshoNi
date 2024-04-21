@@ -37,8 +37,12 @@ const sortArrayBySimilarity = (arr, value) => {
   });
 };
 
-const DropDown = ({ setSelectInput, onClickCreateRoomBtn }) => {
-  const [dropdownState, setDropdownState] = useState({ open: false });
+const DropDown = ({
+  setSelectInput,
+  onClickCreateRoomBtn,
+  dropdownState,
+  setDropdownState,
+}) => {
   const [indx, setSelectedIndx] = useState();
   const arr_input = ["options 1", "hi 6", "whoop 5", "options 4"];
 
@@ -88,7 +92,9 @@ const DropDown = ({ setSelectInput, onClickCreateRoomBtn }) => {
         />
         <div
           className={styles.create_submit_cnt}
-          onClick={onClickCreateRoomBtn}
+          onClick={(e) => {
+            onClickCreateRoomBtn();
+          }}
         >
           <img className={styles.svg_img} src={createRoomSVG} />
         </div>
@@ -125,6 +131,9 @@ const DropDown = ({ setSelectInput, onClickCreateRoomBtn }) => {
                       break;
                     }
                   }
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.nativeEvent.stopImmediatePropagation();
                 }}
               >
                 {item}

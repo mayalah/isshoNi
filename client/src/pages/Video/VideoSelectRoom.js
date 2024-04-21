@@ -126,13 +126,22 @@ export default function VideoSelectRoom() {
   function onClickBrowseComputer() {
     fileRef.current.click();
   }
+  const [dropdownState, setDropdownState] = useState({ open: false });
+  const handleDropdownClick = () => {
+    if (dropdownState.open) {
+      setDropdownState({ open: false });
+    }
+  };
+
   console.log(file);
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={handleDropdownClick}>
       {/* Creating a room */}
       <section className={styles.create_video_cnt}>
         <h1>Create a Video Room!</h1>
         <DropDown
+          dropdownState={dropdownState}
+          setDropdownState={setDropdownState}
           setSelectInput={setSelectInput}
           onClickCreateRoomBtn={onClickCreateRoomBtn}
         />
