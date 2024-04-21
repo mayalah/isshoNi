@@ -11,6 +11,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 import GameRoom from "./pages/Game/components/GameRoom";
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import Footer from "./pages/Footer/Footer";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="work_in_progress" element={<WorkInProgress />} />
         <Route path="resetpassword" element={<ResetPassword />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
