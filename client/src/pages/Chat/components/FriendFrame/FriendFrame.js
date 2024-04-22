@@ -17,7 +17,7 @@ function FriendFrame({ fromFooter, friend, onClick, isActive }) {
         alt="userIcon"
         className={`icon ${fromFooter ? "small" : ""}`}
       />{" "}
-      <p>{friend.name}</p>
+      {fromFooter ? <div /> : <p>{friend.name}</p>}
     </button>
   );
 }

@@ -16,18 +16,20 @@ const Footer = () => {
     return null;
   }
   return (
-    <div className="footer_container" onClick={handleFooterClick}>
-      {FooterState.open ? (
-        <img
-          src={Chat}
-          style={{
-            height: `40px`,
-            width: `40px`,
-          }}
-        />
-      ) : (
-        <CHAT fromFooter={true} />
-      )}
+    <div>
+      <div className="footer_container" onClick={handleFooterClick}>
+        {FooterState.open ? (
+          <CHAT fromFooter={true} />
+        ) : (
+          <img
+            src={Chat}
+            style={{
+              height: `40px`,
+              width: `40px`,
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
