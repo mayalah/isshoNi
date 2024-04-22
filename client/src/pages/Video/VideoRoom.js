@@ -30,6 +30,8 @@ import styles from "./VideoRoom.module.css";
 import YouTube from "react-youtube";
 
 import io from "socket.io-client";
+import { Link } from "react-router-dom";
+import goBack from "../../assets/goBack.svg";
 
 // const socket = io("http://localhost:8009/");
 
@@ -282,6 +284,11 @@ function VideoPlayer({ isYoutube, link, roomID }) {
 
   return (
     <div className={styles.container}>
+      <nav className="back-button">
+        <Link to="/menu">
+          <img src={goBack} alt="Go Back" height={"50px"} />
+        </Link>
+      </nav>
       {modal ? <CopyLinkModal roomID={roomID} setModal={setModal} /> : null}
       <section className={styles.video_cnt}>
         {isYoutube ? (
