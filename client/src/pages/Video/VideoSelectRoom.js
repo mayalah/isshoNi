@@ -10,6 +10,8 @@ import blueSubmitSVG from "../../assets/blueSubmit.svg";
 import DropDown from "./component/Dropdown";
 
 import { addRoomID } from "../../utils/APIRoutes";
+import { Link } from "react-router-dom";
+import goBack from "../../assets/goBack.svg";
 
 import styles from "./VideoSelectRoom.module.css";
 
@@ -136,6 +138,11 @@ export default function VideoSelectRoom() {
   console.log(file);
   return (
     <div className={styles.container} onClick={handleDropdownClick}>
+      <nav className="back-button">
+        <Link to="/menu">
+          <img src={goBack} alt="Go Back" height={"50px"} />
+        </Link>
+      </nav>
       {/* Creating a room */}
       <section className={styles.create_video_cnt}>
         <h1>Create a Video Room!</h1>
