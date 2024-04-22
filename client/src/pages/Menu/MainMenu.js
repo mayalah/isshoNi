@@ -33,7 +33,7 @@ function MENU() {
   const userName = localStorage.getItem("userName");
 
   return (
-    <div>
+    <div className="mainmenu_div">
       <nav className="main-back-button">
         <Link to="/">
           <img

@@ -30,7 +30,7 @@ function CHAT({ fromFooter }) {
   };
 
   return (
-    <div>
+    <div className={`chatDiv ${fromFooter ? "from-footer" : ""}`}>
       {!fromFooter ? (
         <nav className="back-button-chat">
           <Link to="/menu">
@@ -43,12 +43,13 @@ function CHAT({ fromFooter }) {
           </Link>
         </nav>
       ) : (
-        <div />
+        <div className="footer_back">X</div>
       )}
-      <div className="chat-bg chat-bg-margin">
+      <div className={`chat-bg ${fromFooter ? "" : "chat-bg-margin"} `}>
         <div className="left-menu-style">
-          <UserFrame userName={userName} />
+          {!fromFooter ? <UserFrame userName={userName} /> : <div />}
           <Friends
+            fromFooter={fromFooter}
             setSelectedFriend={handleFriendSelection}
             userEmailProp={userEmail}
             setFriendEmail={handleFriendSelectionEmail}
@@ -67,7 +68,12 @@ function CHAT({ fromFooter }) {
                 className={`button-group button-decision-text ${
                   activeButton === "group" ? "active" : ""
                 }`}
-                onClick={() => handleButtonClick("group")}
+                onClick={(e) => {
+                  handleButtonClick("group");
+                  e.preventDefault();
+                  e.stopPropagation();
+                  e.nativeEvent.stopImmediatePropagation();
+                }}
               >
                 join a group
               </button>

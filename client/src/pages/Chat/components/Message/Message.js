@@ -115,7 +115,14 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
   };
 
   return (
-    <div className="message-container">
+    <div
+      className="message-container"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+      }}
+    >
       <p className="subheading">message with</p>
       <p className="heading">{setSelectedFriend}</p>
       <div className="messages-list">
@@ -123,25 +130,25 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
           <div key={index}>
             {messageObject.sender === userEmail ? (
               <div className="flex flex-row justify-end w-full">
-              <div className="sender-container">
-                <span className="message-text">
-                  {messageObject.message_content}
-                </span>
-                <span className="message-timestamp">
-                  {formatTimestamp(messageObject.date, messageObject.time)}
-                </span>
-              </div>
+                <div className="sender-container">
+                  <span className="message-text">
+                    {messageObject.message_content}
+                  </span>
+                  <span className="message-timestamp">
+                    {formatTimestamp(messageObject.date, messageObject.time)}
+                  </span>
+                </div>
               </div>
             ) : (
               <div className="flex flex-row justify-start w-full">
-              <div className="receiver-container">
-                <span className="message-text">
-                  {messageObject.message_content}
-                </span>
-                <span className="message-timestamp">
-                  {formatTimestamp(messageObject.date, messageObject.time)}
-                </span>
-              </div>
+                <div className="receiver-container">
+                  <span className="message-text">
+                    {messageObject.message_content}
+                  </span>
+                  <span className="message-timestamp">
+                    {formatTimestamp(messageObject.date, messageObject.time)}
+                  </span>
+                </div>
               </div>
             )}
           </div>
@@ -153,7 +160,9 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
           className="message-input"
           placeholder="type a message..."
           value={messageInput}
-          onChange={(e) => setMessageInput(e.target.value)}
+          onChange={(e) => {
+            setMessageInput(e.target.value);
+          }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSendMessage();
