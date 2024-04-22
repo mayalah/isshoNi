@@ -32,7 +32,7 @@ body,
   column-gap: 2rem;
   padding-top: 2rem;
 }
-.option-styling{
+.option-styling {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,6 @@ body,
   align-items: center;
   justify-content: center;
 }
-
 
 /* MENU BUTTON DESIGN */
 .button-text {
@@ -171,24 +170,23 @@ body,
   padding: 0.5rem;
 }
 
-
 /* CHARACTER DESIGN */
 .red-character {
-  position: absolute; 
-  left: 15%; 
-  top: 23%; 
-  transform: translate(-50%, -50%) rotate(-15.754deg); 
-  z-index: 1; 
+  position: absolute;
+  left: 15%;
+  top: 23%;
+  transform: translate(-50%, -50%) rotate(-15.754deg);
+  z-index: 1;
   width: 5.33256rem;
   height: 6.9295rem;
   flex-shrink: 0;
 }
-.cloud-character{
+.cloud-character {
   position: absolute;
   width: 5.23781rem;
   height: 5.75144rem;
   flex-shrink: 0;
-  z-index: 999;
+  z-index: 80;
   right: 2%;
   bottom: 4%;
 }
