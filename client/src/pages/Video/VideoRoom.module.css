@@ -26,9 +26,55 @@
 
 .comments_cnt {
   border: #4fc8b7 solid 0.5rem;
-  flex: 4;
   border-radius: 2rem;
   padding: 1rem;
+  display:flex;
+  flex-direction: column;  
+  gap:.5rem;
+  height:75vh;
+}
+
+.comment_space{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  overflow:scroll;
+  color:white;
+}
+
+.user_chat_cnt{
+  max-width: 50%;
+  min-height:10vh;
+  flex:1;
+  align-self: flex-end;
+  border: 1px white solid
+}
+
+.user_message{
+  border-radius: 1.75rem;
+  padding: .5rem;
+  border: 1px #7ac3ff solid
+}
+
+.others_chat_cnt{
+  max-width: 50%;
+  flex:1;
+  align-self:flex-start
+}
+
+.others_message{
+  border-radius: 1.75rem;
+  padding: .5rem;
+  border: 1px #fb8c8c solid
+}
+
+.user_chat{
+  border: 1px blue solid;
+  display: flex;
+}
+
+.sent_name{
+  font-size: .75rem;
 }
 
 .video_controls_cnt {

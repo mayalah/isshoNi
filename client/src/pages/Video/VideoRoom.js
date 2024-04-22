@@ -7,6 +7,7 @@ import {
   useStorage,
   useMutation,
   useThreads,
+  useSelf,
 } from "./video_liveblocks.config.js";
 import { RoomProvider } from "./video_liveblocks.config.js";
 import { ClientSideSuspense, shallow } from "@liveblocks/react";
@@ -43,6 +44,10 @@ function VideoRoom() {
     <RoomProvider
       id={roomID}
       initialPresence={{
+        name:
+          localStorage.getItem("userName") === null
+            ? "How did I get here?"
+            : localStorage.getItem("userName"),
         pause: true,
       }}
       initialStorage={{
@@ -136,6 +141,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
   const [modal, setModal] = useState(false);
   const [youtubePlayer, setYoutubePlayer] = useState(null);
   const [youtubeLink, setYoutubeLink] = useState("");
+  const [userInput, setUserInput] = useState("");
 
   const buttonRef = useRef(null);
   const youtubeRef = useRef(null);
@@ -143,6 +149,9 @@ function VideoPlayer({ isYoutube, link, roomID }) {
   const broadcast = useBroadcastEvent();
 
   const videoRef = useRef(null);
+
+  const chatHistory = useStorage((root) => root.chatHistory);
+  const currentUser = useSelf();
 
   useEffect(() => {
     console.log("???", isYoutube);
@@ -271,6 +280,16 @@ function VideoPlayer({ isYoutube, link, roomID }) {
     youtubeRef.current = player;
   }
 
+  const sendChat = useMutation(
+    ({ storage, self }) => {
+      if (userInput.length === 0) return;
+      const chats = storage.get("chatHistory");
+      chats.push({ message: userInput, user: self.presence.name });
+      // console.log(chats);
+    },
+    [userInput]
+  );
+
   const opts = {
     height: "500",
     width: "900",
@@ -279,7 +298,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
       controls: 0,
     },
   };
-
+  console.log(currentUser);
   return (
     <div className={styles.container}>
       {modal ? <CopyLinkModal roomID={roomID} setModal={setModal} /> : null}
@@ -320,11 +339,36 @@ function VideoPlayer({ isYoutube, link, roomID }) {
           <div className={styles.copy_link_cnt} onClick={onModalClick}>
             <img className={styles.svg_img} src={copyLinkSVG} />
           </div>
-          <div>
-            {/* {threads.map((thread) => (
-              <Thread key={thread.id} thread={thread} className="thread" />
+          <div className={styles.comment_space}>
+            {chatHistory.map((obj) => (
+              <div
+                className={
+                  currentUser.presence.name === obj.user
+                    ? styles.user_chat_cnt
+                    : styles.others_chat_cnt
+                }
+              >
+                <div className={styles.sent_name}>{obj.user}</div>
+                <div
+                  className={
+                    currentUser.presence.name === obj.user
+                      ? styles.user_message
+                      : styles.others_message
+                  }
+                >
+                  {obj.message}
+                </div>
+              </div>
             ))}
-            <Composer className="composer" /> */}
+          </div>
+          <div className={styles.user_chat}>
+            <input
+              placeholder="chat"
+              onChange={(e) => setUserInput(e.target.value)}
+            />
+            <div onClick={sendChat}>
+              <img className={styles.svg_img} src={playSVG} />
+            </div>
           </div>
         </div>
         <div className={styles.video_controls_cnt}>
