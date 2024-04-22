@@ -7,6 +7,7 @@ import "./UserFrame.css";
 function UserFrame ({userName}) {
   const userPic = localStorage.getItem("userImage");
 
+
   return (
     <div className="user-frame user-text">
       <div className="icon">

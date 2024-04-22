@@ -48,7 +48,7 @@
   align-self: flex-end;
   border: 1.267px solid #7ac3ff;
   padding: 0.25rem 1.25rem;
-  margin-bottom: 19px;
+  /* margin-bottom: 19px; */
   border-radius: 1.75rem;
   color: #fff;
   width: 200px;
@@ -58,10 +58,11 @@
   align-items: flex-start;
   border: 1.267px solid #fb8c8c;
   padding: 0.25rem 1.25rem;
-  margin-bottom: 19px;
+  /* margin-bottom: 19px; */
   border-radius: 1.75rem;
   color: #fff;
   width: 200px;
+
 }
 
 .send-button {
@@ -102,11 +103,28 @@
   color: #fff;
 }
 
-.message-timestamp {
-  margin-left: 10px;
+.message-timestamp-sender {
+  /* margin-right: 0px; */
+  margin-left: 420px;
   color: #aaa;
   font-size: 0.8rem;
+  padding-top: 0px;
+  font-size: 12px;
+
+
 }
+
+.message-timestamp-receiver {
+  margin-left: 120px;
+  color: #aaa;
+  font-size: 0.8rem;
+  padding-top: 0px;
+  font-size: 12px;
+
+
+}
+
+
 
 .message-text {
   margin-right: 10px;

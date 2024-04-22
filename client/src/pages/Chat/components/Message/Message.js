@@ -149,26 +149,30 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
         {sortedMessages.map((messageObject, index) => (
           <div key={index}>
             {messageObject.sender === userEmail ? (
-              <div className="flex flex-row justify-end w-full">
+              <div>
+              <div className="flex flex-col justify-end w-full">
                 <div className="sender-container">
-                  <span className="message-text">
+                  <p className="message-text">
                     {messageObject.message_content}
-                  </span>
-                  <span className="message-timestamp">
-                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
-                  </span>
+                  </p>
                 </div>
+                <p className="message-timestamp-sender">
+                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
+                  </p>
+              </div>
               </div>
             ) : (
-              <div className="flex flex-row justify-start w-full">
-                <div className="receiver-container">
-                  <span className="message-text">
+              <div>
+              <div className="flex flex-col justify-start w-full ">
+                <div className="receiver-container ">
+                  <p className="message-text ">
                     {messageObject.message_content}
-                  </span>
-                  <span className="message-timestamp">
-                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
-                  </span>
+                  </p>
                 </div>
+                <p className="message-timestamp-receiver">
+                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
+                  </p>
+              </div>
               </div>
             )}
           </div>
