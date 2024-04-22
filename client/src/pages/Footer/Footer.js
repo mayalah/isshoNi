@@ -17,7 +17,12 @@ const Footer = () => {
   }
   return (
     <div>
-      <div className="footer_container" onClick={handleFooterClick}>
+      <div
+        className={`footer_container ${
+          pathname === "/videoselect" ? "fixed" : ""
+        } `}
+        onClick={handleFooterClick}
+      >
         {FooterState.open ? (
           <CHAT fromFooter={true} />
         ) : (
