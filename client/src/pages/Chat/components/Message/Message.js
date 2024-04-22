@@ -93,6 +93,25 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
     }
   };
 
+  function reformatDateString(input) {
+    // the given input format is YYYY-DD-MM -> convert it to YYYY-MM-DD
+    const parts = input.split('-'); 
+    if (parts.length === 3) {
+      const year = parts[0];
+      const day = parts[1].padStart(2, '0'); // Ensures day is 2 digits
+      const month = parts[2].padStart(2, '0'); // Ensures month is 2 digits
+  
+      // month and day needs to be valid
+      if (parseInt(month) > 0 && parseInt(month) <= 12 && parseInt(day) > 0 && parseInt(day) <= 31) {
+        return `${year}-${month}-${day}`; // correct value for formatTimeStamp
+      } 
+    } else {
+      console.error('ReformatDateString: Invalid input format: ', input);
+      return null; 
+    }
+  }
+  
+
   const formatTimestamp = (dateString, timeString) => {
     // Extract the hours, minutes, and seconds from the time string
     const [time, modifier] = timeString.split(" ");
@@ -109,6 +128,7 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
     if (isNaN(date.getTime())) {
       return "NaN";
     }
+
     const formattedTime = format(date, "hh:mm:ss a");
 
     return formattedTime;
@@ -135,7 +155,7 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
                     {messageObject.message_content}
                   </span>
                   <span className="message-timestamp">
-                    {formatTimestamp(messageObject.date, messageObject.time)}
+                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
                   </span>
                 </div>
               </div>
@@ -146,7 +166,7 @@ function Message({ setSelectedFriend, userEmail, friendEmail }) {
                     {messageObject.message_content}
                   </span>
                   <span className="message-timestamp">
-                    {formatTimestamp(messageObject.date, messageObject.time)}
+                    {formatTimestamp(reformatDateString(messageObject.date), messageObject.time)}
                   </span>
                 </div>
               </div>
