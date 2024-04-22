@@ -223,3 +223,27 @@
 .svg_img {
   -webkit-user-drag: none;
 }
+
+.youtube_cnt{
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0.5rem #7ac3ff solid;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  height: 5.6rem;
+  color: white;
+}
+
+.youtube_input{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width:20vw;
+}
+
+.youtube_input::placeholder{
+  color:white
+}
+
+

@@ -1,5 +1,5 @@
 //import VideoRoom from "./VideoRoom.js";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import axios from "axios";
 
@@ -19,6 +19,7 @@ export default function VideoSelectRoom() {
   const [selectInput, setSelectInput] = useState("");
   const [selectExist, setSelectExist] = useState("");
   const [noRoomExist, setNoRoomExist] = useState("");
+  const [videoArr, setVideoArr] = useState([]);
 
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
@@ -26,7 +27,23 @@ export default function VideoSelectRoom() {
   const fileRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8009/api/video/getVideos`)
+      .then((res) => {
+        console.log(res.data);
+        setVideoArr(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log("Use effect catch statement");
+      });
+  }, []);
+
   function onClickCreateRoomBtn() {
+    if (selectInput === "" || selectInput.length < 1) {
+      return;
+    }
     const uid = "video-" + Date.now() + `-${selectInput}`;
     let isYoutube = false;
     if (selectInput.includes("youtube.com")) {
@@ -134,8 +151,7 @@ export default function VideoSelectRoom() {
       setDropdownState({ open: false });
     }
   };
-
-  console.log(file);
+  console.log(selectInput);
   return (
     <div className={styles.container} onClick={handleDropdownClick}>
       <nav className="back-button">
@@ -147,11 +163,26 @@ export default function VideoSelectRoom() {
       <section className={styles.create_video_cnt}>
         <h1>Create a Video Room!</h1>
         <DropDown
-          dropdownState={dropdownState}
-          setDropdownState={setDropdownState}
-          setSelectInput={setSelectInput}
-          onClickCreateRoomBtn={onClickCreateRoomBtn}
+          videoNames={videoArr}
+          selectInput={selectInput}
+          setSelectInput={setSelectInput} //
+          dropdownState={dropdownState} //
+          setDropdownState={setDropdownState} //
+          onClickCreateRoomBtn={onClickCreateRoomBtn} //
         />
+        <div className={styles.youtube_cnt}>
+          <input
+            className={styles.youtube_input}
+            placeholder="Or Input YouTube Link!"
+            onChange={(e) => setSelectInput(e.target.value)}
+          />
+          <div
+            className={styles.create_submit_cnt}
+            onClick={onClickCreateRoomBtn}
+          >
+            <img className={styles.svg_img} src={joinRoomSVG} />
+          </div>
+        </div>
       </section>
       {/* Joining a room */}
       <section className={styles.join_videoroom_cnt}>

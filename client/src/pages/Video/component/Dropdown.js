@@ -38,6 +38,7 @@ const sortArrayBySimilarity = (arr, value) => {
 };
 
 const DropDown = ({
+  videoNames,
   setSelectInput,
   onClickCreateRoomBtn,
   dropdownState,
@@ -46,10 +47,18 @@ const DropDown = ({
   const [indx, setSelectedIndx] = useState();
   const arr_input = ["options 1", "hi 6", "whoop 5", "options 4"];
 
-  const [arr, setArr] = useState(arr_input);
+  const [arr, setArr] = useState([]);
+  useEffect(() => {
+    setArr(videoNames);
+  }, [videoNames]);
 
-  const handleDropdownClick = () =>
-    setDropdownState({ open: !dropdownState.open });
+  const handleDropdownInputClick = (e) => {
+    e.stopPropagation();
+    if (dropdownState.open === false) {
+      setDropdownState({ open: true });
+    }
+  };
+
   const [dropdownPosition, setDropdownPosition] = useState({
     top: 0,
     left: 0,
@@ -78,16 +87,17 @@ const DropDown = ({
       <div className={styles.create_inputbox} ref={ref}>
         <input
           className="inputbox"
-          placeholder="select video!"
+          placeholder={indx + 1 ? arr[indx] : "Select video!"}
           onChange={(e) => {
             const inputValue = e.target.value;
-            setSelectInput(inputValue);
+            //setSelectInput(inputValue);
             const sortedArr = sortArrayBySimilarity([...arr], inputValue);
+            setSelectedIndx(null);
             setArr(sortedArr);
           }}
           onClick={(e) => {
             updateDropdownPosition();
-            handleDropdownClick();
+            handleDropdownInputClick(e);
           }}
         />
         <div
@@ -131,6 +141,7 @@ const DropDown = ({
                       break;
                     }
                   }
+                  setSelectInput(item);
                   e.preventDefault();
                   e.stopPropagation();
                   e.nativeEvent.stopImmediatePropagation();

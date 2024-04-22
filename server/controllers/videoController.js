@@ -4,6 +4,7 @@ import {
   PutObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
+  ListObjectsV2Command,
 } from "@aws-sdk/client-s3";
 import { Upload } from "@aws-sdk/lib-storage";
 
@@ -128,4 +129,36 @@ export const checkIfRoomExist = async (request, reply) => {
   console.log(res["rows"][0]["count (*)"]);
   reply.code(200).send({ result: res["rows"][0]["count (*)"] });
   //return { result: res["rows"][0]["count (*)"] };
+};
+
+export const getVideos = async (request, reply) => {
+  let ret = [];
+  console.log("Get Videos!");
+  const command = new ListObjectsV2Command({
+    Bucket: `${S3BUCKET}`,
+    Prefix: "test/",
+    // The default and maximum number of keys returned is 1000. This limits it to
+    // one for demonstration purposes.
+    MaxKeys: 1,
+  });
+  let contents = "";
+  let isTruncated = true;
+  while (isTruncated) {
+    const { Contents, IsTruncated, NextContinuationToken } =
+      await s3Client.send(command);
+    const filename = Contents.map((c) => {
+      const key = c.Key;
+      const prefixRemoved = key.replace("test/", "");
+      const lastIndex = prefixRemoved.lastIndexOf(".");
+      return lastIndex !== -1
+        ? prefixRemoved.substring(0, lastIndex)
+        : prefixRemoved;
+    });
+    ret.push(filename[0]);
+    isTruncated = IsTruncated;
+    command.input.ContinuationToken = NextContinuationToken;
+  }
+  reply.code(200).header("Content-Type", "application/json").send(ret);
+  // const data = await s3Client.listObjectsV2({ Bucket: S3BUCKET });
+  // console.log("hi");
 };

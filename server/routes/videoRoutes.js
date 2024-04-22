@@ -4,6 +4,7 @@ import {
   addRoomID,
   checkIfYTRoomExist,
   checkIfRoomExist,
+  getVideos,
 } from "../controllers/videoController.js";
 
 async function videoRoutes(fastify, options) {
@@ -20,5 +21,6 @@ async function videoRoutes(fastify, options) {
   fastify.get("/checkIfRoomExist/:roomID", (request, reply) =>
     checkIfRoomExist(request, reply)
   );
+  fastify.get("/getVideos", (request, reply) => getVideos(request, reply));
 }
 export default videoRoutes;
