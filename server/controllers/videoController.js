@@ -10,7 +10,20 @@ import { Upload } from "@aws-sdk/lib-storage";
 
 import { createClient } from "@libsql/client";
 
-const s3Client = new S3Client({});
+const s3Client = new S3Client({
+  region: "us-east-1",
+  credentials: {
+    accessKeyId: process.env.AWS,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
+});
+
+// import AWS from "aws-sdk";
+// AWS.config.update({
+//   accessKeyId: process.env.AWS,
+//   secretAccessKey: process.env.AWS_SECRET,
+// });
+
 const S3BUCKET = "test-bucket-1703562676217";
 
 export const videoRetrieval = async (request, reply) => {

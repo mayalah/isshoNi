@@ -12,6 +12,7 @@
     "@fastify/multipart": "^8.2.0",
     "@libsql/client": "^0.4.3",
     "@liveblocks/node": "^1.11.0",
+    "aws-sdk": "^2.1605.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.1",
     "fastify": "^4.26.0",
