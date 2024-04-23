@@ -285,6 +285,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
       if (userInput.length === 0) return;
       const chats = storage.get("chatHistory");
       chats.push({ message: userInput, user: self.presence.name });
+      setUserInput("");
       // console.log(chats);
     },
     [userInput]
@@ -348,7 +349,15 @@ function VideoPlayer({ isYoutube, link, roomID }) {
                     : styles.others_chat_cnt
                 }
               >
-                <div className={styles.sent_name}>{obj.user}</div>
+                <div
+                  className={
+                    currentUser.presence.name === obj.user
+                      ? styles.user_sent_name
+                      : styles.others_sent_name
+                  }
+                >
+                  {obj.user}
+                </div>
                 <div
                   className={
                     currentUser.presence.name === obj.user
@@ -361,13 +370,17 @@ function VideoPlayer({ isYoutube, link, roomID }) {
               </div>
             ))}
           </div>
-          <div className={styles.user_chat}>
+          <div className={styles.chat_input_cnt}>
             <input
               placeholder="chat"
               onChange={(e) => setUserInput(e.target.value)}
+              value={userInput}
             />
             <div onClick={sendChat}>
-              <img className={styles.svg_img} src={playSVG} />
+              <img
+                className={`${styles.svg_img} ${styles.send_chat_svg}`}
+                src={playSVG}
+              />
             </div>
           </div>
         </div>
