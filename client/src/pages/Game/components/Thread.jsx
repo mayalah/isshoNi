@@ -33,7 +33,7 @@ export default function ThreadContainer({word}) {
                     type: "paragraph",
                     children: [
                         {
-                        text: "CORRECTED ANSWER",
+                        text: "CORRECT ANSWER",
                         },
                     ],
                     },
