@@ -5,6 +5,7 @@ import "../../../../index.css";
 import userIcon from "../../../../assets/userIcon.svg";
 
 function FriendFrame({ fromFooter, friend, onClick, isActive }) {
+  console.log(friend.pictureURL)
   return (
     <button
       className={`friend-frame-button friend-frame-text ${
@@ -16,8 +17,9 @@ function FriendFrame({ fromFooter, friend, onClick, isActive }) {
         src={friend.pictureURL}
         alt="userIcon"
         className={`icon ${fromFooter ? "small" : ""}`}
+        referrerPolicy="no-referrer"
       />{" "}
-      {fromFooter ? <div /> : <p>{friend.name}</p>}
+      {fromFooter ? <div /> : <p className =" truncate">{friend.name}</p>}
     </button>
   );
 }

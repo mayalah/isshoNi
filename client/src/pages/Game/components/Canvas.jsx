@@ -628,6 +628,7 @@ function User({ user }) {
         className="w-10 h-10 rounded-full border-[#FB8C8C] shadow-sm border-4"
         src={user.info.image}
         alt="Medium avatar"
+        referrerPolicy="no-referrer"
       />
     </div>
   );
