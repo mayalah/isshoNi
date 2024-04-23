@@ -19,6 +19,7 @@
   font-size: 3rem;
   font-weight: 900;
   color: white;
+  user-select: none;
 }
 .dropdown_box_not_open {
   align-items: center;
@@ -78,6 +79,7 @@
 
 .create_inputbox input::placeholder {
   color: white;
+  user-select: none;
 }
 
 .join_videoroom_cnt {
@@ -90,6 +92,7 @@
   font-size: 2.75rem;
   font-weight: 900;
   color: white;
+  user-select: none;
 }
 
 .join_inputbox {
@@ -111,11 +114,13 @@
 
 .join_inputbox input::placeholder {
   color: white;
+  user-select: none;
 }
 
 .link_character {
   width: 50%;
   -webkit-user-drag: none;
+  user-select: none;
 }
 
 .upload_video_cnt {
@@ -137,6 +142,7 @@
   font-size: 2.75rem;
   font-weight: 900;
   color: white;
+  user-select: none;
 }
 
 .file_input {
@@ -196,6 +202,7 @@
 
 .video_name_input::placeholder {
   color: white;
+  user-select: none;
 }
 
 .video_submit {
@@ -222,6 +229,7 @@
 
 .svg_img {
   -webkit-user-drag: none;
+  user-select: none;
 }
 
 .youtube_cnt{
@@ -243,7 +251,8 @@
 }
 
 .youtube_input::placeholder{
-  color:white
+  color:white;
+  user-select: none;
 }
 
 

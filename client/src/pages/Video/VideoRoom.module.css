@@ -38,43 +38,87 @@
   flex:1;
   display:flex;
   flex-direction: column;
-  overflow:scroll;
+  overflow:auto;
   color:white;
+  gap:1rem;
+}
+
+.comment_space::-webkit-scrollbar{
+  width:.25rem;
+}
+
+.comment_space::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 .user_chat_cnt{
+  display:flex;
+  flex-direction: column;
   max-width: 50%;
-  min-height:10vh;
-  flex:1;
   align-self: flex-end;
-  border: 1px white solid
+}
+
+.others_chat_cnt{
+  display:flex;
+  flex-direction: column;
+  max-width: 50%;
+  align-self:flex-start
 }
 
 .user_message{
   border-radius: 1.75rem;
-  padding: .5rem;
+  padding: .75rem;
+  overflow-wrap:break-word;
+  max-width: 100%;
+  min-width:20%;
   border: 1px #7ac3ff solid
-}
-
-.others_chat_cnt{
-  max-width: 50%;
-  flex:1;
-  align-self:flex-start
 }
 
 .others_message{
   border-radius: 1.75rem;
-  padding: .5rem;
+  padding: .75rem;
+  overflow-wrap:break-word;
   border: 1px #fb8c8c solid
 }
 
-.user_chat{
-  border: 1px blue solid;
-  display: flex;
+.user_sent_name{
+  align-self:flex-end;
+  font-size: .75rem;
+  margin-bottom:.5rem;
+  user-select: none;
+}
+.others_sent_name{
+  font-size: .75rem;
+  margin-bottom:.5rem;
+  user-select: none;
 }
 
-.sent_name{
-  font-size: .75rem;
+.chat_input_cnt{
+  padding: 1rem 1rem;
+  display: flex;
+  background-color: black;
+  border-radius: 1.75rem;
+  align-items: center;
+  gap:1rem;
+}
+.chat_input_cnt input{
+  outline: none;
+  border: none;
+  background-color: gray;
+  border-radius:1.75rem;
+  color:white;
+  padding-left: 1rem;
+  height:2rem;
+}
+
+.chat_input_cnt input::placeholder{
+  color:white;
+  user-select: none;
+}
+
+.send_chat_svg{
+  width:2rem;
 }
 
 .video_controls_cnt {
@@ -109,6 +153,7 @@
 
 .svg_img {
   -webkit-user-drag: none;
+  user-select: none;
 }
 
 .copy_link_cnt {
