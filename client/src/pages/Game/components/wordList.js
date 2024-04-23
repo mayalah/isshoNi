@@ -36,7 +36,7 @@ const scribbleWords = [
   "Lemon",
   "Rocket",
   "Airplane",
-  "Ice Cream",
+
   "Saxophone",
   "Pineapple",
   "Hamburger",
@@ -44,7 +44,7 @@ const scribbleWords = [
   "Seashell",
   "Popcorn",
   "Ladder",
-  "Disco Ball",
+
   "Dessert",
   "Suitcase",
   "Sunglasses",

@@ -482,7 +482,7 @@ export default function Canvas() {
 
   useEventListener(({event})=>{
     if (event.type ==="play"){
-      console.log(event.word)
+      const player = event.sender.split("@")[0]
       setWord(event.word)
       setSeconds(event.time)
       setIsRunning(true)
@@ -712,7 +712,8 @@ const WordDisplay = ({ word, player, currentUser, seconds }) => {
   const wordArr = wordUppercase.split('');
 
   return (
-    <div className="absolute top-[560px] left-[20px] flex justify-center my-8">
+    <div className ="absolute top-[590px] left-[20px] flex flex-col mt-0">
+    <div className="flex justify-center ">
       {wordArr.map((c, index) => (
         <div
           key={index}
@@ -723,6 +724,15 @@ const WordDisplay = ({ word, player, currentUser, seconds }) => {
           )}
         </div>
       ))}
+      
+
+    </div>
+    {currentUser.info.name != player && seconds != 0 && (
+        <div className="text-white text-sm">
+          <p >{player.split("@")[0]} is drawing. </p>
+          <p>There are {word.length} letters</p>
+        </div>
+      )}
     </div>
   );
 };
