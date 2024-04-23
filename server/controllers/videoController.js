@@ -89,6 +89,7 @@ export const uploadVideo = async (request, reply) => {
     });
     await upload.done();
     console.log("Successfully uploaded!");
+    return { data: "success" };
   } catch (error) {
     console.error("Error uploading file to S3:", error);
     reply.status(500).send({ error: "Internal Server Error" });

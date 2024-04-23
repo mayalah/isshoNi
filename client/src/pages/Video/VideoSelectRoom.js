@@ -19,6 +19,7 @@ export default function VideoSelectRoom() {
   const [selectInput, setSelectInput] = useState("");
   const [selectExist, setSelectExist] = useState("");
   const [noRoomExist, setNoRoomExist] = useState("");
+  const [uploadMessage, setUploadMessage] = useState("");
   const [videoArr, setVideoArr] = useState([]);
 
   const [file, setFile] = useState("");
@@ -125,6 +126,7 @@ export default function VideoSelectRoom() {
       console.error("Input video name");
       return;
     }
+    setUploadMessage("Uploading...");
     const formData = new FormData();
     console.log(file);
     formData.append("video", file);
@@ -138,8 +140,15 @@ export default function VideoSelectRoom() {
       body: formData,
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        if (data.data !== null && data.data === "success") {
+          setUploadMessage("Upload Successful!");
+        }
+      })
+      .catch((error) => {
+        setUploadMessage("Upload Failed! Try Again.");
+        console.error("Error:", error);
+      });
   }
 
   function onClickBrowseComputer() {
@@ -202,6 +211,7 @@ export default function VideoSelectRoom() {
       {/* Upload video */}
       <section className={styles.upload_video_cnt}>
         <h2>Upload Video!</h2>
+        <div className={styles.video_upload_message}>{uploadMessage}</div>
         <form className={styles.video_form}>
           <input
             className={styles.file_input}

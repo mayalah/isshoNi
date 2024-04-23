@@ -128,7 +128,6 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10vh;
-  gap: 2rem;
 }
 
 .video_form {
@@ -222,6 +221,15 @@
   width: 30vw;
   height: 5vh;
   color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video_upload_message {
+  width: 30vw;
+  height: 5vh;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
