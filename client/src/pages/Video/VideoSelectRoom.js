@@ -51,6 +51,7 @@ export default function VideoSelectRoom() {
       isYoutube = true;
     }
     console.log("Clicked on create room");
+    console.log("Select Input, ", selectInput);
     fetch(`http://localhost:8009/api/video/addRoomID`, {
       method: "POST",
       body: uid,

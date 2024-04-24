@@ -328,11 +328,7 @@ function VideoPlayer({ isYoutube, link, roomID }) {
             // height="240"
             onTimeUpdate={handleTimeUpdate}
             // poster={pic}
-          >
-            <source
-              src={`http://localhost:8009/api/video/videoRetrieval/${link}`}
-            ></source>
-          </video>
+          ></video>
         )}
       </section>
       <section className={styles.right_cnt}>

@@ -1,80 +1,88 @@
 import { createClient } from "@liveblocks/client";
 import { createRoomContext } from "@liveblocks/react";
+import axios from "axios";
+import { liveblocksAuthRoute, resolveUsersRoute } from "../../utils/APIRoutes";
+// import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
+// import { Point, Color, Layer } from "@/app/types";
 
 const client = createClient({
-  publicApiKey: process.env.REACT_APP_LIVEBLOCKS_KEY,
-  // authEndpoint: "/api/auth",
+  // publicApiKey: "pk_dev_NuJ1AsSi7ZMuhid7MEn26xi9KnCjDz958niahaMbptRIMl2JmNLujZBDB1xeZ6Uo",
   throttle: 16,
+  // authEndpoint: "/api/liveblocks-auth",
+
+  authEndpoint: async () => {
+    const userEmail = localStorage.getItem("userEmail");
+
+    const response = await axios.post(liveblocksAuthRoute, {
+      userEmail: userEmail,
+    });
+
+    return await response.data;
+  },
+
+  // //   // Get users' info from their ID
+  resolveUsers: async ({ userIds }) => {
+    const url = resolveUsersRoute;
+
+    const params = new URLSearchParams();
+    userIds.forEach((userId) => {
+      params.append("userIds", userId);
+    });
+
+    const response = await axios.post(
+      `${resolveUsersRoute}?${params.toString()}`
+    );
+
+    const users = await response.data;
+    console.log("users from config", users);
+    return users;
+  },
 });
+
+// type Presence = {
+//   selection: string[];
+//   cursor: Point | null;
+//   pencilDraft: [x: number, y: number, pressure: number][] | null;
+//   penColor: Color | null;
+// };
+// type Player={
+//   name: string;
+//   words: string[];
+// }
+// type Storage = {
+//   layers: LiveMap<string, LiveObject<Layer>>;
+//   layerIds: LiveList<string>;
+
+// };
+
+// type UserMeta = {
+//   id: string;
+//   info: {
+//     name: string;
+//     avatar: string;
+//   };
+// };
 
 export const {
   suspense: {
     RoomProvider,
-    useRoom,
-    useMyPresence,
-    useUpdateMyPresence,
-    useSelf,
+    useOthersListener,
+    useThreads,
+    useCanRedo,
+    useCanUndo,
+    useHistory,
+    useMutation,
     useOthers,
     useOthersMapped,
     useOthersConnectionIds,
     useOther,
+    useRoom,
+    useSelf,
+    useStorage,
+    useUpdateMyPresence,
     useBroadcastEvent,
     useEventListener,
-    useErrorListener,
-    useStorage,
-    useObject,
-    useMap,
-    useList,
-    useBatch,
-    useHistory,
-    useUndo,
-    useRedo,
-    useCanUndo,
-    useCanRedo,
-    useMutation,
-    useStatus,
-    useLostConnectionListener,
-    useThreads,
-    useUser,
-    useCreateThread,
-    useEditThreadMetadata,
-    useCreateComment,
     useEditComment,
-    useDeleteComment,
-    useAddReaction,
-    useRemoveReaction,
   },
-} = createRoomContext(client, {
-  // async resolveUsers({ userIds }) {
-  //   // Used only for Comments. Return a list of user information retrieved
-  //   // from `userIds`. This info is used in comments, mentions etc.
-  //   // const usersData = await __fetchUsersFromDB__(userIds);
-  //   //
-  //   // return usersData.map((userData) => ({
-  //   //   name: userData.name,
-  //   //   avatar: userData.avatar.src,
-  //   // }));
-  //   return [];
-  // },
-  // async resolveMentionSuggestions({ text, roomId }) {
-  //   // Used only for Comments. Return a list of userIds that match `text`.
-  //   // These userIds are used to create a mention list when typing in the
-  //   // composer.
-  //   //
-  //   // For example when you type "@jo", `text` will be `"jo"`, and
-  //   // you should to return an array with John and Joanna's userIds:
-  //   // ["john@example.com", "joanna@example.com"]
-  //   // const userIds = await __fetchAllUserIdsFromDB__(roomId);
-  //   //
-  //   // Return all userIds if no `text`
-  //   // if (!text) {
-  //   //   return userIds;
-  //   // }
-  //   //
-  //   // Otherwise, filter userIds for the search `text` and return
-  //   // return userIds.filter((userId) =>
-  //   //   userId.toLowerCase().includes(text.toLowerCase())
-  //   // );
-  //   return [];
-  // },
-});
+  // } = createRoomContext<Presence, Storage /* UserMeta, RoomEvent */>(client);
+} = createRoomContext(client);
