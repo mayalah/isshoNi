@@ -27,13 +27,18 @@ const s3Client = new S3Client({
 const S3BUCKET = "test-bucket-1703562676217";
 
 export const videoRetrieval = async (request, reply) => {
-  const { link } = request.params;
+  let { link } = request.params;
   console.log(link);
   const range = request.headers.range;
-
+  let extension = ".mov";
+  if (link.includes(".mp4")) extension = ".mp4";
+  link = link.replace(/\.mp4/g, "");
+  const video_file = link + extension;
+  console.log(video_file);
+  console.log(extension);
   const headObjectCommand = new HeadObjectCommand({
     Bucket: S3BUCKET,
-    Key: `test/${link}.mov`,
+    Key: `test/${video_file}`,
   });
 
   const { ContentLength } = await s3Client.send(headObjectCommand);
@@ -51,7 +56,7 @@ export const videoRetrieval = async (request, reply) => {
   //console.log("Content Length: ", ContentLength);
   const getObjectCommand = new GetObjectCommand({
     Bucket: S3BUCKET,
-    Key: `test/${link}.mov`,
+    Key: `test/${video_file}`,
     Range: streamRange,
   });
 

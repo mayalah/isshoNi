@@ -40,10 +40,16 @@ export default function Description({ scrollStyle }) {
             <br /> and collaborations.
           </p>
         </div>
-        <div className="bridges-img-cnt">
-          <img src={pause} />
-        </div>
+        {/* <div className="bridges-img-cnt"> */}
+        {/* hi
+          <img src={pause} /> */}
+        <video controls className="video-player">
+          <source
+            src={`http://localhost:8009/api/video/videoRetrieval/DEMO.mp4`}
+          ></source>
+        </video>
       </div>
+      {/* </div> */}
 
       <section className="feature-cnt">
         <div className="feature-element">

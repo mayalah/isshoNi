@@ -90,6 +90,18 @@
     margin-right: 3rem;
 }
 
+.video-player{
+    width: 38.4375rem;
+    height: 23rem;
+    background: #E6E4E4;
+    border: 5px solid #AEF4DB;
+    border-radius: 2.8125rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3rem;
+}
+
 .feature-cnt{
     margin-top: 3rem;
     display:flex;
